@@ -4,7 +4,7 @@
 <h3 align="center">Aspiring MCA Student • Developer • Problem Solver</h3>
 
 <p align="center">
-  <a href="https://sangeethsanthoshsa.vercel.app" target="_blank">
+  <a href="https://sangeethsanthosh-git.github.io" target="_blank">
     <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&pause=1000&center=true&vCenter=true&width=320&lines=Visit+My+Portfolio" />
   </a>
 </p>
@@ -118,16 +118,12 @@
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=sangeethsanthosh-git&theme=tokyo-night" alt="Activity graph" />
 </p>
 
-## 💬 Random Dev Quote
-<p align="left">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight"/>
-</p>
 
 ## 🌐 Connect With Me
 <p align="left">
   <a href="https://linkedin.com/in/sangeethsanthoshsa" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin" /></a>
-  <a href="https://x.com/sangeeth_saa" target="_blank"><img src="https://skillicons.dev/icons?i=twitter" /></a>
-  <a href="mailto:sangeethsanthosh80@gmail.com"><img src="https://skillicons.dev/icons?i=gmail" /></a>
+  <!--<a href="https://x.com/sangeeth_saa" target="_blank"><img src="https://skillicons.dev/icons?i=twitter" /></a>-->
+  <a href="mailto:sangeethsanthoshsaa@gmail.com"><img src="https://skillicons.dev/icons?i=gmail" /></a>
  <a href="https://sangeethsanthosh-git.github.io/" target="_blank">
   🌐 Portfolio
 </a></p>
