@@ -124,8 +124,8 @@
   <a href="https://linkedin.com/in/sangeethsanthoshsa" target="_blank"><img src="https://skillicons.dev/icons?i=linkedin" /></a>
   <!--<a href="https://x.com/sangeeth_saa" target="_blank"><img src="https://skillicons.dev/icons?i=twitter" /></a>-->
   <a href="mailto:sangeethsanthoshsaa@gmail.com"><img src="https://skillicons.dev/icons?i=gmail" /></a>
- <a href="https://sangeethsanthosh-git.github.io/" target="_blank">
-  🌐 Portfolio
+<a href="https://sangeethsanthosh-git.github.io/" target="_blank">
+    <i class="fas fa-briefcase"></i> Portfolio
 </a></p>
 
 <p>
