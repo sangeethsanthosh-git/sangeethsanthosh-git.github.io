@@ -1,18 +1,18 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { projects } from "@/data/portfolio";
 
-const transition = { duration: 0.65, ease: [0.16, 1, 0.3, 1] as const };
 const isAnimatedAsset = (src: string) => src.endsWith(".webp") || src.endsWith(".gif");
 
 export default function Project() {
   const [current, setCurrent] = useState(0);
   const touchStartX = useRef<number | null>(null);
   const activeProject = projects[current];
+  const activeBackdropMobile = activeProject.backdropMobile ?? activeProject.backdropDesktop;
 
   const next = () => setCurrent((prev) => (prev + 1) % projects.length);
   const prev = () => setCurrent((prev) => (prev - 1 + projects.length) % projects.length);
@@ -49,22 +49,36 @@ export default function Project() {
       <AnimatePresence mode="wait">
         <motion.div
           key={`${activeProject.title}-backdrop`}
-          initial={{ opacity: 0 }}
+          initial={{ opacity: 0.2 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="absolute inset-0"
         >
-          <Image
-            src={activeProject.backdropDesktop}
-            alt=""
-            aria-hidden="true"
-            fill
-            loading="lazy"
-            unoptimized={isAnimatedAsset(activeProject.backdropDesktop)}
-            sizes="100vw"
-            className="object-cover opacity-28 blur-[1px]"
-          />
+          <div className="md:hidden">
+            <Image
+              src={activeBackdropMobile}
+              alt=""
+              aria-hidden="true"
+              fill
+              priority={current === 0}
+              unoptimized={isAnimatedAsset(activeBackdropMobile)}
+              sizes="100vw"
+              className="object-cover opacity-24 blur-[1px]"
+            />
+          </div>
+          <div className="hidden md:block">
+            <Image
+              src={activeProject.backdropDesktop}
+              alt=""
+              aria-hidden="true"
+              fill
+              priority={current === 0}
+              unoptimized={isAnimatedAsset(activeProject.backdropDesktop)}
+              sizes="100vw"
+              className="object-cover opacity-28 blur-[1px]"
+            />
+          </div>
         </motion.div>
       </AnimatePresence>
 
@@ -76,9 +90,6 @@ export default function Project() {
             <p className="text-xs uppercase tracking-[0.28em] text-[#dcefe9]/80 sm:text-sm sm:tracking-[0.35em]">
               Projects
             </p>
-            <h2 className="mt-4 max-w-2xl text-2xl font-semibold text-white sm:text-3xl md:text-4xl">
-              Open selected builds like project files from a curated archive.
-            </h2>
           </div>
 
           <div className="flex gap-3 self-start">
@@ -102,40 +113,37 @@ export default function Project() {
         </div>
 
         <div className="relative">
-          <div className="scrollbar-hide relative z-20 overflow-x-auto pb-2">
-            <div className="flex w-max min-w-full items-end gap-2 px-1 pr-6">
-              {projects.map((project, index) => {
-                const isActive = index === current;
+          <div className="sticky top-20 z-30 -mx-4 mb-3 bg-[#111111]/88 px-4 pb-2 pt-2 backdrop-blur-md sm:static sm:mx-0 sm:mb-0 sm:bg-transparent sm:px-0 sm:pt-0 sm:backdrop-blur-none">
+            <div className="scrollbar-hide relative overflow-x-auto pb-1">
+              <div className="flex w-max min-w-full items-end gap-2 px-1 pr-6">
+                {projects.map((project, index) => {
+                  const isActive = index === current;
 
-                return (
-                  <motion.button
-                    key={project.title}
-                    type="button"
-                    onClick={() => setCurrent(index)}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.8 }}
-                    transition={{ duration: 0.45, delay: index * 0.05 }}
-                    whileTap={{ scale: 0.985 }}
-                    className={`w-fit min-w-[4.35rem] shrink-0 rounded-t-[1.05rem] border border-white/12 border-b-0 px-2.5 py-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition duration-300 sm:min-w-[8.25rem] sm:rounded-t-[1.25rem] sm:px-3.5 sm:py-3.5 lg:min-w-[9rem] ${
-                      isActive
-                        ? "bg-[linear-gradient(180deg,rgba(205,242,232,0.94),rgba(178,228,213,0.82))] text-[#08211d]"
-                        : "bg-[linear-gradient(180deg,rgba(241,236,227,0.96),rgba(217,223,215,0.86))] text-[#102724]"
-                    }`}
-                  >
-                    <span className="hidden text-[10px] uppercase tracking-[0.32em] opacity-65 sm:block">
-                      File 0{index + 1}
-                    </span>
-                    <span className="mt-0 block text-[11px] font-semibold uppercase tracking-[0.22em] sm:mt-2 sm:text-[15px] sm:tracking-normal">
-                      <span className="hidden sm:block">{project.title}</span>
-                      <span className="sm:hidden">{`P${index + 1}`}</span>
-                    </span>
-                    <span className="mt-1 hidden whitespace-nowrap text-[10px] uppercase tracking-[0.22em] opacity-55 sm:block">
-                      {project.status === "working" ? "In Progress" : "Completed"}
-                    </span>
-                  </motion.button>
-                );
-              })}
+                  return (
+                    <button
+                      key={project.title}
+                      type="button"
+                      onClick={() => setCurrent(index)}
+                      className={`w-fit min-w-[4.35rem] shrink-0 rounded-t-[1.05rem] border border-white/12 border-b-0 px-2.5 py-3 text-left shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-xl transition duration-200 sm:min-w-[8.25rem] sm:rounded-t-[1.25rem] sm:px-3.5 sm:py-3.5 lg:min-w-[9rem] ${
+                        isActive
+                          ? "bg-[linear-gradient(180deg,rgba(205,242,232,0.94),rgba(178,228,213,0.82))] text-[#08211d]"
+                          : "bg-[linear-gradient(180deg,rgba(241,236,227,0.96),rgba(217,223,215,0.86))] text-[#102724]"
+                      }`}
+                    >
+                      <span className="hidden text-[10px] uppercase tracking-[0.32em] opacity-65 sm:block">
+                        File 0{index + 1}
+                      </span>
+                      <span className="mt-0 block text-[11px] font-semibold uppercase tracking-[0.22em] sm:mt-2 sm:text-[15px] sm:tracking-normal">
+                        <span className="hidden sm:block">{project.title}</span>
+                        <span className="sm:hidden">{`P${index + 1}`}</span>
+                      </span>
+                      <span className="mt-1 hidden whitespace-nowrap text-[10px] uppercase tracking-[0.22em] opacity-55 sm:block">
+                        {project.status === "working" ? "In Progress" : "Completed"}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
 
@@ -146,24 +154,35 @@ export default function Project() {
             <AnimatePresence mode="wait">
               <motion.article
                 key={activeProject.title}
-                initial={{ y: 110, opacity: 0, rotateX: 12, scale: 0.97 }}
-                animate={{ y: 0, opacity: 1, rotateX: 0, scale: 1 }}
-                exit={{ y: -24, opacity: 0, rotateX: -4, scale: 0.99 }}
-                transition={transition}
+                initial={{ y: 28, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: -18, opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                 className="relative overflow-hidden rounded-[1.7rem] border border-white/10 bg-[#0d1726]/95 p-5 shadow-[0_30px_80px_rgba(0,0,0,0.28)] sm:p-6 lg:p-8"
-                style={{ transformOrigin: "top center" }}
               >
                 <div className="absolute inset-0">
-                  <Image
-                    src={activeProject.backdropDesktop}
-                    alt=""
-                    aria-hidden="true"
-                    fill
-                    loading="lazy"
-                    unoptimized={isAnimatedAsset(activeProject.backdropDesktop)}
-                    sizes="100vw"
-                    className="object-cover opacity-30"
-                  />
+                  <div className="md:hidden">
+                    <Image
+                      src={activeBackdropMobile}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      unoptimized={isAnimatedAsset(activeBackdropMobile)}
+                      sizes="100vw"
+                      className="object-cover opacity-26"
+                    />
+                  </div>
+                  <div className="hidden md:block">
+                    <Image
+                      src={activeProject.backdropDesktop}
+                      alt=""
+                      aria-hidden="true"
+                      fill
+                      unoptimized={isAnimatedAsset(activeProject.backdropDesktop)}
+                      sizes="100vw"
+                      className="object-cover opacity-30"
+                    />
+                  </div>
                 </div>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.12),transparent_22%),linear-gradient(180deg,rgba(18,18,18,0.18),rgba(18,18,18,0.78))]" />
                 <div className="absolute inset-y-4 left-0 w-px bg-[linear-gradient(180deg,transparent,rgba(255,255,255,0.18),transparent)]" />
@@ -241,12 +260,7 @@ export default function Project() {
                     </div>
                   </div>
 
-                  <motion.div
-                    initial={{ x: 42, opacity: 0.7 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1] }}
-                    className="mx-auto w-full max-w-md sm:max-w-lg lg:max-w-none"
-                  >
+                  <div className="mx-auto w-full max-w-md sm:max-w-lg lg:max-w-none">
                     <div className="overflow-hidden rounded-[1.6rem] border border-white/10 bg-white/8 shadow-2xl">
                       {activeProject.before && activeProject.after ? (
                         <BeforeAfterSlider before={activeProject.before} after={activeProject.after} />
@@ -269,27 +283,10 @@ export default function Project() {
                     <p className="mt-4 text-center text-sm text-white/58 lg:text-left">
                       Tap a file tab to open another project. Swipe works on mobile too.
                     </p>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.article>
             </AnimatePresence>
-          </div>
-
-          <div className="mt-5 flex flex-wrap gap-3 lg:hidden">
-            {projects.map((project, index) => (
-              <button
-                key={project.title}
-                type="button"
-                onClick={() => setCurrent(index)}
-                className={`rounded-full border px-4 py-2 text-xs uppercase tracking-[0.2em] transition duration-200 ${
-                  index === current
-                    ? "border-[#b5d3c6] bg-[#b5d3c6]/18 text-[#e8fbf3]"
-                    : "border-white/10 bg-white/5 text-white/62"
-                }`}
-              >
-                {project.title}
-              </button>
-            ))}
           </div>
         </div>
       </div>
@@ -300,11 +297,27 @@ export default function Project() {
 function BeforeAfterSlider({ after, before }: { after: string; before: string }) {
   const [position, setPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
+  const frameRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+    };
+  }, []);
 
   const updatePosition = (clientX: number, element: HTMLElement) => {
     const rect = element.getBoundingClientRect();
-    const nextPosition = ((clientX - rect.left) / rect.width) * 100;
-    setPosition(Math.max(0, Math.min(100, nextPosition)));
+    const nextPosition = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+
+    if (frameRef.current !== null) {
+      window.cancelAnimationFrame(frameRef.current);
+    }
+
+    frameRef.current = window.requestAnimationFrame(() => {
+      setPosition(nextPosition);
+    });
   };
 
   return (
@@ -321,6 +334,7 @@ function BeforeAfterSlider({ after, before }: { after: string; before: string })
         }
       }}
       onPointerUp={() => setIsDragging(false)}
+      onPointerCancel={() => setIsDragging(false)}
       onPointerLeave={() => setIsDragging(false)}
     >
       <Image

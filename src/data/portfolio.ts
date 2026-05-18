@@ -281,12 +281,12 @@ export const socials = {
   description:
     "Open to freelance work, collaborations, and product-focused conversations.",
   emailHref:
-    "https://mail.google.com/mail/?view=cm&fs=1&to=sangeethsanthoshsaa@gmail.com&su=Hi%20Sangeeth",
+    "mailto:sangeethsanthoshsaa@gmail.com?subject=Hi%20Sangeeth",
   copyrightName: "sangeethsanthoshsa",
   links: [
     {
       label: "Email",
-      href: "https://mail.google.com/mail/?view=cm&fs=1&to=sangeethsanthoshsaa@gmail.com&su=Hi%20Sangeeth",
+      href: "mailto:sangeethsanthoshsaa@gmail.com?subject=Hi%20Sangeeth",
       icon: "/icons/gmail.png",
     },
     {
