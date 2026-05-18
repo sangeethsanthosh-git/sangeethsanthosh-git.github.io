@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
+import MouseSpotlight from "@/components/MouseSpotlight";
 
 const geist = Geist({
   variable: "--font-geist",
@@ -63,7 +64,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geist.variable} antialiased`}>{children}</body>
+      <body className={`${geist.variable} antialiased`}>
+        <MouseSpotlight />
+        {children}
+      </body>
     </html>
   );
 }

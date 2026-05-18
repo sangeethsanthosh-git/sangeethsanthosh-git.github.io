@@ -1,9 +1,23 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { hero } from "@/data/portfolio";
 
 export default function HeroSection() {
+  const [roleIndex, setRoleIndex] = useState(0);
+
+  useEffect(() => {
+    const roles = hero.rotatingRoles ?? [hero.subtitle];
+    const interval = window.setInterval(() => {
+      setRoleIndex((current) => (current + 1) % roles.length);
+    }, 2400);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  const roles = hero.rotatingRoles ?? [hero.subtitle];
+
   return (
     <section
       id="top"
@@ -26,9 +40,20 @@ export default function HeroSection() {
         <h1 className="mt-5 text-[clamp(2.8rem,12vw,5.5rem)] font-semibold leading-[0.95] tracking-[0.04em] sm:mt-6 sm:tracking-[0.08em]">
           {hero.title}
         </h1>
-        <p className="mt-4 text-xs uppercase tracking-[0.24em] text-[#225424]/80 sm:text-sm sm:tracking-[0.4em] md:text-base">
-          {hero.subtitle}
-        </p>
+        <div className="mt-4 h-7 overflow-hidden sm:h-8 md:h-10">
+          <AnimatePresence mode="wait">
+            <motion.p
+              key={roles[roleIndex]}
+              initial={{ y: 24, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -24, opacity: 0 }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+              className="text-xs uppercase tracking-[0.24em] text-[#225424]/80 sm:text-sm sm:tracking-[0.4em] md:text-base"
+            >
+              {roles[roleIndex]}
+            </motion.p>
+          </AnimatePresence>
+        </div>
       </motion.div>
 
       <div className="absolute inset-x-4 bottom-14 z-10 flex items-end justify-between gap-4 sm:inset-x-6 sm:bottom-16 lg:inset-x-12">

@@ -61,6 +61,12 @@ export const hero = {
   eyebrow: "Hi I'm",
   title: "Sangeeth Santhosh",
   subtitle: "Web Developer",
+  rotatingRoles: [
+    "Web Developer",
+    "AI Builder",
+    "Freelance Engineer",
+    "Creative Technologist",
+  ],
   backgroundWord: "PORTFOLIO",
   sideLabel: "Explore",
   sideNote: "DEV",
@@ -287,6 +293,11 @@ export const socials = {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/sangeethsanthoshsa",
       icon: "/icons/linkedin.png",
+    },
+    {
+      label: "Fiverr",
+      href: "https://www.fiverr.com/s/Zmb6R7l",
+      icon: "/icons/fiverr.svg",
     },
     { label: "Instagram", href: "https://instagram.com", icon: "/icons/instagram.png" },
     {
