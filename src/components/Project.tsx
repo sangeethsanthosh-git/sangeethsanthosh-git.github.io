@@ -141,7 +141,7 @@ export default function Project() {
             </div>
           </div>
 
-          <div className="absolute left-5 top-15 z-20 max-w-[260px] text-right sm:left-5 sm:top-15 lg:left-14">
+          <div className="absolute left-5 top-5 z-20 max-w-[260px] text-right sm:left-5 sm:top-15 lg:left-14">
             <div className="mb-4 ml-auto h-0.5 w-11 bg-[#225424]" />
             <p className="text-[2.15rem] font-black uppercase leading-[0.94] tracking-[0.03em] sm:text-[2.8rem]">
               Project
@@ -153,7 +153,7 @@ export default function Project() {
             </p>
           </div>
 
-          <div className="absolute right-5 top-30 z-20 max-w-[210px] text-right sm:right-10 md:left-[44%] md:right-auto md:top-28 md:max-w-[220px] md:text-left">
+          <div className="absolute right-5 top-35 z-20 max-w-[210px] text-right sm:right-10 md:left-[44%] md:right-auto md:top-28 md:max-w-[220px] md:text-left">
             <div className="mb-3 ml-auto h-0.5 w-8 bg-[#225424] md:ml-0" />
             <p className="font-serif text-sm italic leading-6 text-[#225424]">&quot;{activeQuote}&quot;</p>
           </div>
