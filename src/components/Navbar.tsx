@@ -9,7 +9,7 @@ const colorMap: Record<string, string> = {
   about: "text-[#225424]",
   education: "text-[#f9f5ed]",
   skills: "text-[#f9f5ed]",
-  project: "text-[#f9f5ed]",
+  project: "text-[#225424]",
   services: "text-[#f9f5ed]",
   experience: "text-[#225424]",
   work: "text-[#f9f5ed]",
@@ -21,29 +21,31 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<(typeof navigation)[number]["id"]>("about");
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visibleEntry = entries.find((entry) => entry.isIntersecting);
+    const updateActiveSection = () => {
+      const marker = window.scrollY + 140;
+      const currentSection = [...navigation].reverse().find(({ id }) => {
+        const section = document.getElementById(id);
 
-        if (visibleEntry?.target.id) {
-          setActiveSection(visibleEntry.target.id as (typeof navigation)[number]["id"]);
+        if (!section) {
+          return false;
         }
-      },
-      {
-        rootMargin: "-45% 0px -45% 0px",
-        threshold: 0,
+
+        return section.offsetTop <= marker;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection.id);
       }
-    );
+    };
 
-    navigation.forEach(({ id }) => {
-      const section = document.getElementById(id);
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
 
-      if (section) {
-        observer.observe(section);
-      }
-    });
-
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export default function Navbar() {
   const activeColor = colorMap[activeSection] ?? "text-[#225424]";
 
   return (
-    <header className="fixed left-1/2 top-3 z-50 flex w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border border-white/20 bg-white/10 px-4 py-3 shadow-lg backdrop-blur-md sm:top-4 sm:w-[92%] sm:px-5 sm:py-4">
+    <header className="fixed left-1/2 top-3 z-50 flex w-[calc(100%-1rem)] max-w-6xl -translate-x-1/2 items-center justify-between rounded-2xl border border-[#eadbb7]/70 bg-[#faecd2]/78 px-4 py-3 shadow-[0_16px_38px_rgba(27,24,18,0.16)] backdrop-blur-md sm:top-4 sm:w-[92%] sm:px-5 sm:py-4">
       <a href="#top" className={`text-lg font-semibold transition-colors duration-300 sm:text-xl ${activeColor}`}>
         S.S
       </a>
