@@ -26,6 +26,8 @@ export default function Project() {
   const [isSettling, setIsSettling] = useState(false);
   const [showMobileDetails, setShowMobileDetails] = useState(false);
   const wheelRef = useRef<HTMLDivElement | null>(null);
+  const cardSwipeStartRef = useRef<{ x: number; y: number } | null>(null);
+  const didSwipeCardRef = useRef(false);
   const lastAngleRef = useRef(0);
   const settleTimerRef = useRef<number | null>(null);
   const anglePerProject = 360 / projects.length;
@@ -125,6 +127,30 @@ export default function Project() {
     settleTimerRef.current = window.setTimeout(() => setIsSettling(false), 520);
   };
 
+  const handleCardPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    cardSwipeStartRef.current = { x: event.clientX, y: event.clientY };
+    didSwipeCardRef.current = false;
+  };
+
+  const handleCardPointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    const start = cardSwipeStartRef.current;
+    cardSwipeStartRef.current = null;
+
+    if (!start) {
+      return;
+    }
+
+    const deltaX = event.clientX - start.x;
+    const deltaY = event.clientY - start.y;
+
+    if (Math.abs(deltaX) < 46 || Math.abs(deltaX) < Math.abs(deltaY) * 1.25) {
+      return;
+    }
+
+    didSwipeCardRef.current = true;
+    step(deltaX < 0 ? 1 : -1);
+  };
+
   return (
     <section
       id="project"
@@ -153,7 +179,7 @@ export default function Project() {
             </p>
           </div>
 
-          <div className="absolute right-5 top-35 z-20 max-w-[210px] text-right sm:right-10 md:left-[44%] md:right-auto md:top-28 md:max-w-[220px] md:text-left">
+          <div className="absolute right-5 top-40 z-20 max-w-[210px] text-right sm:right-10 md:left-[44%] md:right-auto md:top-28 md:max-w-[220px] md:text-left">
             <div className="mb-3 ml-auto h-0.5 w-8 bg-[#225424] md:ml-0" />
             <p className="font-serif text-sm italic leading-6 text-[#225424]">&quot;{activeQuote}&quot;</p>
           </div>
@@ -165,7 +191,21 @@ export default function Project() {
             </p>
           </div>
 
-          <div className="absolute inset-x-0 top-[230px] z-10 h-[280px] sm:top-[250px]">
+          <div
+            className="absolute inset-x-0 top-[230px] z-10 h-[280px] touch-pan-y sm:top-[250px]"
+            onPointerDown={handleCardPointerDown}
+            onPointerUp={handleCardPointerUp}
+            onPointerCancel={() => {
+              cardSwipeStartRef.current = null;
+            }}
+            onClickCapture={(event) => {
+              if (didSwipeCardRef.current) {
+                event.preventDefault();
+                event.stopPropagation();
+                didSwipeCardRef.current = false;
+              }
+            }}
+          >
             {storyCards.map((project, index) => {
               let rel = index - current;
 
@@ -534,4 +574,3 @@ function TreadBlock({
     </g>
   );
 }
-
