@@ -78,7 +78,7 @@ export default function Navbar() {
         ))}
 
         <Link
-          href="/pdf/Sangeeth_Santhosh_Resume.pdf"
+          href="/pdf/Sangeeth_Santhosh_SA_Resume.pdf"
           download
           className="rounded-full border border-[#225424]/20 px-4 py-2 font-medium text-[#225424] transition-transform duration-200 hover:scale-[1.02] xl:px-5"
         >
@@ -90,7 +90,8 @@ export default function Navbar() {
         type="button"
         className={`z-50 transition-colors lg:hidden ${activeColor}`}
         onClick={() => setMenuOpen((open) => !open)}
-        aria-expanded={menuOpen}
+        aria-expanded={menuOpen ? "true" : "false"}
+        aria-controls="mobile-navigation-menu"
         aria-label="Toggle navigation menu"
       >
         {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -105,7 +106,10 @@ export default function Navbar() {
             className="fixed inset-0 bg-black/20 backdrop-blur-[2px] lg:hidden"
           />
 
-          <div className="fixed inset-x-4 top-20 z-50 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-3xl border border-[#225424]/15 bg-[#faecd2] p-5 text-sm text-[#225424] shadow-2xl lg:hidden sm:inset-x-auto sm:right-4 sm:w-[22rem]">
+          <div
+            id="mobile-navigation-menu"
+            className="fixed inset-x-4 top-20 z-50 max-h-[calc(100svh-6.5rem)] overflow-y-auto rounded-3xl border border-[#225424]/15 bg-[#faecd2] p-5 text-sm text-[#225424] shadow-2xl lg:hidden sm:inset-x-auto sm:right-4 sm:w-[22rem]"
+          >
             <div className="flex flex-col gap-2">
               {navigation.map(({ id, label }) => (
                 <Link
@@ -122,7 +126,7 @@ export default function Navbar() {
             </div>
 
             <Link
-              href="/pdf/Sangeeth_Santhosh_Resume.pdf"
+              href="/pdf/Sangeeth_Santhosh_SA_Resume.pdf"
               download
               onClick={() => setMenuOpen(false)}
               className="mt-4 block rounded-full border border-[#225424]/20 px-4 py-3 text-center font-medium transition-transform duration-200 hover:scale-[1.02]"
