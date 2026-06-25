@@ -155,9 +155,9 @@ export const projects: ProjectItem[] = [
     title: "Cartoonizer",
     description:
       "Cartoonizer is a Python-based web application that transforms images, GIFs, and short videos into cartoon-style visuals while staying usable even on systems without GPU support.",
-    backdropDesktop: "/images/cartoon.webp",
-    backdropMobile: "/images/cartoon-mb.webp",
-    preview: "/images/cartoon.webp",
+    backdropDesktop: "/images/cartoon.jpg",
+    backdropMobile: "/images/cartoon-mb.jpj",
+    preview: "/images/cartoon.jpg",
     before: "/images/before.jpeg",
     after: "/images/after.jpg",
     github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
