@@ -358,7 +358,7 @@ export const socials = {
       href: "https://www.fiverr.com/s/Zmb6R7l",
       icon: "/icons/fiverr.svg",
     },
-    { label: "Instagram", href: "https://instagram.com", icon: "/icons/instagram.png" },
+    { label: "Instagram", href: "https://www.instagram.com/sangeethsanthosh.sa/", icon: "/icons/instagram.png" },
     {
       label: "GitHub",
       href: "https://github.com/sangeethsanthosh-git",
