@@ -37,44 +37,44 @@ interface StreamSlot {
 // 19 slots across 5 curved tracks for "All Skills" view (proportional heights, never colliding with tabs)
 const ALL_STREAM_SLOTS: StreamSlot[] = [
   // Track 1: Far Left (3 cards)
-  { id: "slot-0", track: "far-left", x: -210, y: -75, rot: -15, floatType: "float-1", floatDelay: "0.2s" },
-  { id: "slot-1", track: "far-left", x: -240, y: -145, rot: -19, floatType: "float-2", floatDelay: "0.5s" },
-  { id: "slot-2", track: "far-left", x: -255, y: -210, rot: -22, floatType: "float-3", floatDelay: "0.8s" },
+  { id: "slot-0", track: "far-left", x: -175, y: -85, rot: -15, floatType: "float-1", floatDelay: "0.2s" },
+  { id: "slot-1", track: "far-left", x: -195, y: -160, rot: -18, floatType: "float-2", floatDelay: "0.5s" },
+  { id: "slot-2", track: "far-left", x: -210, y: -230, rot: -21, floatType: "float-3", floatDelay: "0.8s" },
 
   // Track 2: Mid Left (4 cards)
-  { id: "slot-3", track: "mid-left", x: -105, y: -65, rot: -7, floatType: "float-2", floatDelay: "0.1s" },
-  { id: "slot-4", track: "mid-left", x: -125, y: -120, rot: -10, floatType: "float-1", floatDelay: "0.4s" },
-  { id: "slot-5", track: "mid-left", x: -138, y: -175, rot: -12, floatType: "float-3", floatDelay: "0.7s" },
-  { id: "slot-6", track: "mid-left", x: -145, y: -225, rot: -14, floatType: "float-2", floatDelay: "0.3s" },
+  { id: "slot-3", track: "mid-left", x: -90, y: -75, rot: -7, floatType: "float-2", floatDelay: "0.1s" },
+  { id: "slot-4", track: "mid-left", x: -105, y: -135, rot: -10, floatType: "float-1", floatDelay: "0.4s" },
+  { id: "slot-5", track: "mid-left", x: -115, y: -195, rot: -12, floatType: "float-3", floatDelay: "0.7s" },
+  { id: "slot-6", track: "mid-left", x: -120, y: -250, rot: -14, floatType: "float-2", floatDelay: "0.3s" },
 
   // Track 3: Center (4 cards)
-  { id: "slot-7", track: "center", x: -10, y: -80, rot: -2, floatType: "float-3", floatDelay: "0.3s" },
-  { id: "slot-8", track: "center", x: 10, y: -130, rot: 2, floatType: "float-1", floatDelay: "0.6s" },
-  { id: "slot-9", track: "center", x: -6, y: -180, rot: -1, floatType: "float-2", floatDelay: "0.2s" },
-  { id: "slot-10", track: "center", x: 0, y: -230, rot: 1, floatType: "float-3", floatDelay: "0.5s" },
+  { id: "slot-7", track: "center", x: -8, y: -90, rot: -2, floatType: "float-3", floatDelay: "0.3s" },
+  { id: "slot-8", track: "center", x: 8, y: -150, rot: 2, floatType: "float-1", floatDelay: "0.6s" },
+  { id: "slot-9", track: "center", x: -5, y: -210, rot: -1, floatType: "float-2", floatDelay: "0.2s" },
+  { id: "slot-10", track: "center", x: 0, y: -265, rot: 1, floatType: "float-3", floatDelay: "0.5s" },
 
   // Track 4: Mid Right (4 cards)
-  { id: "slot-11", track: "mid-right", x: 105, y: -65, rot: 7, floatType: "float-1", floatDelay: "0.2s" },
-  { id: "slot-12", track: "mid-right", x: 125, y: -120, rot: 10, floatType: "float-3", floatDelay: "0.5s" },
-  { id: "slot-13", track: "mid-right", x: 138, y: -175, rot: 12, floatType: "float-2", floatDelay: "0.8s" },
-  { id: "slot-14", track: "mid-right", x: 145, y: -225, rot: 14, floatType: "float-1", floatDelay: "0.4s" },
+  { id: "slot-11", track: "mid-right", x: 90, y: -75, rot: 7, floatType: "float-1", floatDelay: "0.2s" },
+  { id: "slot-12", track: "mid-right", x: 105, y: -135, rot: 10, floatType: "float-3", floatDelay: "0.5s" },
+  { id: "slot-13", track: "mid-right", x: 115, y: -195, rot: 12, floatType: "float-2", floatDelay: "0.8s" },
+  { id: "slot-14", track: "mid-right", x: 120, y: -250, rot: 14, floatType: "float-1", floatDelay: "0.4s" },
 
   // Track 5: Far Right (4 cards)
-  { id: "slot-15", track: "far-right", x: 210, y: -75, rot: 15, floatType: "float-2", floatDelay: "0.1s" },
-  { id: "slot-16", track: "far-right", x: 240, y: -145, rot: 19, floatType: "float-1", floatDelay: "0.4s" },
-  { id: "slot-17", track: "far-right", x: 255, y: -210, rot: 22, floatType: "float-3", floatDelay: "0.7s" },
-  { id: "slot-18", track: "far-right", x: 265, y: -235, rot: 24, floatType: "float-2", floatDelay: "0.9s" },
+  { id: "slot-15", track: "far-right", x: 175, y: -85, rot: 15, floatType: "float-2", floatDelay: "0.1s" },
+  { id: "slot-16", track: "far-right", x: 195, y: -160, rot: 18, floatType: "float-1", floatDelay: "0.4s" },
+  { id: "slot-17", track: "far-right", x: 210, y: -230, rot: 21, floatType: "float-3", floatDelay: "0.7s" },
+  { id: "slot-18", track: "far-right", x: 215, y: -260, rot: 23, floatType: "float-2", floatDelay: "0.9s" },
 ];
 
 // 7 slots for category-specific view (clean 3-track fan with ample headroom)
 const CATEGORY_STREAM_SLOTS: StreamSlot[] = [
-  { id: "cslot-0", track: "left", x: -95, y: -85, rot: -7, floatType: "float-1", floatDelay: "0.2s" },
-  { id: "cslot-1", track: "left", x: -130, y: -175, rot: -12, floatType: "float-2", floatDelay: "0.5s" },
-  { id: "cslot-2", track: "center", x: -4, y: -95, rot: -1, floatType: "float-3", floatDelay: "0.1s" },
-  { id: "cslot-3", track: "center", x: 0, y: -205, rot: 1, floatType: "float-1", floatDelay: "0.4s" },
-  { id: "cslot-4", track: "right", x: 85, y: -80, rot: 8, floatType: "float-2", floatDelay: "0.3s" },
-  { id: "cslot-5", track: "right", x: 130, y: -150, rot: 14, floatType: "float-3", floatDelay: "0.6s" },
-  { id: "cslot-6", track: "right", x: 155, y: -215, rot: 18, floatType: "float-1", floatDelay: "0.7s" },
+  { id: "cslot-0", track: "left", x: -110, y: -100, rot: -8, floatType: "float-1", floatDelay: "0.2s" },
+  { id: "cslot-1", track: "left", x: -145, y: -195, rot: -14, floatType: "float-2", floatDelay: "0.5s" },
+  { id: "cslot-2", track: "center", x: -6, y: -115, rot: -2, floatType: "float-3", floatDelay: "0.1s" },
+  { id: "cslot-3", track: "center", x: 0, y: -245, rot: 1, floatType: "float-1", floatDelay: "0.4s" },
+  { id: "cslot-4", track: "right", x: 100, y: -95, rot: 8, floatType: "float-2", floatDelay: "0.3s" },
+  { id: "cslot-5", track: "right", x: 140, y: -175, rot: 13, floatType: "float-3", floatDelay: "0.6s" },
+  { id: "cslot-6", track: "right", x: 160, y: -245, rot: 18, floatType: "float-1", floatDelay: "0.7s" },
 ];
 
 // 3 pocket card slots (sitting inside the folder pocket, peeking out)
@@ -86,9 +86,9 @@ interface PocketSlot {
 }
 
 const POCKET_SLOTS: PocketSlot[] = [
-  { id: "pocket-left", x: -78, y: 18, rot: -6 },
-  { id: "pocket-center", x: 0, y: 4, rot: 0 },
-  { id: "pocket-right", x: 78, y: 18, rot: 6 },
+  { id: "pocket-left", x: -75, y: -22, rot: -6 },
+  { id: "pocket-center", x: 0, y: -30, rot: 0 },
+  { id: "pocket-right", x: 75, y: -22, rot: 6 },
 ];
 
 // Complete 22 skills dataset
@@ -533,7 +533,7 @@ export default function Skills(): React.ReactElement {
   return (
     <section
       id="skills"
-      className="relative w-full overflow-hidden select-none py-14 sm:py-18 bg-[#faecd2] text-[#225424]"
+      className="relative w-full overflow-hidden select-none pt-28 pb-16 sm:pt-36 sm:pb-24 bg-[#faecd2] text-[#225424] scroll-mt-24"
     >
       {/* Soft warm ambient lighting behind the folder */}
       <div
@@ -589,9 +589,9 @@ export default function Skills(): React.ReactElement {
             Plenty of headroom (mt-8 sm:mt-12) so floating cards NEVER collide with tabs!
             Scales responsively on mobile (scale 0.52 -> 0.66 -> 0.88 -> 1.0) so it fits any screen!
             ========================================================================= */}
-        <div className="relative w-full max-w-4xl mx-auto h-[500px] sm:h-[550px] mt-8 sm:mt-12 flex items-end justify-center">
+        <div className="relative w-full max-w-4xl mx-auto h-[410px] xs:h-[440px] sm:h-[510px] md:h-[550px] mt-4 sm:mt-8 flex items-end justify-center">
           {/* THE MOUTH ANCHOR (0, 0 is right at the top lip of the folder pocket) */}
-          <div className="absolute left-1/2 bottom-[135px] sm:bottom-[150px] -translate-x-1/2 w-0 h-0 scale-[0.52] min-[390px]:scale-[0.66] sm:scale-[0.88] md:scale-100 transition-transform duration-300">
+          <div className="absolute left-1/2 bottom-[125px] sm:bottom-[150px] -translate-x-1/2 w-0 h-0 scale-[0.82] xs:scale-[0.88] sm:scale-[0.94] md:scale-100 transition-transform duration-300">
             {/* SVG CURVED TRACKS */}
             <svg
               key={`svg-${category}-${animKey}`}
@@ -611,7 +611,7 @@ export default function Skills(): React.ReactElement {
                   {/* Track 1: Far Left */}
                   <g className="path-draw-anim" style={{ animationDelay: "0ms" }}>
                     <path
-                      d="M 0 -5 C -75 -25, -180 -40, -255 -210"
+                      d="M 0 -5 C -65 -35, -150 -55, -210 -230"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -622,7 +622,7 @@ export default function Skills(): React.ReactElement {
                   {/* Track 2: Mid Left */}
                   <g className="path-draw-anim" style={{ animationDelay: "60ms" }}>
                     <path
-                      d="M 0 -5 C -45 -35, -105 -95, -145 -225"
+                      d="M 0 -5 C -40 -40, -95 -115, -120 -250"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -633,7 +633,7 @@ export default function Skills(): React.ReactElement {
                   {/* Track 3: Center */}
                   <g className="path-draw-anim" style={{ animationDelay: "120ms" }}>
                     <path
-                      d="M 0 -5 C -12 -65, 12 -145, 0 -230"
+                      d="M 0 -5 C -12 -75, 12 -165, 0 -265"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -644,7 +644,7 @@ export default function Skills(): React.ReactElement {
                   {/* Track 4: Mid Right */}
                   <g className="path-draw-anim" style={{ animationDelay: "180ms" }}>
                     <path
-                      d="M 0 -5 C 45 -35, 105 -95, 145 -225"
+                      d="M 0 -5 C 40 -40, 95 -115, 120 -250"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -655,7 +655,7 @@ export default function Skills(): React.ReactElement {
                   {/* Track 5: Far Right */}
                   <g className="path-draw-anim" style={{ animationDelay: "240ms" }}>
                     <path
-                      d="M 0 -5 C 75 -25, 180 -40, 265 -235"
+                      d="M 0 -5 C 65 -35, 150 -55, 215 -260"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -681,7 +681,7 @@ export default function Skills(): React.ReactElement {
                 <>
                   <g className="path-draw-anim" style={{ animationDelay: "0ms" }}>
                     <path
-                      d="M 0 -5 C -35 -45, -95 -100, -130 -175"
+                      d="M 0 -5 C -35 -55, -95 -120, -145 -195"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -691,7 +691,7 @@ export default function Skills(): React.ReactElement {
                   </g>
                   <g className="path-draw-anim" style={{ animationDelay: "80ms" }}>
                     <path
-                      d="M 0 -5 C -10 -55, 10 -125, 0 -205"
+                      d="M 0 -5 C -10 -65, 10 -155, 0 -245"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
@@ -701,7 +701,7 @@ export default function Skills(): React.ReactElement {
                   </g>
                   <g className="path-draw-anim" style={{ animationDelay: "140ms" }}>
                     <path
-                      d="M 0 -5 C 35 -45, 105 -105, 155 -215"
+                      d="M 0 -5 C 35 -55, 105 -125, 160 -245"
                       stroke="url(#streamGrad)"
                       strokeWidth="2"
                       strokeDasharray="5 7"
