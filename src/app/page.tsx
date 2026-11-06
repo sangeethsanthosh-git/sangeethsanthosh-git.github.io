@@ -8,7 +8,7 @@ import Navbar from "@/components/Navbar";
 import Services from "@/components/Services";
 
 const Skills = dynamic(() => import("@/components/Skills"), {
-  loading: () => <SectionFallback id="skills" className="bg-black text-white" label="Loading skills..." />,
+  loading: () => <SectionFallback id="skills" className="bg-[#faecd2] text-[#225424]" label="Loading skills..." />,
 });
 
 const Project = dynamic(() => import("@/components/Project"), {

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+    <defs>
+      <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#ec4899"/>
+        <stop offset="50%" stop-color="#8b5cf6"/>
+        <stop offset="100%" stop-color="#3b82f6"/>
+      </linearGradient>
+      <linearGradient id="spark" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#fef08a"/>
+        <stop offset="100%" stop-color="#ffffff"/>
+      </linearGradient>
+    </defs>
+    <rect width="192" height="192" rx="42" fill="url(#cg)"/>
+    <circle cx="96" cy="96" r="40" fill="white" opacity="0.15"/>
+    <line x1="58" y1="134" x2="106" y2="86" stroke="#fde047" stroke-width="8" stroke-linecap="round"/>
+    <line x1="64" y1="128" x2="112" y2="80" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M122 50 L126 66 L142 70 L126 74 L122 90 L118 74 L102 70 L118 66 Z" fill="url(#spark)"/>
+    <path d="M74 54 L76 62 L84 64 L76 66 L74 74 L72 66 L64 64 L72 62 Z" fill="url(#spark)" opacity="0.8"/>
+    <path d="M140 114 L141 119 L146 120 L141 121 L140 126 L139 121 L134 120 L139 119 Z" fill="url(#spark)" opacity="0.9"/>
+  </svg>

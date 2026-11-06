@@ -152,14 +152,111 @@ export const skills: SkillCategory[] = [
 
 export const projects: ProjectItem[] = [
   {
+    title: "Rewind",
+    description:
+      "Retro portable cassette walkman & Hi-Fi local audio player for Android with tactile physics, animated spools, and physical cassette aesthetics.",
+    backdropDesktop: "/images/rewind.png",
+    preview: "/images/rewind.png",
+    github: "https://github.com/sangeethsanthosh-git/rewind",
+    live: "https://github.com/sangeethsanthosh-git/rewind",
+    status: "completed",
+  },
+  {
+    title: "Chronicle Journal",
+    description:
+      "Artisanal offline-first Android journaling app inspired by physical notebooks, scrapbooks, polaroids, and archival typography.",
+    backdropDesktop: "/images/chronicle.png",
+    preview: "/images/chronicle.png",
+    github: "https://github.com/sangeethsanthosh-git/chronicle-journal",
+    live: "https://github.com/sangeethsanthosh-git/chronicle-journal",
+    status: "completed",
+  },
+  {
+    title: "AURA AI",
+    description:
+      "Lightweight, local-first AI companion for Windows featuring unified chat, voice synthesis, local Ollama integration, and desktop assistant controls.",
+    backdropDesktop: "/images/aura.jpg",
+    preview: "/images/aura.jpg",
+    github: "https://github.com/sangeethsanthosh-git/AURA",
+    live: "https://github.com/sangeethsanthosh-git/AURA",
+    status: "completed",
+  },
+  {
+    title: "Dayform",
+    description:
+      "Serene, privacy-first personal calendar, habit tracker, reminder, and daily planner app built with Flutter and SQLite.",
+    backdropDesktop: "/images/dayform.png",
+    preview: "/images/dayform.png",
+    github: "https://github.com/sangeethsanthosh-git/dayform",
+    live: "https://github.com/sangeethsanthosh-git/dayform",
+    status: "completed",
+  },
+  {
+    title: "File Integrity Vault",
+    description:
+      "Cryptographic SHA-256 file integrity monitoring system with real-time tampering detection, automated logging, and alert notifications.",
+    backdropDesktop: "/images/file-integrity.jpg",
+    preview: "/images/file-integrity.jpg",
+    github: "https://github.com/sangeethsanthosh-git/file-integrity",
+    live: "https://github.com/sangeethsanthosh-git/file-integrity",
+    status: "completed",
+  },
+  {
+    title: "Kerala Tourism Hub",
+    description:
+      "Interactive cultural exploration platform showcasing Kerala destinations, festivals, and culinary heritage with responsive media galleries.",
+    backdropDesktop: "/images/kerala-tourism.jpg",
+    preview: "/images/kerala-tourism.jpg",
+    github: "https://github.com/sangeethsanthosh-git/kerala-tourism",
+    live: "https://github.com/sangeethsanthosh-git/kerala-tourism",
+    status: "completed",
+  },
+  {
+    title: "Website Traffic Analyzer",
+    description:
+      "Server traffic log parser and visitor session analytics engine with geo-IP lookup, referral clustering, and interactive trend charts.",
+    backdropDesktop: "/images/website-traffic-analyzer.jpg",
+    preview: "/images/website-traffic-analyzer.jpg",
+    github: "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
+    live: "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
+    status: "completed",
+  },
+  {
+    title: "EduSense",
+    description:
+      "Intelligent lecture assistant with automatic transcript summarization, keyword extraction, and contextual study flashcard generation.",
+    backdropDesktop: "/images/edusense.jpg",
+    preview: "/images/edusense.jpg",
+    github: "https://github.com/sangeethsanthosh-git/Edusense",
+    live: "https://github.com/sangeethsanthosh-git/Edusense",
+    status: "completed",
+  },
+  {
+    title: "AI Budget Planner",
+    description:
+      "Personal financial assistant utilizing time-series forecasting, expense anomaly detection, and automated monthly budget allocations.",
+    backdropDesktop: "/images/ai-budget-planner.jpg",
+    preview: "/images/ai-budget-planner.jpg",
+    github: "https://github.com/sangeethsanthosh-git/ai-budget-planner",
+    live: "https://github.com/sangeethsanthosh-git/ai-budget-planner",
+    status: "completed",
+  },
+  {
+    title: "PCOD Detection System",
+    description:
+      "Clinical machine learning decision support tool with multi-variable biomarker evaluation and packaged cross-platform desktop UI.",
+    backdropDesktop: "/images/pcod-detection.jpg",
+    preview: "/images/pcod-detection.jpg",
+    github: "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
+    live: "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
+    status: "completed",
+  },
+  {
     title: "Cartoonizer AI",
     description:
       "AI-powered image and video stylization using OpenCV bilateral filtering and edge quantization, running entirely on CPU without heavy GPU servers.",
     backdropDesktop: "/images/cartoon.jpg",
-    backdropMobile: "/images/cartoon-mb.jpj",
     preview: "/images/cartoon.jpg",
-    before: "/images/before.jpeg",
-    after: "/images/after.jpg",
     github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
     live: "https://github.com/sangeethsanthosh-git/Cartoonizer",
     status: "completed",
@@ -167,157 +264,22 @@ export const projects: ProjectItem[] = [
   {
     title: "Gistify AI",
     description:
-      "Turns lengthy documents and research papers into clear summaries, extracted entities, and action plans with sub-second conversational document Q&A.",
+      "Turns lengthy documents and research papers into clear summaries, extracted entities, and action plans with sub-second document Q&A.",
     backdropDesktop: "/images/gistify.webp",
     backdropMobile: "/images/gistify-mb.webp",
     preview: "/images/gistify.webp",
-    github: "https://github.com/sangeethsanthosh-git",
+    github: "https://github.com/sangeethsanthosh-git/Gistify",
     live: "https://gistify-c.vercel.app/",
     status: "completed",
   },
   {
-    title: "VidScoop",
+    title: "Finley KeyCoders",
     description:
-      "Lightweight YouTube stream extractor and multi-format batch media conversion tool built for fast audio/video extractions.",
-    notice:
-      "Educational use only. Downloading copyrighted content without permission may violate YouTube's terms of service.",
-    backdropDesktop: "/images/youtube.webp",
-    backdropMobile: "/images/youtube-mb.webp",
-    preview: "/images/youtube.webp",
-    github: "https://github.com/sangeethsanthosh-git",
-    live: "https://github.com/sangeethsanthosh-git",
-    status: "working",
-  },
-  {
-    title: "AeroSense",
-    description:
-      "Predictive weather tracking, live meteorological visualizations, and real-time Air Quality Index (AQI) alerts powered by OpenWeather APIs.",
-    backdropDesktop: "/images/aerosense.webp",
-    backdropMobile: "/images/aerosense.webp",
-    preview: "/images/aerosense.webp",
-    github: "https://github.com/sangeethsanthosh-git/AEROSENSE",
-    live: "https://github.com/sangeethsanthosh-git/AEROSENSE",
-    status: "completed",
-  },
-  {
-    title: "EchoNotes",
-    description:
-      "Seamless speech-to-text note capture engine designed with web audio processing for rapid thought recording and effortless transcriptions.",
-    backdropDesktop: "/images/echonotes.webp",
-    backdropMobile: "/images/echonotes-mb.webp",
-    preview: "/images/echonotes.webp",
-    github: "https://github.com/sangeethsanthosh-git",
-    live: "https://github.com/sangeethsanthosh-git",
-    status: "working",
-  },
-  {
-    title: "Portfolio V1",
-    description:
-      "Personal developer and designer portfolio crafted with Next.js, Tailwind CSS, and fluid motion systems showcasing interactive digital experiences.",
-    backdropDesktop: "/images/portfolio.webp",
-    backdropMobile: "/images/portfolio-mb.webp",
-    preview: "/images/portfolio.webp",
-    github: "https://github.com/sangeethsanthosh-git/sangeethsanthosh-git.github.io",
-    live: "https://sangeethsanthosh-git.github.io/",
-    status: "completed",
-  },
-  {
-    title: "Profile README",
-    description:
-      "GitHub profile repository for presenting developer identity, links, and project highlights directly on the profile page.",
-    backdropDesktop: "/images/profile-readme.jpg",
-    preview: "/images/profile-readme.jpg",
-    github: "https://github.com/sangeethsanthosh-git/sangeethsanthosh-git",
-    status: "completed",
-  },
-  {
-    title: "Demo",
-    description:
-      "A trial repository used for GitHub workflow practice, version control experiments, and repository setup learning.",
-    backdropDesktop: "/images/file-integrity.jpg",
-    preview: "/images/file-integrity.jpg",
-    github: "https://github.com/sangeethsanthosh-git/demo",
-    status: "completed",
-  },
-  {
-    title: "File Integrity",
-    description:
-      "A file integrity focused project for checking content consistency and exploring browser-based security utility workflows.",
-    backdropDesktop: "/images/kerala-tourism.jpg",
-    preview: "/images/kerala-tourism.jpg",
-    github: "https://github.com/sangeethsanthosh-git/file-integrity",
-    status: "completed",
-  },
-  {
-    title: "Kerala Tourism",
-    description:
-      "A tourism website concept showcasing Kerala through structured pages, visual content, and simple frontend presentation.",
-    backdropDesktop: "/images/website-traffic-analyzer.jpg",
-    preview: "/images/website-traffic-analyzer.jpg",
-    github: "https://github.com/sangeethsanthosh-git/kerala-tourism",
-    status: "completed",
-  },
-  {
-    title: "Website Traffic Analyzer",
-    description:
-      "A web traffic analysis project exploring how website activity can be presented and understood through a simple frontend interface.",
-    backdropDesktop: "/images/edusense.jpg",
-    preview: "/images/edusense.jpg",
-    github: "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
-    status: "completed",
-  },
-  {
-    title: "Edusense",
-    description:
-      "Lecture assistant built with Flask for education-focused workflows, helping turn learning material into more useful study support.",
-    backdropDesktop: "/images/ai-budget-planner.jpg",
-    preview: "/images/ai-budget-planner.jpg",
-    github: "https://github.com/sangeethsanthosh-git/Edusense",
-    status: "completed",
-  },
-  {
-    title: "AI Budget Planner",
-    description:
-      "Flask-based AI budget planner with expense forecasting and local insights for making personal finance decisions easier to understand.",
-    backdropDesktop: "/images/pcod-detection.jpg",
-    preview: "/images/pcod-detection.jpg",
-    github: "https://github.com/sangeethsanthosh-git/ai-budget-planner",
-    status: "completed",
-  },
-  {
-    title: "PCOD Detection System",
-    description:
-      "PCOS clinical support platform with AI-assisted detection workflows and desktop executable packaging.",
+      "Tech community portal with developer leaderboard, algorithmic challenges, member spotlights, and collaborative event management.",
     backdropDesktop: "/images/finley-keycoders.jpg",
     preview: "/images/finley-keycoders.jpg",
-    github: "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
-    status: "completed",
-  },
-  {
-    title: "AeroSense Mactrons",
-    description:
-      "A notebook-based AeroSense project exploring weather, air-quality, and environmental data workflows.",
-    backdropDesktop: "/images/aerosense.webp",
-    preview: "/images/aerosense.webp",
-    github: "https://github.com/sangeethsanthosh-git/AEROSENSE-MACTRONS",
-    status: "completed",
-  },
-  {
-    title: "ICT",
-    description:
-      "Notebook repository for ICT coursework, experiments, and data-oriented learning exercises.",
-    backdropDesktop: "/images/portfolio.webp",
-    preview: "/images/portfolio.webp",
-    github: "https://github.com/sangeethsanthosh-git/ICT",
-    status: "completed",
-  },
-  {
-    title: "Finley Keycoders",
-    description:
-      "JavaScript web project repository built as part of the Finley Keycoders work.",
-    backdropDesktop: "/images/portfolio.webp",
-    preview: "/images/portfolio.webp",
     github: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
+    live: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
     status: "completed",
   },
 ];
