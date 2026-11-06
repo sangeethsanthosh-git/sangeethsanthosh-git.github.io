@@ -307,55 +307,149 @@ export default function Project(): React.ReactElement {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [phoneMode, nextSlide, prevSlide]);
 
-  // Real-time Touch Swipe & Drag Handling with immediate visual feedback
+  // Ultra-responsive, fluid Touch Swiping & Flick gesture system
   const [dragOffset, setDragOffset] = useState<number>(0);
   const [isDragging, setIsDragging] = useState<boolean>(false);
-  const dragStartX = useRef<number>(0);
-  const isPointerDown = useRef<boolean>(false);
+  const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
+  const touchStartTime = useRef<number>(0);
+  const touchLastX = useRef<number>(0);
+  const touchDirectionLocked = useRef<"horizontal" | "vertical" | null>(null);
+  const isPointerActive = useRef<boolean>(false);
 
-  const handlePointerDown = (clientX: number) => {
+  // Touch event handlers for phones/tablets
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
     if (phoneMode !== "carousel") return;
-    isPointerDown.current = true;
-    dragStartX.current = clientX;
+    const touch = e.touches[0];
+    touchStartX.current = touch.clientX;
+    touchStartY.current = touch.clientY;
+    touchLastX.current = touch.clientX;
+    touchStartTime.current = Date.now();
+    touchDirectionLocked.current = null;
+    isPointerActive.current = true;
     setIsDragging(true);
-  };
-
-  const handlePointerMove = (clientX: number) => {
-    if (!isPointerDown.current || phoneMode !== "carousel") return;
-    const diff = clientX - dragStartX.current;
-    // Elastic resistance at the boundaries
-    if ((currentSlide === 0 && diff > 0) || (currentSlide === PROJECTS.length - 1 && diff < 0)) {
-      setDragOffset(diff * 0.3);
-    } else {
-      setDragOffset(diff);
-    }
-  };
-
-  const handlePointerUp = () => {
-    if (!isPointerDown.current) return;
-    isPointerDown.current = false;
-    setIsDragging(false);
-
-    if (dragOffset < -40 && currentSlide < PROJECTS.length - 1) {
-      nextSlide();
-    } else if (dragOffset > 40 && currentSlide > 0) {
-      prevSlide();
-    }
     setDragOffset(0);
   };
 
-  // Window mouse move & up listeners while dragging
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isPointerActive.current || phoneMode !== "carousel") return;
+    const touch = e.touches[0];
+    const diffX = touch.clientX - touchStartX.current;
+    const diffY = touch.clientY - touchStartY.current;
+    touchLastX.current = touch.clientX;
+
+    // Detect gesture direction if not locked yet
+    if (touchDirectionLocked.current === null) {
+      if (Math.abs(diffX) > 6 || Math.abs(diffY) > 6) {
+        if (Math.abs(diffX) > Math.abs(diffY)) {
+          touchDirectionLocked.current = "horizontal";
+        } else {
+          touchDirectionLocked.current = "vertical";
+        }
+      }
+    }
+
+    if (touchDirectionLocked.current === "horizontal") {
+      // Elastic resistance at boundaries
+      if ((currentSlide === 0 && diffX > 0) || (currentSlide === PROJECTS.length - 1 && diffX < 0)) {
+        setDragOffset(diffX * 0.35);
+      } else {
+        setDragOffset(diffX);
+      }
+    }
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!isPointerActive.current || phoneMode !== "carousel") return;
+    isPointerActive.current = false;
+    setIsDragging(false);
+
+    const diffX = touchLastX.current - touchStartX.current;
+    const elapsed = Date.now() - touchStartTime.current;
+    const absDiffX = Math.abs(diffX);
+
+    if (touchDirectionLocked.current === "horizontal") {
+      // Quick flick gesture (< 320ms with > 25px displacement) OR normal drag (> 40px)
+      const isQuickFlick = elapsed < 320 && absDiffX > 25;
+      const isDragExceeded = absDiffX > 40;
+
+      if (isQuickFlick || isDragExceeded) {
+        if (diffX < 0 && currentSlide < PROJECTS.length - 1) {
+          nextSlide();
+        } else if (diffX > 0 && currentSlide > 0) {
+          prevSlide();
+        }
+      }
+    } else if (touchDirectionLocked.current === null) {
+      // Clean tap detection (finger didn't swipe/move)
+      // Stories tap: tap left 35% goes previous, tap right 35% goes next
+      const rect = e.currentTarget.getBoundingClientRect();
+      const tapX = touchLastX.current - rect.left;
+      const tapRel = tapX / rect.width;
+
+      if (tapRel < 0.35 && currentSlide > 0) {
+        prevSlide();
+      } else if (tapRel > 0.65 && currentSlide < PROJECTS.length - 1) {
+        nextSlide();
+      }
+    }
+
+    setDragOffset(0);
+    touchDirectionLocked.current = null;
+  };
+
+  // Desktop mouse dragging
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (phoneMode !== "carousel") return;
+    touchStartX.current = e.clientX;
+    touchLastX.current = e.clientX;
+    touchStartTime.current = Date.now();
+    touchDirectionLocked.current = "horizontal";
+    isPointerActive.current = true;
+    setIsDragging(true);
+    setDragOffset(0);
+  };
+
   useEffect(() => {
     if (!isDragging) return;
-    const onMove = (e: MouseEvent) => handlePointerMove(e.clientX);
-    const onUp = () => handlePointerUp();
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
+    const onMouseMove = (e: MouseEvent) => {
+      if (!isPointerActive.current) return;
+      touchLastX.current = e.clientX;
+      const diffX = e.clientX - touchStartX.current;
+      if ((currentSlide === 0 && diffX > 0) || (currentSlide === PROJECTS.length - 1 && diffX < 0)) {
+        setDragOffset(diffX * 0.35);
+      } else {
+        setDragOffset(diffX);
+      }
     };
-  }, [isDragging, dragOffset, currentSlide]);
+
+    const onMouseUp = () => {
+      if (!isPointerActive.current) return;
+      isPointerActive.current = false;
+      setIsDragging(false);
+
+      const diffX = touchLastX.current - touchStartX.current;
+      const elapsed = Date.now() - touchStartTime.current;
+      const absDiffX = Math.abs(diffX);
+
+      if (absDiffX > 40 || (elapsed < 320 && absDiffX > 25)) {
+        if (diffX < 0 && currentSlide < PROJECTS.length - 1) {
+          nextSlide();
+        } else if (diffX > 0 && currentSlide > 0) {
+          prevSlide();
+        }
+      }
+      setDragOffset(0);
+      touchDirectionLocked.current = null;
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+    };
+  }, [isDragging, currentSlide, nextSlide, prevSlide]);
 
   // Subtle interactive ASCII Background Canvas (Desktop only + IntersectionObserver to preserve phone battery & GPU)
   useEffect(() => {
@@ -1137,34 +1231,16 @@ export default function Project(): React.ReactElement {
                         </div>
                       </div>
 
-                      {/* Tap Navigation Zones (Instagram Stories Tap Left/Right to advance) */}
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (Math.abs(dragOffset) < 10) prevSlide();
-                        }}
-                        className="absolute left-0 top-16 bottom-24 w-[35%] z-30 cursor-w-resize"
-                        title="Previous Project (Tap left)"
-                      />
-
-                      <div
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (Math.abs(dragOffset) < 10) nextSlide();
-                        }}
-                        className="absolute right-0 top-16 bottom-24 w-[35%] z-30 cursor-e-resize"
-                        title="Next Project (Tap right)"
-                      />
-
                       {/* ================= SLIDABLE TRACK OF PROJECTS ================= */}
                       <div
                         id="phone-slides"
                         ref={trackRef}
                         className="phone-slides-track"
-                        onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
-                        onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
-                        onTouchEnd={handlePointerUp}
-                        onMouseDown={(e) => handlePointerDown(e.clientX)}
+                        onTouchStart={handleTouchStart}
+                        onTouchMove={handleTouchMove}
+                        onTouchEnd={handleTouchEnd}
+                        onTouchCancel={handleTouchEnd}
+                        onMouseDown={handleMouseDown}
                         style={{
                           transform: `translateX(calc(-${currentSlide * 100}% + ${dragOffset}px))`,
                           transition: isDragging ? "none" : "transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)",
