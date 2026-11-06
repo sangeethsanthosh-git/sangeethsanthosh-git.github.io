@@ -18,7 +18,7 @@ export default function About() {
     <section id="about" className="relative overflow-hidden bg-black py-20 text-white sm:py-24">
       <Image
         src={about.backgroundImage}
-        alt="Portrait background"
+        alt="Sangeeth Santhosh - Full Stack Web Developer"
         fill
         loading="lazy"
         sizes="100vw"

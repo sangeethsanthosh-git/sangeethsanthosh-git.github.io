@@ -1,28 +1,50 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
 import MouseSpotlight from "@/components/MouseSpotlight";
+import JsonLd from "@/components/JsonLd";
 
 const geist = Geist({
   variable: "--font-geist",
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#165036" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a110d" },
+  ],
+  colorScheme: "dark",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export const metadata: Metadata = {
-  title: "Sangeeth Santhosh | Web Developer & Designer",
+  metadataBase: new URL("https://sangeethsanthosh-git.github.io"),
+  title: {
+    default: "Sangeeth Santhosh | Full-Stack Developer & Creative Technologist",
+    template: "%s | Sangeeth Santhosh",
+  },
   description:
-    "Portfolio of Sangeeth Santhosh, a web developer building thoughtful digital experiences with React, Next.js, Python, Django, and modern UI systems.",
+    "Official portfolio of Sangeeth Santhosh, a Full-Stack Web & Mobile Developer and Creative Technologist building high-performance web apps, Flutter mobile apps, Python backends, and thoughtful interactive digital experiences.",
   keywords: [
     "Sangeeth Santhosh",
-    "web developer",
-    "Next.js portfolio",
-    "React developer",
-    "Tailwind CSS",
-    "Python developer",
-    "Django developer",
-    "full-stack developer",
-    "frontend developer",
-    "freelancer",
+    "Sangeeth Santhosh Portfolio",
+    "Full-Stack Developer",
+    "Web Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Flutter App Developer",
+    "Python Developer",
+    "Django Developer",
+    "Creative Technologist",
+    "UI UX Designer",
+    "Frontend Developer Kerala",
+    "Kochi Web Developer",
+    "Freelance Software Engineer",
+    "Interactive Portfolio",
+    "sangeethsanthosh-git",
   ],
   authors: [
     {
@@ -30,18 +52,28 @@ export const metadata: Metadata = {
       url: "https://sangeethsanthosh-git.github.io",
     },
   ],
+  creator: "Sangeeth Santhosh",
+  publisher: "Sangeeth Santhosh",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
-    title: "Sangeeth Santhosh | Developer & Designer",
+    title: "Sangeeth Santhosh | Full-Stack Developer & Creative Technologist",
     description:
-      "Explore projects, services, and experience from Sangeeth Santhosh across frontend, backend, and UI-focused work.",
+      "Explore the interactive portfolio, mobile apps, Flutter showcases, and full-stack software built by Sangeeth Santhosh.",
     url: "https://sangeethsanthosh-git.github.io",
-    siteName: "sangeethsanthosh-git.github.io",
+    siteName: "Sangeeth Santhosh Portfolio",
     images: [
       {
-        url: "https://sangeethsanthosh-git.github.io/images/about.jpg",
+        url: "/images/portfolio.webp",
         width: 1200,
         height: 630,
-        alt: "Sangeeth Santhosh Portfolio",
+        alt: "Sangeeth Santhosh Portfolio Showcase",
       },
     ],
     locale: "en_US",
@@ -49,12 +81,33 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sangeeth Santhosh | Web Developer & Designer",
-    description: "Portfolio website of Sangeeth Santhosh showcasing development and design work.",
+    title: "Sangeeth Santhosh | Full-Stack Developer & Creative Technologist",
+    description:
+      "Explore the interactive portfolio, mobile apps, Flutter showcases, and full-stack software built by Sangeeth Santhosh.",
     creator: "@sangeeth_saa",
-    images: ["https://sangeethsanthosh-git.github.io/images/about.jpg"],
+    images: ["/images/portfolio.webp"],
   },
-  metadataBase: new URL("https://sangeethsanthosh-git.github.io"),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/images/apps/github-icon.svg", type: "image/svg+xml" },
+    ],
+    apple: [
+      { url: "/images/apps/phone-icon.svg" },
+    ],
+  },
+  category: "technology",
 };
 
 export default function RootLayout({
@@ -63,8 +116,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geist.variable} antialiased`}>
+    <html lang="en" className="scroll-smooth">
+      <head>
+        <JsonLd />
+      </head>
+      <body className={`${geist.variable} antialiased bg-black text-white selection:bg-[#fed78a] selection:text-[#165036]`}>
         <MouseSpotlight />
         {children}
       </body>

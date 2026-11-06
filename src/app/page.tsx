@@ -41,14 +41,16 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <HeroSection />
-      <About />
-      <Education />
-      <Skills />
-      <Project />
-      <Services />
-      <Experience />
-      <Work />
+      <main id="main-content" className="relative min-h-screen">
+        <HeroSection />
+        <About />
+        <Education />
+        <Skills />
+        <Project />
+        <Services />
+        <Experience />
+        <Work />
+      </main>
       <Footer />
     </>
   );

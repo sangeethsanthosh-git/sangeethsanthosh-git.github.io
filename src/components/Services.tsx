@@ -100,18 +100,18 @@ export default function Services() {
               href="#contact"
               onClick={() => playHapticClick()}
               className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-[#fed78a] text-[#165036] flex items-center justify-center hover:scale-110 active:scale-95 transition-all shadow-md cursor-pointer group"
-              title="Work With Us (Contact)"
-              aria-label="Work With Us"
+              title="Work With Me (Contact)"
+              aria-label="Work With Me"
             >
               <ArrowUpRight className="w-5 h-5 sm:w-7 sm:h-7 stroke-[2.5] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           </div>
 
-          {/* Center Display Headline: OUR SERVICES + WORK WITH US */}
+          {/* Center Display Headline: MY SERVICES + WORK WITH ME */}
           <div className="relative z-10 mt-6 sm:mt-12 select-none">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
               <h2 className="text-[clamp(2.75rem,12vw,8rem)] font-black tracking-tighter text-[#fed78a] uppercase leading-none">
-                OUR
+                MY
               </h2>
 
               <a
@@ -119,7 +119,7 @@ export default function Services() {
                 onClick={() => playHapticClick()}
                 className="font-bold uppercase tracking-widest text-xs sm:text-base md:text-lg text-[#fed78a] underline underline-offset-4 sm:underline-offset-6 decoration-2 hover:opacity-80 transition-opacity cursor-pointer font-sans"
               >
-                WORK WITH US
+                WORK WITH ME
               </a>
             </div>
 
