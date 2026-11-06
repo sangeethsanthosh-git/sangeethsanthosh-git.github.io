@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import "./globals.css";
-import MouseSpotlight from "@/components/MouseSpotlight";
 import JsonLd from "@/components/JsonLd";
 
 const geist = Geist({
@@ -116,12 +115,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <head>
         <JsonLd />
       </head>
       <body className={`${geist.variable} antialiased bg-black text-white selection:bg-[#fed78a] selection:text-[#165036]`}>
-        <MouseSpotlight />
         {children}
       </body>
     </html>

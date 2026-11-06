@@ -194,7 +194,6 @@ export default function Project(): React.ReactElement {
 
   const phoneTargetRef = useRef<HTMLDivElement | null>(null);
   const sectionRef = useRef<HTMLElement | null>(null);
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   // Live real-time clock
@@ -210,61 +209,17 @@ export default function Project(): React.ReactElement {
     return () => clearInterval(timer);
   }, []);
 
-  // 3D Scroll Rotation & Landing Animation (Throttled with requestAnimationFrame for 60/120Hz smooth scrolling)
+  // Keep the phone stationary while scrolling; scale only when the viewport changes.
   useEffect(() => {
-    let ticking = false;
-    let rafId: number;
-
-    const handleScroll = () => {
-      if (!phoneTargetRef.current || !sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      if (rect.bottom < 0 || rect.top > windowHeight * 1.1) return;
-
-      const startPoint = windowHeight * 1.1;
-      const endPoint = windowHeight * 0.2;
-
-      let progress = (startPoint - rect.top) / (startPoint - endPoint);
-      progress = Math.max(0, Math.min(1, progress));
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) progress = 1;
-
-      const width = typeof window !== "undefined" ? window.innerWidth : 1200;
-      const isMobile = width < 768;
-
-      // Subtle tilt on mobile to reduce GPU compositing overhead
-      const currentRotateY = isMobile ? (1 - progress) * -5 : (1 - progress) * -18;
-      const currentRotateX = isMobile ? (1 - progress) * 4 : (1 - progress) * 14;
-      const currentRotateZ = isMobile ? 0 : (1 - progress) * -4;
-      const currentY = (1 - progress) * 80;
-
-      const responsiveScale = width < 340 ? 0.78 : width < 380 ? 0.86 : width < 420 ? 0.92 : 1;
-      const currentScale = (0.94 + progress * 0.06) * responsiveScale;
-
-      // Flatten the stage during interaction: 3D ancestors can misplace iframe taps.
-      phoneTargetRef.current.style.transform = activeApp
-        ? "none"
-        : `translateY(${currentY}px) scale(${currentScale}) rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg) rotateZ(${currentRotateZ}deg)`;
+    const resize = () => {
+      if (!phoneTargetRef.current) return;
+      const width = window.innerWidth;
+      const scale = width < 340 ? 0.78 : width < 380 ? 0.86 : width < 420 ? 0.92 : 1;
+      phoneTargetRef.current.style.transform = activeApp ? "none" : `scale(${scale})`;
     };
-
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        rafId = requestAnimationFrame(() => {
-          handleScroll();
-          ticking = false;
-        });
-      }
-    };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    handleScroll();
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
+    resize();
+    window.addEventListener("resize", resize, { passive: true });
+    return () => window.removeEventListener("resize", resize);
   }, [activeApp]);
 
   // Slide navigation with haptic audio
@@ -443,99 +398,6 @@ export default function Project(): React.ReactElement {
     };
   }, [isDragging, currentSlide, nextSlide, prevSlide]);
 
-  // Subtle interactive ASCII Background Canvas (Desktop only + IntersectionObserver to preserve phone battery & GPU)
-  useEffect(() => {
-    if (typeof window === "undefined" || activeApp || window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches || navigator.hardwareConcurrency <= 4) return;
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const chars = [" ", ".", ":", "-", "=", "+", "*", "#", "%", "@", "{", "}", "<", ">", "/", "$", "0", "1"];
-    let width = 0;
-    let height = 0;
-    let cols = 0;
-    let rows = 0;
-    const fontSize = 14;
-    let time = 0;
-    let animationId: number | undefined;
-    let lastFrame = 0;
-
-    const resize = () => {
-      if (!canvas.parentElement) return;
-      width = canvas.width = canvas.parentElement.offsetWidth;
-      height = canvas.height = canvas.parentElement.offsetHeight;
-      cols = Math.floor(width / fontSize);
-      rows = Math.floor(height / fontSize);
-    };
-
-    resize();
-    window.addEventListener("resize", resize);
-
-    let isVisible = false;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        isVisible = entries[0]?.isIntersecting ?? false;
-        syncAnimation();
-      },
-      { threshold: 0.05 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-
-    const renderAscii = (timestamp: number) => {
-      animationId = undefined;
-      if (!isVisible || document.hidden) return;
-      animationId = requestAnimationFrame(renderAscii);
-      if (timestamp - lastFrame < 50) return;
-      lastFrame = timestamp;
-      ctx.clearRect(0, 0, width, height);
-      ctx.font = `${fontSize}px "Space Mono", monospace`;
-      time += 0.025;
-
-      for (let r = 0; r < rows; r += 2) {
-        for (let c = 0; c < cols; c += 2) {
-          const x = c * fontSize;
-          const y = r * fontSize;
-
-          const wave1 = Math.sin(c * 0.08 + time * 0.8) * Math.cos(r * 0.08 + time * 0.6);
-          const wave2 = Math.sin((c + r) * 0.05 - time * 0.5);
-          const val = (wave1 + wave2 + 2) / 4;
-
-          const charIndex = Math.floor(val * (chars.length - 1));
-          const char = chars[Math.max(0, Math.min(chars.length - 1, charIndex))];
-
-          if (char !== " ") {
-            if (val > 0.65) {
-              ctx.fillStyle = `rgba(250, 236, 210, ${val * 0.25})`;
-            } else if (val > 0.4) {
-              ctx.fillStyle = `rgba(74, 160, 95, ${val * 0.18})`;
-            } else {
-              ctx.fillStyle = `rgba(34, 84, 36, ${val * 0.14})`;
-            }
-            ctx.fillText(char, x, y);
-          }
-        }
-      }
-    };
-
-    const syncAnimation = () => {
-      if (isVisible && !document.hidden) {
-        if (animationId === undefined) animationId = requestAnimationFrame(renderAscii);
-      } else if (animationId !== undefined) {
-        cancelAnimationFrame(animationId);
-        animationId = undefined;
-      }
-    };
-    document.addEventListener("visibilitychange", syncAnimation);
-
-    return () => {
-      if (animationId !== undefined) cancelAnimationFrame(animationId);
-      document.removeEventListener("visibilitychange", syncAnimation);
-      observer.disconnect();
-      window.removeEventListener("resize", resize);
-    };
-  }, [activeApp]);
-
   const openModal = (idx: number) => {
     setActiveModalIdx(idx);
     setModalOpen(true);
@@ -575,7 +437,7 @@ export default function Project(): React.ReactElement {
 
         /* 3D Perspective Stage */
         .phone-perspective-stage {
-          perspective: 1600px;
+          perspective: none;
           perspective-origin: 50% 50%;
         }
         .phone-perspective-stage.phone-app-open { perspective: none; }
@@ -601,9 +463,9 @@ export default function Project(): React.ReactElement {
 
         .phone-3d-wrapper {
           position: relative;
-          transform-style: preserve-3d;
-          will-change: transform;
-          transition: transform 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+          transform-style: flat;
+          will-change: auto;
+          transition: none;
         }
 
         /* Flagship Precision-Milled Hardware Frame */
@@ -614,8 +476,8 @@ export default function Project(): React.ReactElement {
           background: #090a0d;
           border-radius: 54px;
           user-select: none;
-          transform-style: preserve-3d;
-          transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+          transform-style: flat;
+          transition: none;
           padding: 3.5px;
           /* Aerospace grade Titanium bevel with realistic rim reflections */
           box-shadow:
@@ -847,19 +709,8 @@ export default function Project(): React.ReactElement {
         ref={sectionRef}
         className="relative pt-8 pb-28 sm:pt-12 sm:pb-36 text-white border-b border-white/10 overflow-hidden z-20 bg-gradient-to-b from-[#0a110d] via-[#121814] to-[#0d0f14]"
       >
-        {/* Animated ASCII Canvas Layer */}
-        <canvas
-          ref={canvasRef}
-          id="ascii-bg-canvas"
-          className="absolute inset-0 w-full h-full pointer-events-none z-0 opacity-55"
-        />
-
-        {/* Ambient Studio Lighting Mesh */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden z-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[850px] h-[850px] bg-gradient-to-tr from-[#225424]/25 via-[#1b4329]/15 to-[#faecd2]/10 rounded-full blur-[190px]" />
-          <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#faecd2]/10 rounded-full blur-[160px]" />
-          <div className="absolute -bottom-24 -right-24 w-[32rem] h-[32rem] bg-[#225424]/20 rounded-full blur-[180px]" />
-        </div>
+        <div aria-hidden="true" className="absolute inset-0 pointer-events-none z-0"
+          style={{ background: "radial-gradient(ellipse at 50% 45%, #22542430, transparent 70%)" }} />
 
         {/* Drifting Clouds */}
         <div className="cloud-puff w-72 h-36 top-12 left-1/5 opacity-60" />
