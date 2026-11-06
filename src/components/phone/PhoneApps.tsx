@@ -72,9 +72,13 @@ export function ContactApp({ onClose }: { onClose: () => void }) {
     >
       <div className="flex flex-col items-center justify-between h-full py-2 gap-3">
         <div className="flex flex-col items-center text-center">
-          <div className="w-16 h-16 rounded-full bg-[#0a84ff] text-white flex items-center justify-center font-bold text-xl shadow-xl border-2 border-white/20">
-            SS
-          </div>
+          <img
+            src="/images/contact-profile.webp"
+            alt="Sangeeth Santhosh"
+            width={64}
+            height={64}
+            className="w-16 h-16 rounded-full object-cover shadow-xl border-2 border-white/20"
+          />
           <h3 className="mt-2 text-sm font-bold text-white">Sangeeth Santhosh</h3>
           <p className="text-[11px] text-[#64a8ff]/80">Software Engineer & UI Designer</p>
           <span className="mt-1 px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 text-[11px] font-sans border border-emerald-500/30">
