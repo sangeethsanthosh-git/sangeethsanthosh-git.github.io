@@ -184,19 +184,7 @@ export default function PhoneHomeScreen({
     </>;
     if (app.href) {
       const isEmail = app.href.startsWith("mailto:");
-      let href = app.href;
-      if (isEmail) {
-        const email = new URL(app.href);
-        const compose = new URL("https://mail.google.com/mail/");
-        compose.search = new URLSearchParams({
-          view: "cm",
-          fs: "1",
-          to: decodeURIComponent(email.pathname),
-          su: email.searchParams.get("subject") ?? "",
-        }).toString();
-        href = compose.toString();
-      }
-      return <a key={app.id} href={href} target="_blank" rel="noopener noreferrer" onClick={() => playHapticClick()} className="ios-app-icon" aria-label={`Open ${app.name}`} title={isEmail ? "Compose email in Gmail" : undefined}>{contents}</a>;
+      return <a key={app.id} href={app.href} target={isEmail ? undefined : "_blank"} rel={isEmail ? undefined : "noopener noreferrer"} onClick={() => playHapticClick()} className="ios-app-icon" aria-label={`Open ${app.name}`} title={isEmail ? "Open your email app" : undefined}>{contents}</a>;
     }
     return <button key={app.id} onClick={() => handleAppClick(app)} className="ios-app-icon" aria-label={`Open ${app.name}`}>{contents}</button>;
   };
