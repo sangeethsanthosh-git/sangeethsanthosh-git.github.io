@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function MouseSpotlight() {
   const [mounted, setMounted] = useState(false);
+  const spotlight = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Completely disable on mobile / touch devices to prevent scroll lag and repaints
     if (typeof window === "undefined") return;
     const isTouch = window.matchMedia("(hover: none) or (pointer: coarse)").matches || window.innerWidth < 768;
-    if (isTouch) return;
+    if (isTouch || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     setMounted(true);
 
@@ -20,8 +21,9 @@ export default function MouseSpotlight() {
       if (!ticking) {
         ticking = true;
         rafId = requestAnimationFrame(() => {
-          document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-          document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+          if (spotlight.current) {
+            spotlight.current.style.transform = `translate3d(${event.clientX - 360}px, ${event.clientY - 360}px, 0)`;
+          }
           ticking = false;
         });
       }
@@ -36,5 +38,5 @@ export default function MouseSpotlight() {
   }, []);
 
   if (!mounted) return null;
-  return <div aria-hidden="true" className="pointer-spotlight hidden md:block" />;
+  return <div ref={spotlight} aria-hidden="true" className="pointer-spotlight hidden md:block" />;
 }

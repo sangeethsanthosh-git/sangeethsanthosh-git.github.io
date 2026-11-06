@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Add Transaction | AI Budget Planner</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="budget" data-demo-page="expense_form.html" class="app-body">
+    
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="./dashboard.html">
+            <span class="sidebar-brand-mark">AB</span>
+            <span class="sidebar-brand-text">
+                <strong>AI Budget Planner</strong>
+                <small>Simple financial dashboard</small>
+            </span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="sidebar-link ">
+                <span class="nav-icon">DB</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="./expenses.html" class="sidebar-link ">
+                <span class="nav-icon">TX</span>
+                <span>Transactions</span>
+            </a>
+            <a href="./forecast.html" class="sidebar-link ">
+                <span class="nav-icon">FC</span>
+                <span>Forecast</span>
+            </a>
+            <a href="./analysis.html" class="sidebar-link ">
+                <span class="nav-icon">AN</span>
+                <span>Analysis</span>
+            </a>
+            <a href="./login.html" class="sidebar-link">
+                <span class="nav-icon">LO</span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="main-header">
+            <div>
+                <p class="page-chip">Add Transaction</p>
+                <h1>Good morning, Demo visitor</h1>
+                <p class="header-subtitle">Track your expenses and insights</p>
+            </div>
+            <div class="header-actions">
+                
+<a class="button button-secondary" href="./expenses.html">Back to Transactions</a>
+
+            </div>
+        </header>
+
+        
+            
+        
+
+        <main class="page-content">
+    
+            
+<section class="panel form-panel">
+    <div class="panel-header">
+        <div>
+            <h3>Add a new transaction</h3>
+            <p>Fill in the details below to keep your records up to date.</p>
+        </div>
+    </div>
+
+    <form method="post" class="form-grid form-grid-two">
+        <div>
+            <label for="date">Date</label>
+            <input id="date" name="date" type="date" value="2026-11-01" required>
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <select id="category" name="category" required>
+                
+                <option value="Food" selected>Food</option>
+                
+                <option value="Transport" >Transport</option>
+                
+                <option value="Utilities" >Utilities</option>
+                
+                <option value="Shopping" >Shopping</option>
+                
+                <option value="Income" >Income</option>
+                
+            </select>
+        </div>
+        <div>
+            <label for="amount">Amount</label>
+            <input id="amount" name="amount" type="number" min="0.01" step="0.01" value="" required>
+        </div>
+        <div>
+            <label for="payment_mode">Payment Mode</label>
+            <select id="payment_mode" name="payment_mode" required>
+                
+                <option value="UPI" selected>UPI</option>
+                
+                <option value="Cash" >Cash</option>
+                
+                <option value="Card" >Card</option>
+                
+            </select>
+        </div>
+        <div class="form-actions">
+            <button class="button" type="submit">Save Transaction</button>
+        </div>
+    </form>
+</section>
+
+        </main>
+    </div>
+
+    
+<script src="../preview-common.js" defer></script></body>
+</html>

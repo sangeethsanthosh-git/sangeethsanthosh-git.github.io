@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala Tourism | God's Own Country</title>
+    <meta name="theme-color" content="#173a2e">
+    <link rel="stylesheet" href="./preview-tailwind.css">
+    
+    
+    
+    <link rel="stylesheet" href="./vendor/aos.css">
+    <style>
+        :root {
+            --forest: #173A2E;
+            --forest-deep: #102A21;
+            --spice: #B88949;
+            --sand: #F6F0E4;
+            --card: rgba(255, 255, 255, 0.72);
+            --line: rgba(23, 58, 46, 0.12);
+            --text: #1C2421;
+            --muted: #5D6B63;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Manrope', sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(circle at top left, rgba(184, 137, 73, 0.12), transparent 32%),
+                radial-gradient(circle at top right, rgba(23, 58, 46, 0.09), transparent 28%),
+                linear-gradient(180deg, #fbf8f0 0%, #f4efe2 52%, #eef1eb 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(23, 58, 46, 0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(23, 58, 46, 0.025) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(circle at center, black 20%, transparent 78%);
+            z-index: 0;
+        }
+
+        h1, h2, h3, h4, h5, h6, .font-serif {
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: -0.03em;
+        }
+
+        .page-shell {
+            position: relative;
+            z-index: 1;
+        }
+
+        .frost-panel {
+            background: rgba(255, 255, 255, 0.62);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            box-shadow: 0 24px 70px rgba(23, 58, 46, 0.14);
+        }
+
+        .frost-panel-dark {
+            background: linear-gradient(180deg, rgba(16, 42, 33, 0.86), rgba(23, 58, 46, 0.92));
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 24px 70px rgba(16, 42, 33, 0.32);
+        }
+
+        .gold-button {
+            background: linear-gradient(135deg, #c79652, #a87535);
+            color: #fff;
+            box-shadow: 0 16px 38px rgba(184, 137, 73, 0.28);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+        }
+
+        .gold-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.04);
+            box-shadow: 0 22px 46px rgba(184, 137, 73, 0.34);
+        }
+
+        .outline-button {
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            background: rgba(255, 255, 255, 0.08);
+            transition: transform 0.25s ease, background 0.25s ease;
+        }
+
+        .outline-button:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .section-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.55rem 1rem;
+            border-radius: 999px;
+            background: rgba(184, 137, 73, 0.13);
+            color: var(--forest);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.26em;
+            text-transform: uppercase;
+        }
+
+        .section-kicker::before {
+            content: '';
+            width: 0.55rem;
+            height: 0.55rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #c79652, #80552b);
+        }
+
+        .ornament-line {
+            width: 6rem;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(184, 137, 73, 0.95), transparent);
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 0.2rem;
+            color: rgba(28, 36, 33, 0.78);
+            transition: color 0.25s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -0.2rem;
+            width: 0;
+            height: 2px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #c79652, #8c6736);
+            transition: width 0.25s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--forest);
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .image-frame {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.75rem;
+        }
+
+        .image-frame::after {
+            content: '';
+            position: absolute;
+            inset: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 1.15rem;
+            pointer-events: none;
+        }
+
+        .soft-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .floating-orb {
+            position: fixed;
+            border-radius: 999px;
+            filter: blur(12px);
+            opacity: 0.22;
+            pointer-events: none;
+            z-index: 0;
+            animation: drift 11s ease-in-out infinite;
+        }
+
+        .floating-orb.one {
+            top: 7rem;
+            left: -3rem;
+            width: 13rem;
+            height: 13rem;
+            background: rgba(184, 137, 73, 0.35);
+        }
+
+        .floating-orb.two {
+            top: 35%;
+            right: -4rem;
+            width: 15rem;
+            height: 15rem;
+            background: rgba(23, 58, 46, 0.18);
+            animation-delay: 1.8s;
+        }
+
+        .floating-orb.three {
+            bottom: 8%;
+            left: 10%;
+            width: 10rem;
+            height: 10rem;
+            background: rgba(157, 94, 62, 0.2);
+            animation-delay: 3.2s;
+        }
+
+        @keyframes drift {
+            0%, 100% {
+                transform: translate3d(0, 0, 0) scale(1);
+            }
+            50% {
+                transform: translate3d(0, -18px, 0) scale(1.05);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body::before {
+                background-size: 34px 34px;
+            }
+        }
+    </style>
+<link rel="stylesheet" href="../fonts.css"><link rel="stylesheet" href="./preview-responsive.css"></head>
+<body class="min-h-screen">
+    <div aria-hidden="true" class="floating-orb one"></div>
+    <div aria-hidden="true" class="floating-orb two"></div>
+    <div aria-hidden="true" class="floating-orb three"></div>
+
+    <div class="page-shell flex min-h-screen flex-col">
+        <header class="sticky top-0 z-50">
+            <div class="mx-auto max-w-7xl px-4 pt-4 sm:px-6 lg:px-8">
+                <nav class="frost-panel rounded-full px-4 py-3 sm:px-6">
+                    <div class="flex items-center justify-between gap-4">
+                        <a href="./index.html" class="flex items-center gap-3">
+                            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-forest text-sm font-extrabold uppercase tracking-[0.3em] text-white shadow-heritage">K</span>
+                            <div>
+                                <p class="font-serif text-2xl font-semibold leading-none text-forest">Kerala</p>
+                                <p class="text-[0.62rem] font-bold uppercase tracking-[0.34em] text-spice">Tradition Meets Tide</p>
+                            </div>
+                        </a>
+
+                        <div class="hidden items-center gap-8 lg:flex">
+                            <a href="./index.html" class="nav-link active">Home</a>
+                            <a href="./destinations.html" class="nav-link ">Destinations</a>
+                            <a href="./about.html" class="nav-link ">Heritage</a>
+                            <a href="./contact.html" class="rounded-full bg-forest px-5 py-3 text-sm font-semibold text-white transition hover:bg-forest/90 ">Plan Your Trip</a>
+                        </div>
+
+                        <button id="mobile-menu-button" class="inline-flex h-12 w-12 items-center justify-center rounded-full border border-forest/10 text-forest transition hover:bg-white/60 lg:hidden" type="button" aria-expanded="false" aria-controls="mobile-menu">
+                            <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h16" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div id="mobile-menu" class="hidden border-t border-forest/10 pt-4 lg:hidden">
+                        <div class="grid gap-3 pb-1">
+                            <a href="./index.html" class="rounded-2xl px-4 py-3 text-sm font-semibold bg-forest text-white">Home</a>
+                            <a href="./destinations.html" class="rounded-2xl px-4 py-3 text-sm font-semibold bg-white/50 text-forest">Destinations</a>
+                            <a href="./about.html" class="rounded-2xl px-4 py-3 text-sm font-semibold bg-white/50 text-forest">Heritage</a>
+                            <a href="./contact.html" class="rounded-2xl px-4 py-3 text-sm font-semibold bg-white/50 text-forest">Plan Your Trip</a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="flex-grow">
+            
+
+
+
+
+
+
+<style>
+    .hero-slide {
+        opacity: 0;
+        transform: scale(1.03);
+        transition: opacity 1.15s ease-in-out, transform 2.4s ease-in-out;
+    }
+
+    .hero-slide.is-active {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .gallery-track {
+        display: flex;
+        width: max-content;
+        animation: gallery-scroll 34s linear infinite;
+    }
+
+    .gallery-track:hover {
+        animation-play-state: paused;
+    }
+
+    @keyframes gallery-scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+</style>
+
+<section class="relative isolate overflow-hidden">
+    <div id="hero-slideshow" class="absolute inset-0">
+        
+        <img src="./static/images/1.jpg"
+             alt="Kerala backwaters at dawn"
+             class="hero-slide is-active absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/6.jpg"
+             alt="Kerala river and palms"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/7.jpg"
+             alt="Kerala heritage retreat"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/8.jpg"
+             alt="Kerala coastal culture"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/9.jpg"
+             alt="Kerala waterscape"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/Munnar.jpg"
+             alt="Munnar tea estates"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/Allapuzha.jpg"
+             alt="Allapuzha houseboat"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+        <img src="./static/images/Varkala.jpg"
+             alt="Varkala cliffside sea view"
+             class="hero-slide  absolute inset-0 h-full w-full object-cover">
+        
+    </div>
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(184,137,73,0.18),transparent_34%)]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(10,24,18,0.9),rgba(10,24,18,0.45),rgba(10,24,18,0.72))]"></div>
+    <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,15,0.15),rgba(8,18,15,0.55))]"></div>
+
+    <div class="relative mx-auto grid min-h-[calc(100vh-5.5rem)] max-w-7xl items-end gap-10 px-4 pb-14 pt-24 sm:px-6 lg:grid-cols-[1.15fr,0.85fr] lg:px-8 lg:pb-20">
+        <div class="max-w-3xl text-white" data-aos="fade-up">
+            <span class="section-kicker bg-white/10 text-white before:bg-spice">Kerala Reimagined</span>
+            <h1 class="mt-7 max-w-4xl font-serif text-6xl leading-[0.92] text-white sm:text-7xl lg:text-8xl xl:text-[7rem]">Tradition in the soul. Modern calm in the details.</h1>
+            <p class="mt-6 max-w-2xl text-base leading-8 text-white/80 sm:text-lg">Drift from tea-swept hills to tidal backwaters, then onward to sea cliffs touched by evening gold. Kerala feels timeless, but it welcomes you with quiet modern ease.</p>
+
+            <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <a href="./destinations.html" class="gold-button inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-bold uppercase tracking-[0.28em]">Explore Destinations</a>
+                <a href="./contact.html" class="outline-button inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-bold uppercase tracking-[0.28em]">Plan Your Escape</a>
+            </div>
+
+            <div class="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
+                <div class="rounded-[1.6rem] border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+                    <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Best Known For</p>
+                    <p class="mt-3 text-sm leading-7 text-white/80">Backwaters, Ayurveda, tea valleys, monsoon beauty, and cultural depth.</p>
+                </div>
+                <div class="rounded-[1.6rem] border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+                    <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Ideal Mood</p>
+                    <p class="mt-3 text-sm leading-7 text-white/80">Slow luxury, thoughtful exploration, and deeply restorative travel.</p>
+                </div>
+                <div class="rounded-[1.6rem] border border-white/20 bg-white/10 p-5 backdrop-blur-md">
+                    <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Season Pulse</p>
+                    <p class="mt-3 text-sm leading-7 text-white/80">October to March for calm skies, June onward for lush monsoon drama.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden lg:block" data-aos="fade-left">
+            <div class="frost-panel rounded-[2rem] p-6 text-ink">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.3em] text-spice">Curated Route</p>
+                        <h2 class="mt-2 font-serif text-3xl text-forest">From river hush to sea light</h2>
+                    </div>
+                    <div class="flex h-14 w-14 items-center justify-center rounded-full bg-forest text-xs font-bold uppercase tracking-[0.26em] text-white">Live</div>
+                </div>
+
+                <div class="mt-8 space-y-4">
+                    <div class="rounded-[1.5rem] bg-white/70 p-5">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-spice">01</p>
+                        <h3 class="mt-2 font-serif text-2xl text-forest">Wake in the hills</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Start with Munnar mornings where tea slopes, cloud cover, and cool air set a ceremonial pace.</p>
+                    </div>
+                    <div class="rounded-[1.5rem] bg-white/70 p-5">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-spice">02</p>
+                        <h3 class="mt-2 font-serif text-2xl text-forest">Drift through still water</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">Move into Alleppey for houseboat evenings, village canals, and quiet sunsets over mirrored water.</p>
+                    </div>
+                    <div class="rounded-[1.5rem] bg-white/70 p-5">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.25em] text-spice">03</p>
+                        <h3 class="mt-2 font-serif text-2xl text-forest">Finish by the coast</h3>
+                        <p class="mt-2 text-sm leading-7 text-slate-600">End on cliffs or shoreline, where Kerala turns cinematic with salt breeze and long amber evenings.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+    <div class="grid items-center gap-14 lg:grid-cols-[0.95fr,1.05fr]">
+        <div data-aos="fade-right">
+            <span class="section-kicker">Why Kerala Feels Different</span>
+            <h2 class="mt-6 max-w-xl font-serif text-5xl leading-tight text-forest sm:text-6xl">A place where hospitality feels ancient and design feels effortless.</h2>
+            <p class="mt-6 max-w-xl text-base leading-8 text-slate-600">Kerala carries an unusual balance. It is richly traditional without feeling static, and visually lush without being loud. That makes it ideal for travelers who want beauty, depth, comfort, and quiet moments in one journey.</p>
+
+            <div class="mt-10 grid gap-4 sm:grid-cols-2">
+                <div class="frost-panel rounded-[1.6rem] p-5">
+                    <p class="text-[0.72rem] font-bold uppercase tracking-[0.28em] text-spice">600 km</p>
+                    <h3 class="mt-3 font-serif text-3xl text-forest">Coastline</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600">From dramatic cliff edges to calm fishing beaches and golden bays.</p>
+                </div>
+                <div class="frost-panel rounded-[1.6rem] p-5">
+                    <p class="text-[0.72rem] font-bold uppercase tracking-[0.28em] text-spice">44</p>
+                    <h3 class="mt-3 font-serif text-3xl text-forest">Rivers</h3>
+                    <p class="mt-2 text-sm leading-7 text-slate-600">Water is everywhere here, shaping mood, movement, and memory.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2" data-aos="fade-left">
+            <div class="image-frame sm:translate-y-12">
+                <img src="./static/images/Munnar.jpg" alt="Tea gardens in Munnar" class="h-[22rem] w-full object-cover sm:h-[28rem]">
+            </div>
+            <div class="space-y-4">
+                <div class="image-frame">
+                    <img src="./static/images/Allapuzha.jpg" alt="Allapuzha backwaters" class="h-[14rem] w-full object-cover sm:h-[16rem]">
+                </div>
+                <div class="image-frame">
+                    <img src="./static/images/Varkala.jpg" alt="Varkala coastline" class="h-[14rem] w-full object-cover sm:h-[16rem]">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="relative overflow-hidden bg-[linear-gradient(180deg,#173A2E,#102A21)] py-24 text-white">
+    <div class="absolute inset-x-0 top-0 h-24 bg-[radial-gradient(circle_at_top,rgba(184,137,73,0.18),transparent_58%)]"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 max-w-2xl" data-aos="fade-up">
+            <span class="section-kicker bg-white/10 text-white before:bg-spice">Signature Experiences</span>
+            <h2 class="mt-6 font-serif text-5xl sm:text-6xl">Modern comfort wrapped in Kerala character.</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            
+            <article class="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/5" data-aos="fade-up" data-aos-delay="90">
+                <div class="relative h-80 overflow-hidden">
+                    <img src="./static/images/Allapuzha.jpg" alt="Backwater Houseboats" class="h-full w-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,16,13,0.82))]"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Curated Escape</p>
+                        <h3 class="mt-2 font-serif text-3xl text-white">Backwater Houseboats</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm leading-7 text-white/70">Lantern-lit evenings, coconut-lined canals, and a slow rhythm on the water.</p>
+                </div>
+            </article>
+            
+            <article class="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/5" data-aos="fade-up" data-aos-delay="180">
+                <div class="relative h-80 overflow-hidden">
+                    <img src="./static/images/Munnar.jpg" alt="Tea Country Escapes" class="h-full w-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,16,13,0.82))]"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Curated Escape</p>
+                        <h3 class="mt-2 font-serif text-3xl text-white">Tea Country Escapes</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm leading-7 text-white/70">Mist, winding roads, and endless green slopes where mornings feel ceremonial.</p>
+                </div>
+            </article>
+            
+            <article class="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/5" data-aos="fade-up" data-aos-delay="270">
+                <div class="relative h-80 overflow-hidden">
+                    <img src="./static/images/Varkala.jpg" alt="Cliff and Coast Retreats" class="h-full w-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,16,13,0.82))]"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Curated Escape</p>
+                        <h3 class="mt-2 font-serif text-3xl text-white">Cliff and Coast Retreats</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm leading-7 text-white/70">Golden light, salt wind, and dramatic coastal horizons at Varkala.</p>
+                </div>
+            </article>
+            
+            <article class="group overflow-hidden rounded-[1.9rem] border border-white/10 bg-white/5" data-aos="fade-up" data-aos-delay="360">
+                <div class="relative h-80 overflow-hidden">
+                    <img src="./static/images/8.jpg" alt="Monsoon Story Trails" class="h-full w-full object-cover transition duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-[linear-gradient(180deg,transparent,rgba(7,16,13,0.82))]"></div>
+                    <div class="absolute bottom-0 left-0 right-0 p-6">
+                        <p class="text-[0.68rem] font-bold uppercase tracking-[0.28em] text-spice">Curated Escape</p>
+                        <h3 class="mt-2 font-serif text-3xl text-white">Monsoon Story Trails</h3>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <p class="text-sm leading-7 text-white/70">Rain-polished stone, spice gardens, and forest paths that feel cinematic.</p>
+                </div>
+            </article>
+            
+        </div>
+    </div>
+</section>
+
+<section class="overflow-hidden py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
+            <div data-aos="fade-up">
+                <span class="section-kicker">Living Gallery</span>
+                <h2 class="mt-5 font-serif text-5xl text-forest sm:text-6xl">A fuller visual rhythm of Kerala.</h2>
+            </div>
+            <p class="max-w-lg text-sm leading-7 text-slate-600" data-aos="fade-up" data-aos-delay="80">Your new image set gives the site more depth, so this strip now feels like a moving mood board rather than a standard gallery.</p>
+        </div>
+    </div>
+
+    <div class="gallery-track gap-5 px-4 sm:px-6 lg:px-8">
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/1.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/2.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/3.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/4.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/5.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/6.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/7.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/8.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/9.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Munnar.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Allapuzha.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Varkala.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/1.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/2.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/3.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/4.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/5.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/6.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/7.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/8.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/9.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Munnar.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Allapuzha.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+        <div class="h-72 w-[16.5rem] flex-none overflow-hidden rounded-[1.8rem] border border-forest/10 shadow-heritage sm:h-80 sm:w-[18rem]">
+            <img src="./static/images/Varkala.jpg" alt="Kerala travel gallery image" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+        </div>
+        
+    </div>
+</section>
+
+<section class="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8">
+    <div class="grid overflow-hidden rounded-[2.3rem] border border-forest/10 bg-white shadow-heritage lg:grid-cols-[0.95fr,1.05fr]">
+        <div class="relative min-h-[22rem]">
+            <img src="./static/images/7.jpg" alt="Kerala luxury retreat" class="absolute inset-0 h-full w-full object-cover">
+            <div class="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,24,18,0.12),rgba(10,24,18,0.66))]"></div>
+        </div>
+        <div class="flex items-center px-6 py-12 sm:px-10 lg:px-14">
+            <div class="max-w-2xl">
+                <span class="section-kicker">Plan With Intention</span>
+                <h2 class="mt-6 font-serif text-5xl leading-tight text-forest sm:text-6xl">Let the route feel personal, not generic.</h2>
+                <p class="mt-6 text-base leading-8 text-slate-600">Whether you want a cultural circuit, a slow honeymoon, a family holiday, or a monsoon retreat, Kerala works best when the journey is shaped to mood as much as geography.</p>
+                <div class="mt-8 flex flex-col gap-4 sm:flex-row">
+                    <a href="./contact.html" class="gold-button inline-flex items-center justify-center rounded-full px-7 py-4 text-sm font-bold uppercase tracking-[0.28em]">Start Planning</a>
+                    <a href="./about.html" class="inline-flex items-center justify-center rounded-full border border-forest/15 px-7 py-4 text-sm font-bold uppercase tracking-[0.28em] text-forest transition hover:bg-forest hover:text-white">Discover Heritage</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const slides = document.querySelectorAll('#hero-slideshow .hero-slide');
+
+        if (slides.length <= 1) {
+            return;
+        }
+
+        let activeIndex = 0;
+
+        setInterval(() => {
+            if (document.hidden || document.documentElement.dataset.previewPaused === 'true' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            slides[activeIndex].classList.remove('is-active');
+            activeIndex = (activeIndex + 1) % slides.length;
+            slides[activeIndex].classList.add('is-active');
+        }, 2000);
+    });
+</script>
+
+        </main>
+
+        <footer class="mt-20 border-t border-forest/10 bg-[linear-gradient(180deg,rgba(16,42,33,0.98),rgba(11,25,20,1))] text-white">
+            <div class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+                <div class="grid gap-12 lg:grid-cols-[1.15fr,0.85fr] lg:items-end">
+                    <div class="space-y-6">
+                        <span class="section-kicker bg-white/8 text-white before:bg-spice">God's Own Country</span>
+                        <div class="max-w-2xl">
+                            <h2 class="font-serif text-4xl text-sand sm:text-5xl">Where ritual, river, rain, and design move together.</h2>
+                            <p class="mt-4 max-w-xl text-sm leading-7 text-white/70 sm:text-base">Kerala is not only a destination. It is a mood shaped by monsoon skies, temple rhythms, tea estates, coastal light, and a quiet sense of ceremony.</p>
+                        </div>
+                    </div>
+
+                    <div class="grid gap-4 sm:grid-cols-2">
+                        <div class="rounded-[1.6rem] border border-white/10 bg-white/5 p-5">
+                            <p class="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-spice">Experiences</p>
+                            <p class="mt-3 text-sm leading-7 text-white/70">Backwaters, Ayurveda, heritage towns, spice trails, tea valleys, coastal sunsets.</p>
+                        </div>
+                        <div class="rounded-[1.6rem] border border-white/10 bg-white/5 p-5">
+                            <p class="text-[0.7rem] font-bold uppercase tracking-[0.28em] text-spice">Begin Here</p>
+                            <div class="mt-3 grid gap-2 text-sm text-white/70">
+                                <a href="./destinations.html" class="transition hover:text-white">Explore destinations</a>
+                                <a href="./about.html" class="transition hover:text-white">Discover heritage</a>
+                                <a href="./contact.html" class="transition hover:text-white">Plan your journey</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10 flex flex-col gap-4 border-t border-white/10 pt-6 text-xs uppercase tracking-[0.24em] text-white/40 sm:flex-row sm:items-center sm:justify-between">
+                    <p>Kerala Tourism Experience</p>
+                    <p>Tradition meets modern calm</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="./vendor/aos.js"></script>
+    <script>
+        if (window.AOS) {
+            AOS.init({
+                duration: 900,
+                once: true,
+                offset: 90,
+                easing: 'ease-out-cubic'
+            });
+        }
+
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (mobileMenuButton && mobileMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', String(!isHidden));
+            });
+        }
+    </script>
+<script src="../preview-visibility.js" defer></script></body>
+</html>

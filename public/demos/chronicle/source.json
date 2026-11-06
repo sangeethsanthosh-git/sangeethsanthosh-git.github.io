@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/chronicle-journal",
+  "commit": "fe2451f258092274e6cf183486b2134192e7682a",
+  "pages": [
+    "calendar.html",
+    "compose.html",
+    "entry.html",
+    "index.html",
+    "insights.html",
+    "journal.html",
+    "settings.html"
+  ],
+  "renderer": "Original Flutter widgets, captured locally at 390 \u00d7 680",
+  "adaptations": [
+    "In-memory demo data and disabled native service calls",
+    "Local fonts and disabled page transitions during capture",
+    "Chronicle editor toolbar width constraint corrected for capture",
+    "WebP screen images with accessible navigation hotspots; no Flutter runtime"
+  ]
+}

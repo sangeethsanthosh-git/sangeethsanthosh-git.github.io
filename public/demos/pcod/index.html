@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="">
+    <title>Home | PCOS AI Clinical Support Platform</title>
+    
+    
+    
+    <link href="../vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome.min.css" rel="stylesheet">
+    <link href="./static/css/styles.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="pcod" data-demo-page="index.html" data-page="home">
+    <div id="globalLoader" class="global-loader" aria-hidden="true">
+        <div class="spinner-border text-light" role="status"></div>
+        <p class="mt-3 mb-0">Processing clinical request...</p>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark top-navbar sticky-top">
+        <div class="container-fluid px-4">
+            <button class="btn btn-outline-light d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a class="navbar-brand fw-bold" href="./index.html">
+                <i class="fa-solid fa-heart-pulse me-2"></i>PCOS AI Clinical Support Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="topNavContent">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link active" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./predict.html">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./analysis.html">Analysis</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./doctors.html">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./education.html">Education</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./search.html">Search</a></li>
+                </ul>
+                <form class="d-flex ms-lg-3 mt-3 mt-lg-0" method="get">
+                    <input class="form-control form-control-sm me-2 nav-search-input" name="q" placeholder="Search PCOS guidance">
+                    <button class="btn btn-sm btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start d-lg-none sidebar-canvas" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Clinical Navigation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="sidebar-panel">
+                <a class="sidebar-link active" href="./index.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+                <a class="sidebar-link " href="./predict.html"><i class="fa-solid fa-vial-circle-check"></i>Predict PCOS</a>
+                <a class="sidebar-link " href="./analysis.html"><i class="fa-solid fa-chart-pie"></i>Analysis</a>
+                <a class="sidebar-link " href="./doctors.html"><i class="fa-solid fa-user-doctor"></i>Doctors</a>
+                <a class="sidebar-link " href="./education.html"><i class="fa-solid fa-book-medical"></i>Education</a>
+                <a class="sidebar-link " href="./search.html"><i class="fa-solid fa-comments"></i>Search Assistant</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-0 app-shell">
+        <div class="row g-0">
+            <aside class="col-lg-2 d-none d-lg-block">
+                <div class="sidebar-panel">
+                    <p class="sidebar-label">Clinical Modules</p>
+                    <a class="sidebar-link active" href="./index.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+                    <a class="sidebar-link " href="./predict.html"><i class="fa-solid fa-vial-circle-check"></i>Predict PCOS</a>
+                    <a class="sidebar-link " href="./analysis.html"><i class="fa-solid fa-chart-pie"></i>Analysis</a>
+                    <a class="sidebar-link " href="./doctors.html"><i class="fa-solid fa-user-doctor"></i>Doctor Finder</a>
+                    <a class="sidebar-link " href="./education.html"><i class="fa-solid fa-book-medical"></i>Education</a>
+                    <a class="sidebar-link " href="./search.html"><i class="fa-solid fa-comments"></i>Search Assistant</a>
+                </div>
+            </aside>
+            <main class="col-12 col-lg-10 content-column">
+                <div class="content-inner fade-in">
+                    
+<section class="hero-card mb-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <span class="hero-tag">Clinical AI decision support</span>
+            <h1 class="hero-title mt-3">Hospital-style PCOS screening, analytics, and education in one workflow.</h1>
+            <p class="hero-copy">
+                Run a prediction, inspect the supporting clinical signals, find nearby specialists, and surface patient-friendly education without leaving the platform.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+                <a href="./predict.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-vial-circle-check me-2"></i>Start Prediction</a>
+                <a href="./analysis.html" class="btn btn-outline-primary btn-lg"><i class="fa-solid fa-chart-line me-2"></i>Open Analysis</a>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="glass-card">
+                <p class="small text-uppercase text-muted mb-2">Model status</p>
+                <div class="mini-metric">
+                    <span>Prediction accuracy</span>
+                    <strong>—</strong>
+                </div>
+                <div class="mini-metric">
+                    <span>Patients analyzed</span>
+                    <strong>0</strong>
+                </div>
+                <div class="mini-metric">
+                    <span>High risk cases</span>
+                    <strong>0</strong>
+                </div>
+                <div class="mini-metric mb-0">
+                    <span>Recent predictions</span>
+                    <strong>0</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="row g-3 mb-4">
+    <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+            <span class="stat-label">Patients Analyzed</span>
+            <h3>0</h3>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+            <span class="stat-label">Prediction Accuracy</span>
+            <h3>—</h3>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+            <span class="stat-label">High Risk Cases</span>
+            <h3>0</h3>
+        </div>
+    </div>
+    <div class="col-md-6 col-xl-3">
+        <div class="stat-card">
+            <span class="stat-label">Recent Predictions</span>
+            <h3>0</h3>
+        </div>
+    </div>
+</section>
+
+<section class="row g-4">
+    <div class="col-lg-7">
+        <div class="panel-card h-100">
+            <div class="panel-heading">
+                <h3 class="panel-title mb-0"><i class="fa-solid fa-circle-info me-2 text-primary"></i>Platform Highlights</h3>
+            </div>
+            <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                    <div class="mini-feature">
+                        <h6>Leak-safe model scoring</h6>
+                        <p>Prediction calls reuse the trained model and verified scaler path from the saved artifacts.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mini-feature">
+                        <h6>Dynamic analysis</h6>
+                        <p>Chart.js dashboards refresh from JSON APIs, so the analysis page follows the latest patient submission.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mini-feature">
+                        <h6>Specialist support</h6>
+                        <p>Doctor lookup uses live location search with cached responses for faster repeated queries.</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="mini-feature">
+                        <h6>Patient education</h6>
+                        <p>Video search and PCOS topic suggestions are available without leaving the UI.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="panel-card h-100">
+            <div class="panel-heading">
+                <h3 class="panel-title mb-0"><i class="fa-solid fa-newspaper me-2 text-primary"></i>Latest Medical Articles</h3>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+                </div>
+                <footer class="footer-panel">
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+                        <span class="small text-muted">PCOS AI Clinical Support Platform</span>
+                        <span class="small text-muted">
+                            This system provides AI-assisted risk prediction and does not replace professional medical diagnosis.
+                        </span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    
+    
+    
+    
+<script src="../preview-common.js" defer></script></body>
+</html>

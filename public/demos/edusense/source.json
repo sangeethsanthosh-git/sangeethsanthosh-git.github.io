@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/Edusense",
+  "commit": "45c78d22d5ad1e7a70c6222d96a823ac1ff7c24a",
+  "pages": [
+    "index.html",
+    "history.html",
+    "chat.html",
+    "live_transcript.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

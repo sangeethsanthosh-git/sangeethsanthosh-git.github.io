@@ -1,0 +1,20 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/ai-budget-planner",
+  "commit": "7e2df85449b6db190aea7dfdce15960206ff7a0d",
+  "pages": [
+    "index.html",
+    "login.html",
+    "signup.html",
+    "dashboard.html",
+    "expenses.html",
+    "expense_form.html",
+    "forecast.html",
+    "analysis.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

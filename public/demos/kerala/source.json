@@ -1,0 +1,16 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/kerala-tourism",
+  "commit": "6fa519bb9d704a9afe1a784fc2b22fedcaf90be3",
+  "pages": [
+    "index.html",
+    "destinations.html",
+    "about.html",
+    "contact.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Compiled original Tailwind configuration",
+    "Contact submission handled locally without persistence",
+    "Narrow viewport spacing and typography overrides"
+  ]
+}

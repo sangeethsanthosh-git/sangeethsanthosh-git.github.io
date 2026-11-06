@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Analysis | AI Budget Planner</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="budget" data-demo-page="analysis.html" class="app-body">
+    
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="./dashboard.html">
+            <span class="sidebar-brand-mark">AB</span>
+            <span class="sidebar-brand-text">
+                <strong>AI Budget Planner</strong>
+                <small>Simple financial dashboard</small>
+            </span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="sidebar-link ">
+                <span class="nav-icon">DB</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="./expenses.html" class="sidebar-link ">
+                <span class="nav-icon">TX</span>
+                <span>Transactions</span>
+            </a>
+            <a href="./forecast.html" class="sidebar-link ">
+                <span class="nav-icon">FC</span>
+                <span>Forecast</span>
+            </a>
+            <a href="./analysis.html" class="sidebar-link active">
+                <span class="nav-icon">AN</span>
+                <span>Analysis</span>
+            </a>
+            <a href="./login.html" class="sidebar-link">
+                <span class="nav-icon">LO</span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="main-header">
+            <div>
+                <p class="page-chip">Analysis</p>
+                <h1>Good morning, Demo visitor</h1>
+                <p class="header-subtitle">Track your expenses and insights</p>
+            </div>
+            <div class="header-actions">
+                
+<a class="button button-secondary" href="./forecast.html">Back to Forecast</a>
+
+            </div>
+        </header>
+
+        
+            
+        
+
+        <main class="page-content">
+    
+            
+<section class="summary-grid">
+    <article class="summary-card summary-card-primary">
+        <p class="summary-label">Best Model</p>
+        <h2>Unavailable</h2>
+        <p class="summary-note">Selected by lowest NRMSE</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Model Error</p>
+        
+        <h2>Unavailable</h2>
+        <p class="summary-note">No trained model available yet</p>
+        
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Forecast Value</p>
+        
+        <h2>Unavailable</h2>
+        <p class="summary-note">Forecast unavailable</p>
+        
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Daily Points</p>
+        <h2>3</h2>
+        <p class="summary-note">Daily time-series rows used by ML</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Combined Records</p>
+        <h2>3</h2>
+        <p class="summary-note">Cleaned expense records passed to ML</p>
+    </article>
+</section>
+
+<section class="panel table-panel">
+    <div class="panel-header">
+        <div>
+            <h3>Comparison Table</h3>
+            <p>Daily forecasting metrics from the time-based test split.</p>
+        </div>
+    </div>
+    <div class="table-wrapper">
+        <table class="fin-table">
+            <thead>
+                <tr>
+                    <th>Model</th>
+                    <th>MAE</th>
+                    <th>RMSE</th>
+                    <th>MAPE</th>
+                    <th>NRMSE</th>
+                    <th>R2</th>
+                    <th>Train Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="analysis-grid">
+    <article class="panel analysis-panel">
+        <div class="panel-header">
+            <div>
+                <h3>Correlation Heatmap</h3>
+                <p>Pandas correlation rendered with Matplotlib.</p>
+            </div>
+        </div>
+        
+        <div class="empty-state"><p>Correlation heatmap unavailable.</p></div>
+        
+    </article>
+
+    <article class="panel analysis-panel">
+        <div class="panel-header">
+            <div>
+                <h3>Covariance Matrix</h3>
+                <p>Pandas covariance rendered with Matplotlib.</p>
+            </div>
+        </div>
+        
+        <div class="empty-state"><p>Covariance matrix unavailable.</p></div>
+        
+    </article>
+    
+    <article class="panel analysis-panel analysis-panel-wide">
+        <div class="panel-header">
+            <div>
+                <h3>Normalized Error Comparison</h3>
+                <p>Lower NRMSE indicates better daily forecasting performance.</p>
+            </div>
+        </div>
+        
+        <div class="empty-state"><p>Normalized error comparison unavailable.</p></div>
+        
+    </article>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <h3>Model Plots</h3>
+            <p>Actual versus predicted values for each trained model.</p>
+        </div>
+    </div>
+    <div class="model-plot-grid">
+        
+    </div>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <h3>AI Insights</h3>
+        </div>
+    </div>
+    <ul class="insight-list">
+        
+        <li class="insight-item">Sample transactions illustrate the original interface. Model forecasts run in the full app.</li>
+        
+    </ul>
+</section>
+
+        </main>
+    </div>
+
+    
+<script src="../preview-common.js" defer></script></body>
+</html>

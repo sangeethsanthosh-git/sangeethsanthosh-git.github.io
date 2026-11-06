@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/Gistify",
+  "commit": "cce27726c26d233458a02d78130be5058675d464",
+  "pages": [
+    "index.html",
+    "result.html"
+  ],
+  "adaptations": [
+    "Original rendered frontend captured as static DOM and CSS",
+    "Public demo fixtures",
+    "No React, Next.js or backend runtime in the preview",
+    "Still background in place of GIF"
+  ]
+}

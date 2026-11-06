@@ -62,6 +62,7 @@ export function startLoFiSynth(onBeat?: (noteIdx: number) => void) {
   if (!ctx) return;
 
   isPlaying = true;
+  window.dispatchEvent(new Event("phone-audio-change"));
   let chordIndex = 0;
   let noteIndex = 0;
 
@@ -108,6 +109,7 @@ export function startLoFiSynth(onBeat?: (noteIdx: number) => void) {
 
 export function stopLoFiSynth() {
   isPlaying = false;
+  if (typeof window !== "undefined") window.dispatchEvent(new Event("phone-audio-change"));
   if (activeInterval) {
     clearInterval(activeInterval);
     activeInterval = null;

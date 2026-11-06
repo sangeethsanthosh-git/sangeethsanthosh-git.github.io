@@ -1,0 +1,20 @@
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: #f7f3e9; }
+body.native-rewind { background: #09090b; }
+body.native-dayform { background: #f5f4ee; --native-paper: #f5f4ee; }
+body.native-chronicle { --native-paper: #f8f4e8; }
+body.native-rewind { --native-paper: #09090b; color: white; }
+.native-screen { position: relative; width: min(100%, 390px); margin: 0 auto; }
+.native-screen > img { width: 100%; height: auto; display: block; user-select: none; }
+.native-hotspot { position: absolute; display: block; border-radius: 8px; -webkit-tap-highlight-color: #c5a05933; }
+.native-hotspot:hover { background: #c5a05912; }
+.native-hotspot:active { background: #c5a05933; }
+.native-hotspot:focus-visible { outline: 3px solid #0a84ff; outline-offset: -2px; background: #0a84ff22; }
+.native-return { position: fixed; top: 8px; left: 8px; width: 30px; height: 30px; border-radius: 8px; z-index: 10; }
+.native-return:focus-visible { outline: 2px solid #0a84ff; }
+.native-field { position: absolute; opacity: 0; border: 0; border-radius: 4px; padding: 8px 0; resize: none; color: #453d37; font-family: Georgia, serif; }
+.native-field:focus, .native-field.has-value { opacity: 1; background: var(--native-paper, #fff); outline: 1px solid #c5a059; }
+.native-demo-status { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 20; padding: 12px; border-radius: 12px; background: #242420; color: white; font: 12px/1.6 system-ui, sans-serif; box-shadow: 0 4px 20px #0003; }
+.native-accessible-nav { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.native-accessible-nav:focus-within { position: fixed; left: 10px; right: 10px; bottom: 10px; width: auto; height: auto; clip-path: none; display: flex; flex-wrap: wrap; gap: 10px; background: #fff; padding: 12px; border-radius: 12px; z-index: 20; font: 13px system-ui, sans-serif; }

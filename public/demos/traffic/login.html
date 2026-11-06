@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Traffic Analyzer</title>
+    <link rel="stylesheet" href="./static/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="traffic" data-demo-page="login.html">
+    <div class="page-shell">
+        <header class="topbar">
+            <a href="./index.html" class="brand-mark">Website Traffic Analyzer</a>
+            <nav class="site-nav">
+                
+                    <a
+                        href="./login.html"
+                        class="nav-active"
+                    >
+                        Login
+                    </a>
+                
+            </nav>
+        </header>
+
+        
+            
+        
+
+        
+<section class="auth-layout">
+    <article class="panel auth-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Account Access</p>
+                <h2>Welcome back</h2>
+            </div>
+            <span class="mini-badge">Login</span>
+        </div>
+
+        <div class="auth-tabs">
+            <a href="./login.html" class="auth-tab auth-tab-active">Login</a>
+            <a href="./login.html?mode=register" class="auth-tab ">Register</a>
+        </div>
+
+        <form method="post" class="auth-form">
+            <input type="hidden" name="action" value="login">
+
+            <label>
+                Username
+                <input
+                    type="text"
+                    name="username"
+                    value=""
+                    placeholder="Enter a username"
+                    autocomplete="username"
+                    required
+                >
+            </label>
+
+            <label>
+                Password
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Minimum 6 characters"
+                    autocomplete="current-password"
+                    required
+                >
+            </label>
+
+            <button type="submit" class="primary-btn">
+                Login
+            </button>
+        </form>
+
+        <p class="helper-text">
+            
+                Need a first account? Use the register tab above.
+            
+        </p>
+    </article>
+</section>
+
+    </div>
+<script src="../preview-common.js" defer></script></body>
+</html>

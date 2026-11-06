@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload | IntegrityVault</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="vault" data-demo-page="upload.html">
+    <div class="site-bg"></div>
+    <div class="page-shell container">
+        <header class="app-header">
+            <div class="app-title">
+                <span class="logo">IV</span>
+                <div>
+                    <h1>IntegrityVault</h1>
+                    <p>File Integrity Verification System</p>
+                </div>
+            </div>
+            
+                <nav class="app-nav" aria-label="Primary navigation">
+                    <span class="user-badge">Demo visitor</span>
+                    <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                    <a class="nav-link" href="./upload.html">Upload</a>
+                    <a class="ghost-button" href="./login.html">Logout</a>
+                </nav>
+            
+        </header>
+
+        <main class="main-content">
+            
+                
+            
+
+            
+<section class="page-header">
+    <div>
+        <p class="eyebrow">Upload</p>
+        <h1>Register a file for integrity tracking.</h1>
+        <p class="supporting-copy">
+            Any file type is accepted. The app reads the upload in 4096-byte chunks and stores only metadata plus the SHA-256 hash.
+        </p>
+    </div>
+    <div class="header-actions">
+        <a class="ghost-button" href="./dashboard.html">Back to Dashboard</a>
+    </div>
+</section>
+
+<section class="detail-grid">
+    <article class="card">
+        <p class="eyebrow">New Upload</p>
+        <h2>Select a file</h2>
+        <form method="post" enctype="multipart/form-data" class="stacked-form">
+            <div class="file-picker">
+                <input
+                    id="file"
+                    name="file"
+                    type="file"
+                    required
+                    data-file-input
+                >
+                <label for="file" class="file-picker-label">
+                    <span class="file-picker-title">Choose a file</span>
+                    <span class="file-picker-text" data-file-display="file">No file selected</span>
+                </label>
+            </div>
+
+            <button type="submit" class="primary-button">Generate Hash &amp; Save</button>
+        </form>
+    </article>
+</section>
+
+        </main>
+    </div>
+<script src="../preview-common.js" defer></script></body>
+</html>

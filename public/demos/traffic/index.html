@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Traffic Analyzer</title>
+    <link rel="stylesheet" href="./static/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="traffic" data-demo-page="index.html">
+    <div class="page-shell">
+        <header class="topbar">
+            <a href="./index.html" class="brand-mark">Website Traffic Analyzer</a>
+            <nav class="site-nav">
+                
+                    <a
+                        href="./index.html"
+                        class="nav-active"
+                    >
+                        Dashboard
+                    </a>
+                    <span class="user-chip">Demo visitor</span>
+                    <form method="post" class="inline-form">
+                        <button type="submit" class="nav-button">Logout</button>
+                    </form>
+                
+            </nav>
+        </header>
+
+        
+            
+        
+
+        
+<section class="hero">
+    <div class="hero-copy">
+        <p class="eyebrow">Traffic Intelligence Dashboard</p>
+        <h1>Monitor website traffic, spot peak days, and visualize growth.</h1>
+        <p class="hero-text">
+            This Flask application reads website traffic from local CSV datasets, analyzes the data with NumPy,
+            and turns the results into an easy-to-read Matplotlib trend chart.
+        </p>
+        <div class="hero-meta">
+            <span class="status-pill status-live">
+                Traffic dataset loaded
+            </span>
+            <span class="hero-note">
+                
+                    Analytics update whenever <code>data/Traffic.csv</code> changes.
+                
+            </span>
+        </div>
+        
+    </div>
+
+    <article class="panel chart-panel">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">Visualization</p>
+                <h2>Traffic Trend Chart</h2>
+            </div>
+            
+                <span class="mini-badge">Latest: 31 Dec 2025</span>
+            
+        </div>
+
+        
+            <img
+                class="chart-image"
+                src="./static/9fe988e7a11e.webp"
+                alt="Line chart showing website traffic"
+            >
+        
+    </article>
+</section>
+
+<section class="stats-grid">
+    <article class="panel stat-card">
+        <span class="stat-label">Recorded Days</span>
+        <strong class="stat-value">365</strong>
+        <span class="stat-caption">Total days available for analysis</span>
+    </article>
+    <article class="panel stat-card">
+        <span class="stat-label">Total Users</span>
+        <strong class="stat-value">103535</strong>
+        <span class="stat-caption">Combined traffic volume</span>
+    </article>
+    <article class="panel stat-card">
+        <span class="stat-label">Average / Day</span>
+        <strong class="stat-value">283.7</strong>
+        <span class="stat-caption">Mean user count across all days</span>
+    </article>
+    <article class="panel stat-card">
+        <span class="stat-label">Trend</span>
+        <strong class="stat-value">Stable</strong>
+        <span class="stat-caption">
+            
+                -3.8% from first to latest day
+            
+        </span>
+    </article>
+</section>
+
+
+<section class="panel benchmark-panel">
+    <div class="section-heading">
+        <div>
+            <p class="eyebrow">Benchmark Dataset</p>
+            <h2>Top Websites Worldwide</h2>
+        </div>
+        
+            <span class="mini-badge">February 2025</span>
+        
+    </div>
+
+    
+        <p class="helper-text">
+            Loaded from <code>data/top_websites_worldwide_feb_2025.csv</code>. This local benchmark is based on Similarweb's
+            February 2025 worldwide traffic rankings and was curated to keep the comparison focused on mainstream sites.
+        </p>
+
+        <form method="get" class="benchmark-search-form">
+            <label>
+                Search a website in the benchmark dataset
+                <input
+                    type="text"
+                    name="benchmark_query"
+                    value=""
+                    placeholder="Try reddit.com, amazon.com, chatgpt.com"
+                >
+            </label>
+            <button type="submit" class="primary-btn">Search Website</button>
+            <a href="./index.html" class="text-link">Clear search</a>
+        </form>
+
+        <section class="benchmark-stats">
+            <article class="panel stat-card">
+                <span class="stat-label">Websites Tracked</span>
+                <strong class="stat-value">20</strong>
+                <span class="stat-caption">Domains in the local benchmark file</span>
+            </article>
+            <article class="panel stat-card">
+                <span class="stat-label">Combined Visits</span>
+                <strong class="stat-value">166.8B</strong>
+                <span class="stat-caption">Estimated total monthly visits across the benchmark list</span>
+            </article>
+            <article class="panel stat-card">
+                <span class="stat-label">Leading Website</span>
+                <strong class="stat-value">google.com</strong>
+                <span class="stat-caption">78.2B estimated monthly visits</span>
+            </article>
+            <article class="panel stat-card">
+                <span class="stat-label">Fastest Growth</span>
+                <strong class="stat-value">gemini.google.com</strong>
+                <span class="stat-caption">+276.0% year-over-year</span>
+            </article>
+        </section>
+
+        
+
+        <section class="benchmark-layout">
+            <article class="benchmark-chart-block">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Comparison</p>
+                        <h3>Estimated Monthly Visits</h3>
+                    </div>
+                    <span class="table-badge">Top 10</span>
+                </div>
+                
+                    <img
+                        class="chart-image"
+                        src="./static/8ca594614bb3.webp"
+                        alt="Bar chart comparing estimated monthly visits for top websites"
+                    >
+                
+                <p class="helper-text">
+                    Strongest month-over-month gainer: <strong>gemini.google.com</strong>
+                    (+2.1%).
+                </p>
+            </article>
+
+            <article class="benchmark-table-block">
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">Ranking</p>
+                        <h3>Local Benchmark Table</h3>
+                    </div>
+                </div>
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Website</th>
+                                <th>Monthly Visits</th>
+                                <th>MoM</th>
+                                <th>YoY</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                                <tr>
+                                    <td>1</td>
+                                    <td>google.com</td>
+                                    <td>78.2B</td>
+                                    <td>-8.8%</td>
+                                    <td>+3.9%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>2</td>
+                                    <td>youtube.com</td>
+                                    <td>27.0B</td>
+                                    <td>-11.0%</td>
+                                    <td>+3.9%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>3</td>
+                                    <td>facebook.com</td>
+                                    <td>10.8B</td>
+                                    <td>-10.3%</td>
+                                    <td>+4.7%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>4</td>
+                                    <td>instagram.com</td>
+                                    <td>6.4B</td>
+                                    <td>-9.2%</td>
+                                    <td>+14.7%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>5</td>
+                                    <td>chatgpt.com</td>
+                                    <td>5.4B</td>
+                                    <td>-6.5%</td>
+                                    <td>+36.0%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>6</td>
+                                    <td>x.com</td>
+                                    <td>4.0B</td>
+                                    <td>-12.2%</td>
+                                    <td>-1.4%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>7</td>
+                                    <td>reddit.com</td>
+                                    <td>3.8B</td>
+                                    <td>-12.8%</td>
+                                    <td>+19.1%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>8</td>
+                                    <td>wikipedia.org</td>
+                                    <td>3.3B</td>
+                                    <td>-10.4%</td>
+                                    <td>-7.3%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>9</td>
+                                    <td>whatsapp.com</td>
+                                    <td>3.3B</td>
+                                    <td>-7.7%</td>
+                                    <td>-8.4%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>10</td>
+                                    <td>bing.com</td>
+                                    <td>3.2B</td>
+                                    <td>-7.9%</td>
+                                    <td>-0.1%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>11</td>
+                                    <td>tiktok.com</td>
+                                    <td>2.8B</td>
+                                    <td>-11.4%</td>
+                                    <td>+19.2%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>12</td>
+                                    <td>yahoo.co.jp</td>
+                                    <td>2.6B</td>
+                                    <td>-12.9%</td>
+                                    <td>-10.4%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>13</td>
+                                    <td>yandex.ru</td>
+                                    <td>2.6B</td>
+                                    <td>-7.8%</td>
+                                    <td>-4.7%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>14</td>
+                                    <td>yahoo.com</td>
+                                    <td>2.6B</td>
+                                    <td>-8.6%</td>
+                                    <td>-6.0%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>15</td>
+                                    <td>amazon.com</td>
+                                    <td>2.3B</td>
+                                    <td>-15.8%</td>
+                                    <td>-0.8%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>16</td>
+                                    <td>gemini.google.com</td>
+                                    <td>2.1B</td>
+                                    <td>+2.1%</td>
+                                    <td>+276.0%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>17</td>
+                                    <td>linkedin.com</td>
+                                    <td>1.8B</td>
+                                    <td>-4.3%</td>
+                                    <td>+12.0%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>19</td>
+                                    <td>baidu.com</td>
+                                    <td>1.7B</td>
+                                    <td>-12.0%</td>
+                                    <td>-6.5%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>20</td>
+                                    <td>naver.com</td>
+                                    <td>1.5B</td>
+                                    <td>-9.0%</td>
+                                    <td>+0.3%</td>
+                                </tr>
+                            
+                                <tr>
+                                    <td>21</td>
+                                    <td>netflix.com</td>
+                                    <td>1.4B</td>
+                                    <td>-18.4%</td>
+                                    <td>-0.6%</td>
+                                </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </article>
+        </section>
+    
+</section>
+
+
+    </div>
+<script src="../preview-common.js" defer></script></body>
+</html>

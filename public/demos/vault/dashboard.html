@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | IntegrityVault</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="vault" data-demo-page="dashboard.html">
+    <div class="site-bg"></div>
+    <div class="page-shell container">
+        <header class="app-header">
+            <div class="app-title">
+                <span class="logo">IV</span>
+                <div>
+                    <h1>IntegrityVault</h1>
+                    <p>File Integrity Verification System</p>
+                </div>
+            </div>
+            
+                <nav class="app-nav" aria-label="Primary navigation">
+                    <span class="user-badge">Demo visitor</span>
+                    <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                    <a class="nav-link" href="./upload.html">Upload</a>
+                    <a class="ghost-button" href="./login.html">Logout</a>
+                </nav>
+            
+        </header>
+
+        <main class="main-content">
+            
+                
+            
+
+            
+<section class="page-toolbar">
+    <h1>Dashboard</h1>
+    <a class="primary-button" href="./upload.html">Upload New File</a>
+</section>
+
+<section class="stats-grid">
+    <article class="stat-card">
+        <span>Total Files</span>
+        <strong>1</strong>
+        <small>Files currently tracked in your account.</small>
+    </article>
+    <article class="stat-card">
+        <span>Verified Files</span>
+        <strong>1</strong>
+        <small>Files whose latest verification matched the original hash.</small>
+    </article>
+    <article class="stat-card">
+        <span>Modified Files</span>
+        <strong>0</strong>
+        <small>Files whose latest verification detected a mismatch.</small>
+    </article>
+</section>
+
+<section class="card table-card">
+    <div class="section-head">
+        <div>
+            <p class="eyebrow">Tracked Files</p>
+            <h2>Your verification inventory</h2>
+        </div>
+    </div>
+
+    
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                        <th>Hash</th>
+                        <th>Status</th>
+                        <th>Last Checked</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                        <tr>
+                            <td>
+                                <strong>demo-document.txt</strong>
+                                <span class="table-subtext">Uploaded Demo record</span>
+                            </td>
+                            <td><code class="hash-pill">eea29f9cbdbd40a63790c38c40e8c27b8e7430bd36f5ed2c4e2174e84818c059</code></td>
+                            <td>
+                                <span class="status-badge status-verified">
+                                    Original saved
+                                </span>
+                            </td>
+                            <td>Demo record</td>
+                            <td class="actions-cell">
+                                <a class="secondary-button" href="./verify.html">Verify</a>
+                            </td>
+                        </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    
+</section>
+
+        </main>
+    </div>
+<script src="../preview-common.js" defer></script></body>
+</html>

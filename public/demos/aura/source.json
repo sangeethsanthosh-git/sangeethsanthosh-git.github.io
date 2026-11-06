@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/AURA",
+  "commit": "77408ce6606f77dde63288e4e328fc7a4cc2204d",
+  "adaptations": [
+    "Original React DOM and CSS captured with demo bridge fixtures",
+    "Static navigation; no React or Python runtime",
+    "Responsive phone overrides"
+  ]
+}

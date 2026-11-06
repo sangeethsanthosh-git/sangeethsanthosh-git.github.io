@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify File | IntegrityVault</title>
+    <link rel="stylesheet" href="./static/css/styles.css">
+    
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="vault" data-demo-page="verify.html">
+    <div class="site-bg"></div>
+    <div class="page-shell container">
+        <header class="app-header">
+            <div class="app-title">
+                <span class="logo">IV</span>
+                <div>
+                    <h1>IntegrityVault</h1>
+                    <p>File Integrity Verification System</p>
+                </div>
+            </div>
+            
+                <nav class="app-nav" aria-label="Primary navigation">
+                    <span class="user-badge">Demo visitor</span>
+                    <a class="nav-link" href="./dashboard.html">Dashboard</a>
+                    <a class="nav-link" href="./upload.html">Upload</a>
+                    <a class="ghost-button" href="./login.html">Logout</a>
+                </nav>
+            
+        </header>
+
+        <main class="main-content">
+            
+                
+            
+
+            
+<section class="detail-grid">
+    <article class="card info-card">
+        <p class="eyebrow">Tracked File</p>
+        <h1>demo-document.txt</h1>
+        <dl class="detail-list">
+            <div>
+                <dt>Tracked File Name</dt>
+                <dd>demo-document.txt</dd>
+            </div>
+            <div>
+                <dt>Uploaded Timestamp</dt>
+                <dd>Demo record</dd>
+            </div>
+            <div>
+                <dt>Stored Hash</dt>
+                <dd><code class="hash-pill">eea29f9cbdbd40a63790c38c40e8c27b8e7430bd36f5ed2c4e2174e84818c059</code></dd>
+            </div>
+        </dl>
+    </article>
+
+    <article class="card">
+        <p class="eyebrow">Verify</p>
+        <h2>Upload Comparison File</h2>
+        <form method="post" enctype="multipart/form-data" class="stacked-form">
+            <div class="file-picker">
+                <input
+                    id="verification-file"
+                    name="file"
+                    type="file"
+                    required
+                    data-file-input
+                >
+                <label for="verification-file" class="file-picker-label">
+                    <span class="file-picker-title">Select file for verification</span>
+                    <span class="file-picker-text" data-file-display="verification-file">No file selected</span>
+                </label>
+            </div>
+
+            <button type="submit" class="primary-button">Verify File Integrity</button>
+        </form>
+    </article>
+</section>
+
+
+
+<!-- Hidden for client version. Remove this block to restore history UI -->
+<!-- HISTORY FEATURE TEMPORARILY HIDDEN FOR CLIENT
+<section class="card">
+    <div class="section-head">
+        <div>
+            <p class="eyebrow">Recent Checks</p>
+            <h2>Latest verification history</h2>
+        </div>
+    </div>
+
+    
+        <div class="empty-state">
+            <h3>No verification history yet</h3>
+            <p>Your first comparison result will appear here after you run a verification.</p>
+        </div>
+    
+</section>
+END HISTORY FEATURE -->
+
+        </main>
+    </div>
+<script src="../preview-common.js" defer></script></body>
+</html>

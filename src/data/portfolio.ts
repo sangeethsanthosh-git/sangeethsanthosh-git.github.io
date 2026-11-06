@@ -272,16 +272,6 @@ export const projects: ProjectItem[] = [
     live: "https://gistify-c.vercel.app/",
     status: "completed",
   },
-  {
-    title: "Finley KeyCoders",
-    description:
-      "Tech community portal with developer leaderboard, algorithmic challenges, member spotlights, and collaborative event management.",
-    backdropDesktop: "/images/finley-keycoders.webp",
-    preview: "/images/finley-keycoders.webp",
-    github: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
-    live: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
-    status: "completed",
-  },
 ];
 
 export const services: ServiceItem[] = [

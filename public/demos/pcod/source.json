@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
+  "commit": "039e355561c71c4acd7131366bca783eeea992e0",
+  "pages": [
+    "index.html",
+    "predict.html",
+    "result.html",
+    "analysis.html",
+    "doctors.html",
+    "education.html",
+    "search.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

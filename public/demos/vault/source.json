@@ -1,0 +1,18 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/file-integrity",
+  "commit": "531bfc2992eb75a178deee08e9fc07063f96329d",
+  "pages": [
+    "login.html",
+    "register.html",
+    "dashboard.html",
+    "upload.html",
+    "verify.html",
+    "history.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

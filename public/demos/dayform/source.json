@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/dayform",
+  "commit": "e8cbce20d2b14690b3fa94e770bdd2a515895b43",
+  "pages": [
+    "calendar.html",
+    "compose.html",
+    "index.html",
+    "settings.html",
+    "space.html",
+    "tasks.html"
+  ],
+  "renderer": "Original Flutter widgets, captured locally at 390 \u00d7 680",
+  "adaptations": [
+    "In-memory demo data and disabled native service calls",
+    "Local fonts and disabled page transitions during capture",
+    "Chronicle editor toolbar width constraint corrected for capture",
+    "WebP screen images with accessible navigation hotspots; no Flutter runtime"
+  ]
+}

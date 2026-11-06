@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard | AI Budget Planner</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="budget" data-demo-page="dashboard.html" class="app-body">
+    
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="./dashboard.html">
+            <span class="sidebar-brand-mark">AB</span>
+            <span class="sidebar-brand-text">
+                <strong>AI Budget Planner</strong>
+                <small>Simple financial dashboard</small>
+            </span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="sidebar-link active">
+                <span class="nav-icon">DB</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="./expenses.html" class="sidebar-link ">
+                <span class="nav-icon">TX</span>
+                <span>Transactions</span>
+            </a>
+            <a href="./forecast.html" class="sidebar-link ">
+                <span class="nav-icon">FC</span>
+                <span>Forecast</span>
+            </a>
+            <a href="./analysis.html" class="sidebar-link ">
+                <span class="nav-icon">AN</span>
+                <span>Analysis</span>
+            </a>
+            <a href="./login.html" class="sidebar-link">
+                <span class="nav-icon">LO</span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="main-header">
+            <div>
+                <p class="page-chip">Dashboard</p>
+                <h1>Good morning, Demo visitor</h1>
+                <p class="header-subtitle">Track your expenses and insights</p>
+            </div>
+            <div class="header-actions">
+                
+<a class="button button-secondary" href="./expense_form.html">Add Transaction</a>
+
+            </div>
+        </header>
+
+        
+            
+        
+
+        <main class="page-content">
+    
+            
+<section class="summary-grid">
+    <article class="summary-card">
+        <p class="summary-label">Estimated Budget</p>
+        
+        <h2>Not enough data</h2>
+        <p class="summary-note">Keep tracking expenses to unlock an estimate</p>
+        
+    </article>
+    <article class="panel quick-transaction-panel">
+        <div class="panel-header">
+            <div>
+                <h3>Quick Transaction</h3>
+            </div>
+        </div>
+        <form method="post" class="quick-form">
+            <div>
+                <label for="quick-date">Date</label>
+                <input id="quick-date" name="date" type="date" value="2026-11-01" required>
+            </div>
+            <div>
+                <label for="quick-category">Category</label>
+                <select id="quick-category" name="category" required>
+                    
+                    <option value="Food" selected>Food</option>
+                    
+                    <option value="Transport" >Transport</option>
+                    
+                    <option value="Utilities" >Utilities</option>
+                    
+                    <option value="Shopping" >Shopping</option>
+                    
+                    <option value="Income" >Income</option>
+                    
+                </select>
+            </div>
+            <div>
+                <label for="quick-amount">Amount</label>
+                <input id="quick-amount" name="amount" type="number" min="0.01" step="0.01" placeholder="0.00" required>
+            </div>
+            <div>
+                <label for="quick-payment-mode">Payment</label>
+                <select id="quick-payment-mode" name="payment_mode" required>
+                    
+                    <option value="UPI" selected>UPI</option>
+                    
+                    <option value="Cash" >Cash</option>
+                    
+                    <option value="Card" >Card</option>
+                    
+                </select>
+            </div>
+            <button class="button quick-submit" type="submit">Add</button>
+        </form>
+    </article>
+</section>
+
+<section class="dashboard-grid">
+    <article class="panel">
+        <div class="panel-header">
+            <div>
+                <h3>Monthly Budget Target</h3>
+                <p>Set a spending target and track this month against it.</p>
+            </div>
+        </div>
+        <form method="post" class="budget-form">
+            <div>
+                <label for="monthly-budget">Monthly Budget</label>
+                <input id="monthly-budget" name="monthly_budget" type="number" min="0.01" step="0.01" placeholder="25000.00" value="5000" required>
+            </div>
+            <button class="button" type="submit">Save Budget</button>
+        </form>
+        <div class="budget-progress-card">
+            <div class="budget-progress-top">
+                <strong>Within budget</strong>
+                
+                <span>₹2,350.00 / ₹5,000.00</span>
+                
+            </div>
+            <div class="budget-progress-track">
+                <span class="budget-progress-fill tone-positive" style="width: 47%;"></span>
+            </div>
+            
+            <p class="summary-note">
+                
+                Remaining this month: ₹2,650.00
+                
+            </p>
+            
+        </div>
+    </article>
+
+    <article class="panel insights-panel">
+        <div class="panel-header">
+            <div>
+                <h3>AI Insights</h3>
+            </div>
+        </div>
+        <ul class="insight-list">
+            
+            <li class="insight-item">Sample transactions illustrate the original interface. Model forecasts run in the full app.</li>
+            
+        </ul>
+    </article>
+</section>
+
+        </main>
+    </div>
+
+    
+<script src="../preview-common.js" defer></script></body>
+</html>

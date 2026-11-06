@@ -117,7 +117,7 @@ const ALL_SKILLS: SkillItem[] = [
     iconType: "image",
     iconSrc: "/skills/react.png",
     glowColor: "rgba(97, 218, 251, 0.4)",
-    projects: ["AI Budget Planner", "Finley KeyCoders", "EduSense Portal"],
+    projects: ["AI Budget Planner", "EduSense Portal"],
   },
   {
     id: "nextjs",
@@ -221,7 +221,7 @@ const ALL_SKILLS: SkillItem[] = [
     iconType: "image",
     iconSrc: "/skills/postgresql.png",
     glowColor: "rgba(51, 103, 145, 0.4)",
-    projects: ["Finley Core", "File Integrity Vault", "Student Records"],
+    projects: ["File Integrity Vault", "Student Records"],
   },
   {
     id: "mysql",

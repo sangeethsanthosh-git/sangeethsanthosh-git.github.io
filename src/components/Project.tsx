@@ -18,22 +18,14 @@ import {
 } from "lucide-react";
 import PhoneLockScreen from "./phone/PhoneLockScreen";
 import PhoneHomeScreen from "./phone/PhoneHomeScreen";
-import {
-  RewindApp,
-  ChronicleApp,
-  AuraApp,
-  DayformApp,
-  VaultApp,
-  KeralaTourismApp,
-  TrafficApp,
-  EduSenseApp,
-  BudgetApp,
-  PcodApp,
-  CartoonizerApp,
-  GistifyApp,
-  KeyCodersApp,
-  ContactApp,
-} from "./phone/PhoneApps";
+import dynamic from "next/dynamic";
+import type { WebsiteProjectId } from "./phone/RepositoryWebsite";
+
+const loadingApp = () => <div className="absolute inset-0 z-40 grid place-items-center bg-black text-sm text-white/60" role="status">Opening app...</div>;
+const RepositoryWebsite = dynamic(() => import("./phone/RepositoryWebsite"), { ssr: false, loading: loadingApp });
+const ContactApp = dynamic(() => import("./phone/PhoneApps").then((m) => m.ContactApp), { ssr: false, loading: loadingApp });
+const WEBSITE_IDS = new Set<string>(["rewind", "chronicle", "aura", "dayform", "vault", "kerala", "traffic", "edusense", "budget", "pcod", "cartoon", "gistify"]);
+
 import { playHapticClick, isAudioPlaying } from "./phone/phoneAudio";
 
 export interface ProjectData {
@@ -93,37 +85,37 @@ const PROJECTS: ProjectData[] = [
     title: "File Integrity Vault",
     category: "SECURITY / CRYPTO SHA-256",
     date: "Jun 2026",
-    desc: "Cryptographic SHA-256 file integrity monitoring system with real-time tampering detection, automated logging, and alert notifications.",
+    desc: "Flask file integrity app for storing trusted SHA-256 fingerprints and comparing uploaded files, with authenticated records and SQLite storage.",
     tags: ["Python", "Cryptography", "Security", "SHA-256", "Integrity"],
     github: "https://github.com/sangeethsanthosh-git/file-integrity",
-    live: "https://github.com/sangeethsanthosh-git/file-integrity",
+    live: "https://file-integrity-z8xz.onrender.com",
     img: "/images/file-integrity.jpg",
   },
   {
     title: "Kerala Tourism Hub",
     category: "WEB / CULTURAL HERITAGE",
     date: "May 2026",
-    desc: "Interactive cultural exploration platform showcasing Kerala destinations, festivals, and culinary heritage with responsive media galleries.",
+    desc: "Flask tourism website with cinematic Kerala imagery, destination and heritage pages, and a trip enquiry workflow backed by CSV storage.",
     tags: ["HTML5", "CSS3", "JavaScript", "Responsive UI", "Tourism"],
     github: "https://github.com/sangeethsanthosh-git/kerala-tourism",
-    live: "https://github.com/sangeethsanthosh-git/kerala-tourism",
+    live: "https://kerala-tourism-qpa1.onrender.com",
     img: "/images/kerala-tourism.jpg",
   },
   {
     title: "Website Traffic Analyzer",
     category: "ANALYTICS / PYTHON & FLASK",
     date: "May 2026",
-    desc: "Server traffic log parser and visitor session analytics engine with geo-IP lookup, referral clustering, and interactive trend charts.",
-    tags: ["Python", "Flask", "Chart.js", "Log Parsing", "Analytics"],
+    desc: "Flask traffic dashboard that analyses bundled CSV datasets with NumPy and Matplotlib, including traffic trends and website benchmark search.",
+    tags: ["Python", "Flask", "NumPy", "Matplotlib", "CSV Analytics"],
     github: "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
-    live: "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
+    live: "https://website-traffic-analyzer.onrender.com",
     img: "/images/website-traffic-analyzer.jpg",
   },
   {
     title: "EduSense",
     category: "AI EDTECH / FLASK & NLP",
     date: "May 2026",
-    desc: "Intelligent lecture assistant with automatic transcript summarization, keyword extraction, and contextual study flashcard generation.",
+    desc: "Flask lecture assistant for PDFs, transcripts, and recorded classes, with AI summaries, explanations, question answering, and study chats.",
     tags: ["Flask", "Python", "NLP", "EdTech", "Summarization"],
     github: "https://github.com/sangeethsanthosh-git/Edusense",
     live: "https://github.com/sangeethsanthosh-git/Edusense",
@@ -133,7 +125,7 @@ const PROJECTS: ProjectData[] = [
     title: "AI Budget Planner",
     category: "FINTECH / FORECASTING AI",
     date: "May 2026",
-    desc: "Personal financial assistant utilizing time-series forecasting, expense anomaly detection, and automated monthly budget allocations.",
+    desc: "Flask finance app for managing transactions, tracking monthly budget targets, reviewing spending trends, and forecasting expenses.",
     tags: ["Python", "Flask", "Machine Learning", "Forecasting", "FinTech"],
     github: "https://github.com/sangeethsanthosh-git/ai-budget-planner",
     live: "https://github.com/sangeethsanthosh-git/ai-budget-planner",
@@ -143,18 +135,18 @@ const PROJECTS: ProjectData[] = [
     title: "PCOD Detection System",
     category: "HEALTHCARE ML / PYTHON",
     date: "Apr 2026",
-    desc: "Clinical machine learning decision support tool with multi-variable biomarker evaluation and packaged cross-platform desktop UI.",
-    tags: ["Python", "Scikit-learn", "Machine Learning", "Healthcare", "Tkinter"],
+    desc: "Django-based PCOS project with separate screening and clinical assessment workflows, model explanations, evaluation charts, and Windows desktop packaging.",
+    tags: ["Python", "Django", "Scikit-learn", "Healthcare", "Desktop"],
     github: "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
     live: "https://github.com/sangeethsanthosh-git/PCOD-Detection-System",
     img: "/images/pcod-detection.jpg",
   },
   {
     title: "Cartoonizer AI",
-    category: "COMPUTER VISION / OPENCV",
+    category: "COMPUTER VISION / TENSORFLOW",
     date: "Apr 2026",
-    desc: "AI-powered image & video stylization using OpenCV bilateral filtering & edge quantization, running entirely on CPU without heavy GPU servers.",
-    tags: ["Python", "OpenCV", "Django", "Computer Vision"],
+    desc: "Flask media stylization app using TensorFlow White-box Cartoonization, with image, GIF, and video processing plus output preview and download.",
+    tags: ["Python", "TensorFlow", "Flask", "OpenCV", "Computer Vision"],
     github: "https://github.com/sangeethsanthosh-git/Cartoonizer",
     live: "https://github.com/sangeethsanthosh-git/Cartoonizer",
     img: "/images/cartoon.jpg",
@@ -163,21 +155,11 @@ const PROJECTS: ProjectData[] = [
     title: "Gistify AI",
     category: "NEXT.JS / DOCUMENT INTELLIGENCE",
     date: "Nov 2025",
-    desc: "Turns lengthy documents and research papers into clear summaries, extracted entities, and action plans with sub-second document Q&A.",
+    desc: "Next.js document intelligence app that analyses PDFs and pasted text to produce summaries, extracted entities, action plans, and PDF exports.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "HuggingFace"],
     github: "https://github.com/sangeethsanthosh-git/Gistify",
     live: "https://gistify-c.vercel.app/",
     img: "/images/gistify.webp",
-  },
-  {
-    title: "Finley KeyCoders",
-    category: "COMMUNITY / FULL-STACK",
-    date: "Nov 2025",
-    desc: "Tech community portal with developer leaderboard, algorithmic challenges, member spotlights, and collaborative event management.",
-    tags: ["React", "Node.js", "Express", "Tailwind CSS", "Community"],
-    github: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
-    live: "https://github.com/sangeethsanthosh-git/FINLEY-KEYCODERS",
-    img: "/images/finley-keycoders.jpg",
   },
 ];
 
@@ -187,6 +169,12 @@ export default function Project(): React.ReactElement {
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [activeModalIdx, setActiveModalIdx] = useState<number>(0);
   const [clockTime, setClockTime] = useState<string>("13:42");
+  const [audioPlaying, setAudioPlaying] = useState(false);
+  useEffect(() => {
+    const sync = () => setAudioPlaying(isAudioPlaying());
+    window.addEventListener("phone-audio-change", sync);
+    return () => window.removeEventListener("phone-audio-change", sync);
+  }, []);
 
   // Interactive Functioning Phone OS States
   const [phoneMode, setPhoneMode] = useState<"os" | "carousel">("os");
@@ -218,7 +206,7 @@ export default function Project(): React.ReactElement {
       setClockTime(`${hours}:${minutes}`);
     };
     updateTime();
-    const timer = setInterval(updateTime, 1000);
+    const timer = setInterval(updateTime, 15000);
     return () => clearInterval(timer);
   }, []);
 
@@ -231,12 +219,14 @@ export default function Project(): React.ReactElement {
       if (!phoneTargetRef.current || !sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
       const windowHeight = window.innerHeight;
+      if (rect.bottom < 0 || rect.top > windowHeight * 1.1) return;
 
       const startPoint = windowHeight * 1.1;
       const endPoint = windowHeight * 0.2;
 
       let progress = (startPoint - rect.top) / (startPoint - endPoint);
       progress = Math.max(0, Math.min(1, progress));
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) progress = 1;
 
       const width = typeof window !== "undefined" ? window.innerWidth : 1200;
       const isMobile = width < 768;
@@ -250,7 +240,10 @@ export default function Project(): React.ReactElement {
       const responsiveScale = width < 340 ? 0.78 : width < 380 ? 0.86 : width < 420 ? 0.92 : 1;
       const currentScale = (0.94 + progress * 0.06) * responsiveScale;
 
-      phoneTargetRef.current.style.transform = `translateY(${currentY}px) scale(${currentScale}) rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg) rotateZ(${currentRotateZ}deg)`;
+      // Flatten the stage during interaction: 3D ancestors can misplace iframe taps.
+      phoneTargetRef.current.style.transform = activeApp
+        ? "none"
+        : `translateY(${currentY}px) scale(${currentScale}) rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg) rotateZ(${currentRotateZ}deg)`;
     };
 
     const onScroll = () => {
@@ -272,7 +265,7 @@ export default function Project(): React.ReactElement {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
-  }, []);
+  }, [activeApp]);
 
   // Slide navigation with haptic audio
   const nextSlide = useCallback(() => {
@@ -452,7 +445,7 @@ export default function Project(): React.ReactElement {
 
   // Subtle interactive ASCII Background Canvas (Desktop only + IntersectionObserver to preserve phone battery & GPU)
   useEffect(() => {
-    if (typeof window === "undefined" || window.innerWidth < 768) return;
+    if (typeof window === "undefined" || activeApp || window.innerWidth < 768 || window.matchMedia("(prefers-reduced-motion: reduce), (pointer: coarse)").matches || navigator.hardwareConcurrency <= 4) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -465,8 +458,8 @@ export default function Project(): React.ReactElement {
     let rows = 0;
     const fontSize = 14;
     let time = 0;
-    let mouse = { x: -1000, y: -1000, active: false };
-    let animationId: number;
+    let animationId: number | undefined;
+    let lastFrame = 0;
 
     const resize = () => {
       if (!canvas.parentElement) return;
@@ -479,36 +472,22 @@ export default function Project(): React.ReactElement {
     resize();
     window.addEventListener("resize", resize);
 
-    const section = sectionRef.current;
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.active = true;
-    };
-    const onMouseLeave = () => {
-      mouse.active = false;
-    };
-
-    if (section) {
-      section.addEventListener("mousemove", onMouseMove);
-      section.addEventListener("mouseleave", onMouseLeave);
-    }
-
-    let isVisible = true;
+    let isVisible = false;
     const observer = new IntersectionObserver(
       (entries) => {
         isVisible = entries[0]?.isIntersecting ?? false;
+        syncAnimation();
       },
       { threshold: 0.05 }
     );
     if (sectionRef.current) observer.observe(sectionRef.current);
 
-    const renderAscii = () => {
-      if (!isVisible) {
-        animationId = requestAnimationFrame(renderAscii);
-        return;
-      }
+    const renderAscii = (timestamp: number) => {
+      animationId = undefined;
+      if (!isVisible || document.hidden) return;
+      animationId = requestAnimationFrame(renderAscii);
+      if (timestamp - lastFrame < 50) return;
+      lastFrame = timestamp;
       ctx.clearRect(0, 0, width, height);
       ctx.font = `${fontSize}px "Space Mono", monospace`;
       time += 0.025;
@@ -537,21 +516,25 @@ export default function Project(): React.ReactElement {
           }
         }
       }
-      animationId = requestAnimationFrame(renderAscii);
     };
 
-    renderAscii();
-
-    return () => {
-      cancelAnimationFrame(animationId);
-      observer.disconnect();
-      window.removeEventListener("resize", resize);
-      if (section) {
-        section.removeEventListener("mousemove", onMouseMove);
-        section.removeEventListener("mouseleave", onMouseLeave);
+    const syncAnimation = () => {
+      if (isVisible && !document.hidden) {
+        if (animationId === undefined) animationId = requestAnimationFrame(renderAscii);
+      } else if (animationId !== undefined) {
+        cancelAnimationFrame(animationId);
+        animationId = undefined;
       }
     };
-  }, []);
+    document.addEventListener("visibilitychange", syncAnimation);
+
+    return () => {
+      if (animationId !== undefined) cancelAnimationFrame(animationId);
+      document.removeEventListener("visibilitychange", syncAnimation);
+      observer.disconnect();
+      window.removeEventListener("resize", resize);
+    };
+  }, [activeApp]);
 
   const openModal = (idx: number) => {
     setActiveModalIdx(idx);
@@ -594,6 +577,15 @@ export default function Project(): React.ReactElement {
         .phone-perspective-stage {
           perspective: 1600px;
           perspective-origin: 50% 50%;
+        }
+        .phone-perspective-stage.phone-app-open { perspective: none; }
+        .phone-app-open .phone-3d-wrapper,
+        .phone-app-open .phone-realistic-chassis { transform-style: flat; }
+        .phone-app-open .phone-3d-wrapper { transform: none !important; transition: none; will-change: auto; }
+        .phone-app-open .phone-realistic-chassis {
+          --interactive-phone-width: min(350px, calc(100vw - 48px));
+          width: var(--interactive-phone-width);
+          height: calc(var(--interactive-phone-width) * 2.03);
         }
 
         @media (max-width: 380px) {
@@ -759,7 +751,7 @@ export default function Project(): React.ReactElement {
           inset: 0;
           background: linear-gradient(
             130deg,
-            rgba(255, 255, 255, 0.22) 0%,
+            rgba(255, 255, 255, 0.06) 0%,
             rgba(255, 255, 255, 0.04) 28%,
             transparent 48%,
             rgba(255, 255, 255, 0.03) 72%,
@@ -848,7 +840,7 @@ export default function Project(): React.ReactElement {
       `}</style>
 
       {/* =========================================================================
-          PROJECT SECTION: ULTRA-REALISTIC FLAGSHIP PHONE SHOWCASING 13 REPOSITORIES
+          PROJECT SECTION: ULTRA-REALISTIC FLAGSHIP PHONE SHOWCASING 12 REPOSITORIES
           ========================================================================= */}
       <section
         id="project"
@@ -882,13 +874,13 @@ export default function Project(): React.ReactElement {
             <h2 className="mt-2 text-3xl sm:text-5xl font-semibold tracking-tight text-[#f9f5ed]">
               Featured Works
             </h2>
-            <p className="mt-2 text-xs sm:text-sm text-white/60">
-              Ordered by newly pushed repositories • {PROJECTS.length} active builds
-            </p>
+            <p className="text-[11px] sm:text-xs text-white/50 font-mono text-center">
+                Tap any app to interact • Use phone home bar or back button to exit
+              </p>
           </div>
 
           {/* 3D PERSPECTIVE STAGE FOR REALISTIC PHONE */}
-          <div className="phone-perspective-stage w-full flex items-center justify-center relative">
+          <div className={`phone-perspective-stage ${activeApp ? "phone-app-open" : ""} w-full flex items-center justify-center relative`}>
             {/* Carousel Left Navigation Arrow (Active in Project Gallery mode) */}
             <button
               onClick={prevSlide}
@@ -989,7 +981,7 @@ export default function Project(): React.ReactElement {
                   }}
                 >
                   <div className="phone-camera-aperture" />
-                  {isAudioPlaying() ? (
+                  {audioPlaying ? (
                     <div className="flex items-center gap-0.5 px-1 animate-pulse">
                       <div className="w-0.5 h-2 bg-emerald-400 rounded-full animate-bounce" />
                       <div className="w-0.5 h-3 bg-emerald-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
@@ -1048,32 +1040,8 @@ export default function Project(): React.ReactElement {
                   ) : phoneMode === "os" ? (
                     /* 2. INTERACTIVE FUNCTIONING PHONE OS */
                     <>
-                      {activeApp === "rewind" ? (
-                        <RewindApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "chronicle" ? (
-                        <ChronicleApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "aura" ? (
-                        <AuraApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "dayform" ? (
-                        <DayformApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "vault" ? (
-                        <VaultApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "kerala" ? (
-                        <KeralaTourismApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "traffic" ? (
-                        <TrafficApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "edusense" ? (
-                        <EduSenseApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "budget" ? (
-                        <BudgetApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "pcod" ? (
-                        <PcodApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "cartoon" ? (
-                        <CartoonizerApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "gistify" ? (
-                        <GistifyApp onClose={() => setActiveApp(null)} />
-                      ) : activeApp === "keycoders" ? (
-                        <KeyCodersApp onClose={() => setActiveApp(null)} />
+                      {activeApp && WEBSITE_IDS.has(activeApp) ? (
+                        <RepositoryWebsite key={activeApp} projectId={activeApp as WebsiteProjectId} onClose={() => setActiveApp(null)} />
                       ) : activeApp === "contact" ? (
                         <ContactApp onClose={() => setActiveApp(null)} />
                       ) : (
@@ -1161,7 +1129,7 @@ export default function Project(): React.ReactElement {
                                   alt={project.title}
                                   fill
                                   sizes="350px"
-                                  priority={index < 2}
+                                  loading="lazy"
                                   className="object-cover brightness-75 contrast-105 pointer-events-none select-none"
                                 />
                                 {/* Realistic Vignette Gradient for Text Contrast */}
@@ -1229,8 +1197,6 @@ export default function Project(): React.ReactElement {
                                           ? "cartoon"
                                           : project.title === "Gistify AI"
                                           ? "gistify"
-                                          : project.title === "Finley KeyCoders"
-                                          ? "keycoders"
                                           : "rewind";
                                       setActiveApp(mappedApp);
                                     }}
@@ -1441,7 +1407,7 @@ export default function Project(): React.ReactElement {
               </div>
             ) : (
               <p className="text-[11px] sm:text-xs text-white/50 font-mono text-center">
-                Tap any app to interact • Use phone home bar or back button to exit
+                TRY IT
               </p>
             )}
           </div>

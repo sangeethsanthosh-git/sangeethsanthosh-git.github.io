@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Kovalam beach illustration">
+  <defs>
+    <linearGradient id="kovalamSky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#8fd5ff" />
+      <stop offset="100%" stop-color="#fff6e4" />
+    </linearGradient>
+    <linearGradient id="kovalamSea" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#68c7d9" />
+      <stop offset="100%" stop-color="#1c7ca1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#kovalamSky)" />
+  <circle cx="626" cy="114" r="52" fill="#ffd98a" />
+  <rect y="246" width="800" height="166" fill="url(#kovalamSea)" />
+  <path d="M0 390 C118 364 246 416 388 398 C518 382 636 422 800 402 L800 500 L0 500 Z" fill="#f2ddb0" />
+  <path d="M0 300 C100 286 212 320 336 302 C452 286 590 326 800 304" fill="none" opacity="0.45" stroke="#dbfffb" stroke-width="6" />
+  <path d="M0 346 C104 336 224 372 358 356 C488 340 612 376 800 362" fill="none" opacity="0.34" stroke="#dbfffb" stroke-width="6" />
+  <rect x="624" y="194" width="26" height="126" rx="6" fill="#f8f8f0" />
+  <path d="M612 208 L662 208 L650 176 L624 176 Z" fill="#e35752" />
+  <rect x="614" y="220" width="46" height="12" rx="4" fill="#e35752" />
+  <circle cx="637" cy="242" r="7" fill="#ffd57f" />
+  <path d="M98 500 L128 500 L152 292 L126 292 Z" fill="#5a3c2c" />
+  <path d="M74 304 C108 266 160 258 212 282 C168 288 136 314 120 348 C110 330 92 312 74 304 Z" fill="#214d3d" />
+  <path d="M58 338 C102 306 164 304 224 326 C170 336 132 362 114 396 C104 372 82 352 58 338 Z" fill="#28614a" />
+  <path d="M134 500 L162 500 L186 330 L162 330 Z" fill="#5a3c2c" />
+  <path d="M112 342 C148 306 198 300 250 322 C206 328 174 352 156 388 C146 366 130 350 112 342 Z" fill="#214d3d" />
+</svg>

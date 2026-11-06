@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="">
+    <title>Analysis | PCOS AI Clinical Support Platform</title>
+    
+    
+    
+    <link href="../vendor/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/fontawesome.min.css" rel="stylesheet">
+    <link href="./static/css/styles.css" rel="stylesheet">
+    
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="pcod" data-demo-page="analysis.html" data-page="analysis">
+    <div id="globalLoader" class="global-loader" aria-hidden="true">
+        <div class="spinner-border text-light" role="status"></div>
+        <p class="mt-3 mb-0">Processing clinical request...</p>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark top-navbar sticky-top">
+        <div class="container-fluid px-4">
+            <button class="btn btn-outline-light d-lg-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <a class="navbar-brand fw-bold" href="./index.html">
+                <i class="fa-solid fa-heart-pulse me-2"></i>PCOS AI Clinical Support Platform
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#topNavContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="topNavContent">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link " href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./predict.html">Predict</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="./analysis.html">Analysis</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./doctors.html">Doctors</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./education.html">Education</a></li>
+                    <li class="nav-item"><a class="nav-link " href="./search.html">Search</a></li>
+                </ul>
+                <form class="d-flex ms-lg-3 mt-3 mt-lg-0" method="get">
+                    <input class="form-control form-control-sm me-2 nav-search-input" name="q" placeholder="Search PCOS guidance">
+                    <button class="btn btn-sm btn-light" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start d-lg-none sidebar-canvas" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Clinical Navigation</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+            <div class="sidebar-panel">
+                <a class="sidebar-link " href="./index.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+                <a class="sidebar-link " href="./predict.html"><i class="fa-solid fa-vial-circle-check"></i>Predict PCOS</a>
+                <a class="sidebar-link active" href="./analysis.html"><i class="fa-solid fa-chart-pie"></i>Analysis</a>
+                <a class="sidebar-link " href="./doctors.html"><i class="fa-solid fa-user-doctor"></i>Doctors</a>
+                <a class="sidebar-link " href="./education.html"><i class="fa-solid fa-book-medical"></i>Education</a>
+                <a class="sidebar-link " href="./search.html"><i class="fa-solid fa-comments"></i>Search Assistant</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid px-0 app-shell">
+        <div class="row g-0">
+            <aside class="col-lg-2 d-none d-lg-block">
+                <div class="sidebar-panel">
+                    <p class="sidebar-label">Clinical Modules</p>
+                    <a class="sidebar-link " href="./index.html"><i class="fa-solid fa-chart-line"></i>Dashboard</a>
+                    <a class="sidebar-link " href="./predict.html"><i class="fa-solid fa-vial-circle-check"></i>Predict PCOS</a>
+                    <a class="sidebar-link active" href="./analysis.html"><i class="fa-solid fa-chart-pie"></i>Analysis</a>
+                    <a class="sidebar-link " href="./doctors.html"><i class="fa-solid fa-user-doctor"></i>Doctor Finder</a>
+                    <a class="sidebar-link " href="./education.html"><i class="fa-solid fa-book-medical"></i>Education</a>
+                    <a class="sidebar-link " href="./search.html"><i class="fa-solid fa-comments"></i>Search Assistant</a>
+                </div>
+            </aside>
+            <main class="col-12 col-lg-10 content-column">
+                <div class="content-inner fade-in">
+                    
+<section class="panel-card mb-4">
+    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3">
+        <div>
+            <span class="hero-tag">Dynamic analytics</span>
+            <h2 class="panel-title mt-3 mb-1">User-specific PCOS risk analysis</h2>
+            <p class="text-muted mb-0">Charts refresh from live JSON endpoints and switch between symptom contribution and clinical contribution based on the latest mode used.</p>
+        </div>
+        <button id="refreshAnalyticsBtn" class="btn btn-outline-primary" data-endpoint="./api_analysis_data.html">
+            <i class="fa-solid fa-rotate-right me-2"></i>Refresh Charts
+        </button>
+    </div>
+</section>
+
+<div id="analysisEmptyState" class="status-banner d-none">
+    <div class="alert alert-info mb-0">Run a prediction to view personalized PCOS analysis charts.</div>
+</div>
+
+<section class="row g-4" id="analysisBoard" data-endpoint="./api_analysis_data.html">
+    <div class="col-lg-6">
+        <div class="panel-card h-100">
+            <h5 class="mb-3">Risk Probability</h5>
+            <canvas id="analysisRiskChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel-card h-100">
+            <h5 class="mb-3">AI Feature Contribution</h5>
+            <canvas id="symptomContributionChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel-card h-100">
+            <h5 class="mb-3">BMI vs PCOS Risk</h5>
+            <canvas id="bmiRiskChart"></canvas>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="panel-card h-100">
+            <h5 class="mb-3">Age vs PCOS Risk</h5>
+            <canvas id="ageRiskChart"></canvas>
+        </div>
+    </div>
+</section>
+
+
+
+                </div>
+                <footer class="footer-panel">
+                    <div class="d-flex flex-column flex-md-row justify-content-between gap-2">
+                        <span class="small text-muted">PCOS AI Clinical Support Platform</span>
+                        <span class="small text-muted">
+                            This system provides AI-assisted risk prediction and does not replace professional medical diagnosis.
+                        </span>
+                    </div>
+                </footer>
+            </main>
+        </div>
+    </div>
+
+    
+    
+    
+    
+
+
+<script src="../preview-common.js" defer></script></body>
+</html>

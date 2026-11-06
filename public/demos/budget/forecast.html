@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Forecast | AI Budget Planner</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="budget" data-demo-page="forecast.html" class="app-body">
+    
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="./dashboard.html">
+            <span class="sidebar-brand-mark">AB</span>
+            <span class="sidebar-brand-text">
+                <strong>AI Budget Planner</strong>
+                <small>Simple financial dashboard</small>
+            </span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="sidebar-link ">
+                <span class="nav-icon">DB</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="./expenses.html" class="sidebar-link ">
+                <span class="nav-icon">TX</span>
+                <span>Transactions</span>
+            </a>
+            <a href="./forecast.html" class="sidebar-link active">
+                <span class="nav-icon">FC</span>
+                <span>Forecast</span>
+            </a>
+            <a href="./analysis.html" class="sidebar-link ">
+                <span class="nav-icon">AN</span>
+                <span>Analysis</span>
+            </a>
+            <a href="./login.html" class="sidebar-link">
+                <span class="nav-icon">LO</span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="main-header">
+            <div>
+                <p class="page-chip">Forecast</p>
+                <h1>Good morning, Demo visitor</h1>
+                <p class="header-subtitle">Track your expenses and insights</p>
+            </div>
+            <div class="header-actions">
+                
+<a class="button button-secondary" href="./expenses.html">View Transactions</a>
+
+            </div>
+        </header>
+
+        
+            
+        
+
+        <main class="page-content">
+    
+            
+
+
+
+<section class="summary-grid">
+    <article class="summary-card summary-card-primary">
+        <p class="summary-label">Estimated Budget</p>
+        
+        <h2>Not enough data</h2>
+        <p class="summary-note">Add more daily expenses to unlock your estimate</p>
+        
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">This Month Spending</p>
+        <h2>₹2,350.00</h2>
+        <p class="summary-note">Latest monthly total</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Total Expense</p>
+        <h2>₹2,350.00</h2>
+        <p class="summary-note">All recorded expenses</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Savings</p>
+        <h2>₹2,650.00</h2>
+        <p class="summary-note">Available balance</p>
+    </article>
+</section>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <h3>Budget Progress</h3>
+            <p>Compare this month spending with your saved target.</p>
+        </div>
+    </div>
+    <div class="budget-progress-card">
+        <div class="budget-progress-top">
+            <strong>Within budget</strong>
+            
+            <span>₹2,350.00 / ₹5,000.00</span>
+            
+        </div>
+        <div class="budget-progress-track">
+            <span class="budget-progress-fill tone-positive" style="width: 47%;"></span>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-grid">
+    <article class="panel chart-panel">
+        <div class="panel-header">
+            <div>
+                <h3>Monthly Expense Trend</h3>
+                <p>See how your spending changes over time.</p>
+            </div>
+        </div>
+        
+        <canvas id="forecastTrendChart"></canvas>
+        <div class="chart-fallback" id="forecastTrendFallback">Trend chart unavailable right now.</div>
+        
+    </article>
+
+    <article class="panel insights-panel">
+        <div class="panel-header">
+            <div>
+                <h3>AI Insights</h3>
+            </div>
+        </div>
+        <ul class="insight-list">
+            
+            <li class="insight-item">Sample transactions illustrate the original interface. Model forecasts run in the full app.</li>
+            
+        </ul>
+    </article>
+</section>
+
+        </main>
+    </div>
+
+    
+
+
+
+
+<script src="../preview-common.js" defer></script></body>
+</html>

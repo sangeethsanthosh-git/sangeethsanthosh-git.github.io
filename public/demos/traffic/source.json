@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/website-traffic-analyzer",
+  "commit": "c0303ef35d9badeba0f32aaf01d1c4bc1e708121",
+  "pages": [
+    "index.html",
+    "login.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

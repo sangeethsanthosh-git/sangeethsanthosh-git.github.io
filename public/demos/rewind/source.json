@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/rewind",
+  "commit": "ee330a5156ad048be00ed104d1f844bd6152dcd8",
+  "pages": [
+    "folders.html",
+    "index.html",
+    "library.html",
+    "playing.html",
+    "settings.html",
+    "walkman.html"
+  ],
+  "renderer": "Original Flutter widgets, captured locally at 390 \u00d7 680",
+  "adaptations": [
+    "In-memory demo data and disabled native service calls",
+    "Local fonts and disabled page transitions during capture",
+    "Chronicle editor toolbar width constraint corrected for capture",
+    "WebP screen images with accessible navigation hotspots; no Flutter runtime"
+  ]
+}

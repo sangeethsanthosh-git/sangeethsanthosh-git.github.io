@@ -1,0 +1,56 @@
+{
+  "cartoon": {
+    "commit": "1d9c76b3af1b3af976031943fdec9db7a928623d",
+    "files": {
+      "assets/input.png": "input.png",
+      "assets/output.png": "output.png"
+    }
+  },
+  "traffic": {
+    "commit": "c0303ef35d9badeba0f32aaf01d1c4bc1e708121",
+    "files": {
+      "report_assets/login_page.png": "login.png",
+      "report_assets/dashboard_page.png": "dashboard.png"
+    }
+  },
+  "budget": {
+    "commit": "7e2df85449b6db190aea7dfdce15960206ff7a0d",
+    "files": {
+      "docs/screenshots/dashboard.png": "dashboard.png",
+      "docs/screenshots/expenses.png": "expenses.png",
+      "docs/screenshots/forecast.png": "forecast.png"
+    }
+  },
+  "pcod": {
+    "commit": "039e355561c71c4acd7131366bca783eeea992e0",
+    "files": {
+      "results/confusion_matrix.png": "confusion_matrix.png",
+      "results/feature_importance.png": "feature_importance.png"
+    }
+  },
+  "gistify": {
+    "commit": "cce27726c26d233458a02d78130be5058675d464",
+    "files": {
+      "public/home.png": "home.png",
+      "public/upload.png": "upload.png",
+      "public/result.png": "result.png"
+    }
+  },
+  "finley": {
+    "commit": "f32c533b149013db58ca03a0d296562da7625249",
+    "files": {
+      "screenshots/home.png": "home.png",
+      "screenshots/dashboard.png": "dashboard.png",
+      "screenshots/splitter.png": "splitter.png",
+      "screenshots/analayis.png": "analysis.png"
+    }
+  },
+  "vault": {
+    "commit": "531bfc2992eb75a178deee08e9fc07063f96329d",
+    "files": {
+      "docs/images/dash.png": "dashboard.png",
+      "docs/images/upload.png": "upload.png",
+      "docs/images/result2.png": "result.png"
+    }
+  }
+}

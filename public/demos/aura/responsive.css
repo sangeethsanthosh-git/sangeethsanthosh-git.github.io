@@ -1,0 +1,35 @@
+html, body, #root { width: 100%; min-width: 0; margin: 0; }
+html { overflow-x: clip; }
+.aura-disco-background { display: none; }
+.premium-saas-root-environment { background: var(--bg-gradient); }
+.aura-demo-status { padding: 12px; margin: 10px; border: 1px solid #cbd5e1; border-radius: 12px; background: #f8fafc; color: #334155; font: 13px/1.6 system-ui, sans-serif; }
+@media (max-width: 600px) {
+  .premium-saas-root-environment { padding: 0; height: 100dvh; }
+  .premium-saas-window-frame { border-radius: 0; min-width: 0; }
+  .premium-top-navigation-bar { height: auto; min-height: 84px; padding: 10px 12px; flex-wrap: wrap; gap: 10px; }
+  .brand-identity-box { flex: 1; }
+  .suite-app-switcher-tabs { display: flex !important; order: 3; width: 100%; min-width: 0; flex-basis: 100%; overflow-x: auto; justify-content: flex-start; white-space: nowrap; padding: 4px 0; scrollbar-width: none; }
+  .suite-tab-btn { flex-shrink: 0; padding: 8px 10px; font-size: 11px; }
+  .suite-tab-btn .tab-icon { display: none; }
+  .app-window-controls, .engine-badge-pill, .app-window-btn { display: none; }
+  .browser-canvas-body { padding: 16px 12px; min-width: 0; }
+  .aura-wallpaper-environment { padding: 12px 8px !important; }
+  .floating-browser-window-frame { width: 100% !important; max-width: 100%; margin: 0; }
+  .welcome-front-center-stage { width: 100%; min-width: 0; padding: 25px 0; }
+  .welcome-greeting-line-1 { font-size: 24px; }
+  .welcome-greeting-line-2 { font-size: 26px; line-height: 1.2; }
+  .welcome-capsule-composer-card { width: 100%; min-width: 0; padding: 12px; }
+  .capsule-composer-input { width: 100%; min-width: 0; font-size: 16px; }
+  .welcome-suggestions-strip { flex-wrap: wrap; gap: 6px; }
+  .welcome-suggestion-pill { font-size: 11px; padding: 8px 10px; }
+  .executive-dashboard-container, .workstation-dashboard-board, .widgets-studio-page { min-width: 0; padding: 12px; }
+  .widgets-studio-grid, .settings-grid, .memory-layout, .memory-book-layout { grid-template-columns: minmax(0, 1fr) !important; }
+  .widgets-studio-tile { grid-column: auto !important; }
+  .workstation-dashboard-board { display: flex; flex-direction: column; gap: 14px; }
+  .workstation-dashboard-board > *, .workstation-left-pane, .workstation-right-pane { width: 100% !important; min-width: 0 !important; max-width: 100%; }
+  .workstation-right-pane .multi-card-grid { grid-template-columns: minmax(0, 1fr); }
+  .browser-window-shell, .browser-app-frame, .app-content { min-width: 0; max-width: 100%; }
+  main, section, article, form { min-width: 0; }
+  input, textarea, select { min-width: 0; max-width: 100%; font-size: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }

@@ -30,7 +30,7 @@ export default function PhoneLockScreen({ time, onUnlock }: PhoneLockScreenProps
       }}
       className="absolute inset-0 z-50 flex flex-col justify-between p-5 select-none cursor-pointer transition-opacity duration-300 bg-cover bg-top overflow-hidden"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.65) 100%), url('/images/phone-wallpaper.jpg')`,
+        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.12) 35%, rgba(0, 0, 0, 0.65) 100%), url('/images/phone-wallpaper.webp')`,
       }}
     >
       {/* ================= APPLE iOS 18 LOCK SCREEN ================= */}
@@ -60,11 +60,11 @@ export default function PhoneLockScreen({ time, onUnlock }: PhoneLockScreenProps
               <Github className="w-3.5 h-3.5 text-[#faecd2]" />
               <span>GitHub</span>
             </div>
-            <span>2m ago</span>
+            <span>Preview</span>
           </div>
           <p className="text-xs font-semibold text-white">sangeethsanthosh-git</p>
           <p className="text-[11px] text-white/75 line-clamp-1">
-            Pushed 3 commits to <span className="text-[#faecd2]">rewind</span> • Flutter
+            Explore the source of <span className="text-[#faecd2]">rewind</span> • Flutter
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export default function PhoneLockScreen({ time, onUnlock }: PhoneLockScreenProps
             </div>
             <span>Now</span>
           </div>
-          <p className="text-xs font-semibold text-white">All systems nominal</p>
+          <p className="text-xs font-semibold text-white">Explore interactive projects</p>
           <p className="text-[11px] text-white/75">
             Voice companion ready • Tap to try apps
           </p>
@@ -96,7 +96,7 @@ export default function PhoneLockScreen({ time, onUnlock }: PhoneLockScreenProps
 
         <div className="flex flex-col items-center gap-1 animate-bounce">
           <p className="text-[9px] font-semibold tracking-wider text-white/70 uppercase">
-            Swipe up to unlock
+            Tap to unlock
           </p>
           <div className="w-28 h-1 rounded-full bg-white/60" />
         </div>

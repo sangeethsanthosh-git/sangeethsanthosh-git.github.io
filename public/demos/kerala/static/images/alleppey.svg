@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-label="Alleppey backwaters illustration">
+  <defs>
+    <linearGradient id="alleppeySky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#99d8ff" />
+      <stop offset="100%" stop-color="#f2fbff" />
+    </linearGradient>
+    <linearGradient id="alleppeyWater" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#79cbc3" />
+      <stop offset="100%" stop-color="#2d8f87" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#alleppeySky)" />
+  <circle cx="632" cy="108" r="48" fill="#ffe39a" />
+  <rect y="270" width="800" height="230" fill="url(#alleppeyWater)" />
+  <rect y="228" width="800" height="54" fill="#7fb56f" />
+  <path d="M70 500 L98 500 L120 252 L96 252 Z" fill="#5a3b2b" />
+  <path d="M42 266 C80 226 136 218 188 244 C144 250 112 278 96 316 C86 292 66 274 42 266 Z" fill="#214e3d" />
+  <path d="M24 304 C74 268 142 266 206 290 C144 300 104 326 84 364 C74 338 52 318 24 304 Z" fill="#28614a" />
+  <path d="M664 500 L690 500 L710 246 L688 246 Z" fill="#56382a" />
+  <path d="M630 260 C670 222 726 214 776 238 C732 244 700 270 682 306 C672 286 652 270 630 260 Z" fill="#214e3d" />
+  <path d="M612 296 C662 264 730 262 790 282 C734 292 694 318 674 354 C662 330 640 312 612 296 Z" fill="#28614a" />
+  <path d="M262 334 L530 334 L486 372 L300 372 Z" fill="#684733" />
+  <path d="M310 282 L462 282 L498 330 L274 330 Z" fill="#d2a868" />
+  <rect x="334" y="302" width="28" height="18" fill="#704d37" />
+  <rect x="374" y="302" width="28" height="18" fill="#704d37" />
+  <rect x="414" y="302" width="28" height="18" fill="#704d37" />
+  <path d="M0 350 C110 332 222 364 340 346 C470 328 588 366 800 348" fill="none" opacity="0.42" stroke="#d8fffb" stroke-width="6" />
+  <path d="M0 404 C106 388 228 422 364 402 C486 386 620 420 800 406" fill="none" opacity="0.32" stroke="#d8fffb" stroke-width="6" />
+</svg>

@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Transactions | AI Budget Planner</title>
+    <link rel="stylesheet" href="./static/css/style.css">
+<link rel="stylesheet" href="../preview-common.css"></head>
+<body data-demo-project="budget" data-demo-page="expenses.html" class="app-body">
+    
+    <aside class="sidebar">
+        <a class="sidebar-brand" href="./dashboard.html">
+            <span class="sidebar-brand-mark">AB</span>
+            <span class="sidebar-brand-text">
+                <strong>AI Budget Planner</strong>
+                <small>Simple financial dashboard</small>
+            </span>
+        </a>
+
+        <nav class="sidebar-nav">
+            <a href="./dashboard.html" class="sidebar-link ">
+                <span class="nav-icon">DB</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="./expenses.html" class="sidebar-link active">
+                <span class="nav-icon">TX</span>
+                <span>Transactions</span>
+            </a>
+            <a href="./forecast.html" class="sidebar-link ">
+                <span class="nav-icon">FC</span>
+                <span>Forecast</span>
+            </a>
+            <a href="./analysis.html" class="sidebar-link ">
+                <span class="nav-icon">AN</span>
+                <span>Analysis</span>
+            </a>
+            <a href="./login.html" class="sidebar-link">
+                <span class="nav-icon">LO</span>
+                <span>Logout</span>
+            </a>
+        </nav>
+    </aside>
+
+    <div class="main-shell">
+        <header class="main-header">
+            <div>
+                <p class="page-chip">Transactions</p>
+                <h1>Good morning, Demo visitor</h1>
+                <p class="header-subtitle">Track your expenses and insights</p>
+            </div>
+            <div class="header-actions">
+                
+<div class="header-action-group">
+    <a class="button button-secondary" href="./sample-transactions.csv">Export CSV</a>
+    <a class="button" href="./expense_form.html">Add Transaction</a>
+</div>
+
+            </div>
+        </header>
+
+        
+            
+        
+
+        <main class="page-content">
+    
+            
+
+
+<section class="summary-grid summary-grid-compact">
+    <article class="summary-card">
+        <p class="summary-label">Total Transactions</p>
+        <h2>3</h2>
+        <p class="summary-note">All recorded entries</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">This Month Spending</p>
+        <h2>₹2,350.00</h2>
+        <p class="summary-note">Latest monthly total</p>
+    </article>
+    <article class="summary-card">
+        <p class="summary-label">Total Expense</p>
+        <h2>₹2,350.00</h2>
+        <p class="summary-note">All recorded expenses</p>
+    </article>
+</section>
+
+<section class="panel table-panel">
+    <div class="panel-header">
+        <div>
+            <h3>Transactions</h3>
+            <p>Manage your full transaction history.</p>
+        </div>
+    </div>
+
+    
+    <div class="table-wrapper">
+        <table class="fin-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                    <th>Payment Mode</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+                <tr>
+                    <td>Demo month</td>
+                    <td>Food</td>
+                    <td>₹850.00</td>
+                    <td><span class="status-pill">Expense</span></td>
+                    <td>UPI</td>
+                    <td class="table-actions">
+                        <a class="table-link" href="./expense_form.html">Edit</a>
+                        <form method="post">
+                            <button class="inline-button" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Demo month</td>
+                    <td>Transport</td>
+                    <td>₹300.00</td>
+                    <td><span class="status-pill">Expense</span></td>
+                    <td>UPI</td>
+                    <td class="table-actions">
+                        <a class="table-link" href="./expense_form.html">Edit</a>
+                        <form method="post">
+                            <button class="inline-button" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td>Demo month</td>
+                    <td>Utilities</td>
+                    <td>₹1,200.00</td>
+                    <td><span class="status-pill">Expense</span></td>
+                    <td>UPI</td>
+                    <td class="table-actions">
+                        <a class="table-link" href="./expense_form.html">Edit</a>
+                        <form method="post">
+                            <button class="inline-button" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                
+            </tbody>
+        </table>
+    </div>
+    
+</section>
+
+        </main>
+    </div>
+
+    
+<script src="../preview-common.js" defer></script></body>
+</html>

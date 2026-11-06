@@ -21,7 +21,9 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState<(typeof navigation)[number]["id"]>("about");
 
   useEffect(() => {
+    let frame: number | undefined;
     const updateActiveSection = () => {
+      frame = undefined;
       const marker = window.scrollY + 140;
       const currentSection = [...navigation].reverse().find(({ id }) => {
         const section = document.getElementById(id);
@@ -38,13 +40,18 @@ export default function Navbar() {
       }
     };
 
+    const scheduleUpdate = () => {
+      if (frame === undefined) frame = requestAnimationFrame(updateActiveSection);
+    };
+
     updateActiveSection();
-    window.addEventListener("scroll", updateActiveSection, { passive: true });
-    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
 
     return () => {
-      window.removeEventListener("scroll", updateActiveSection);
-      window.removeEventListener("resize", updateActiveSection);
+      if (frame !== undefined) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
     };
   }, []);
 

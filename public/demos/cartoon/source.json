@@ -1,0 +1,14 @@
+{
+  "repository": "https://github.com/sangeethsanthosh-git/Cartoonizer",
+  "commit": "1d9c76b3af1b3af976031943fdec9db7a928623d",
+  "pages": [
+    "index.html",
+    "result.html"
+  ],
+  "adaptations": [
+    "Static route URLs",
+    "Public sample data only",
+    "Local demo controller; no backend calls",
+    "Narrow viewport CSS overrides"
+  ]
+}

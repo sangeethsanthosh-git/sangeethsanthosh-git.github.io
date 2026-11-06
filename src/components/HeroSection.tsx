@@ -1,25 +1,43 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { hero } from "@/data/portfolio";
 
 export default function HeroSection() {
   const [roleIndex, setRoleIndex] = useState(0);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const roles = hero.rotatingRoles ?? [hero.subtitle];
-    const interval = window.setInterval(() => {
-      setRoleIndex((current) => (current + 1) % roles.length);
-    }, 2400);
-
-    return () => window.clearInterval(interval);
+    if (roles.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    let visible = false;
+    let interval: number | undefined;
+    const sync = () => {
+      if (visible && !document.hidden) {
+        if (interval === undefined) interval = window.setInterval(() => {
+          setRoleIndex((current) => (current + 1) % roles.length);
+        }, 2400);
+      } else {
+        window.clearInterval(interval);
+        interval = undefined;
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    document.addEventListener("visibilitychange", sync);
+    return () => {
+      window.clearInterval(interval);
+      observer.disconnect();
+      document.removeEventListener("visibilitychange", sync);
+    };
   }, []);
 
   const roles = hero.rotatingRoles ?? [hero.subtitle];
 
   return (
     <section
+      ref={sectionRef}
       id="top"
       className="relative flex min-h-[100svh] w-full flex-col items-center justify-center overflow-hidden bg-[#faecd2] px-4 pb-24 pt-28 text-[#225424] sm:px-6 sm:pb-28 sm:pt-32 lg:px-8"
     >

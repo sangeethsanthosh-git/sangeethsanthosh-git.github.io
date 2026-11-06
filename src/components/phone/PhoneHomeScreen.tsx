@@ -1,7 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useRef, useState } from "react";
+import { ChevronLeft, ChevronRight, Search, Layers } from "lucide-react";
 import { playHapticClick } from "./phoneAudio";
+import { socials } from "@/data/portfolio";
 
 export interface AppIconItem {
   id: string;
@@ -11,9 +13,10 @@ export interface AppIconItem {
   gradient: string;
   badge?: string;
   isAction?: "gallery" | "github";
+  href?: string;
 }
 
-// All 13 Repositories strictly ordered by newly pushed date + Essential utilities (16 total -> 4x4 grid)
+// Project apps and utilities; social destinations share the footer's configuration.
 const ALL_PROJECT_APPS: AppIconItem[] = [
   {
     id: "rewind",
@@ -34,7 +37,7 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     id: "aura",
     name: "AURA AI",
     category: "Python",
-    iconImage: "/images/apps/aura-icon.png",
+    iconImage: "/images/apps/aura-icon.webp",
     gradient: "from-emerald-500 via-teal-500 to-cyan-500",
     badge: "VOICE",
   },
@@ -57,7 +60,7 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     id: "kerala",
     name: "Kerala",
     category: "Web",
-    iconImage: "/images/apps/kerala-icon.svg",
+    iconImage: "/images/apps/kerala-icon.webp",
     gradient: "from-teal-600 via-emerald-500 to-green-400",
     badge: "WEB",
   },
@@ -79,14 +82,14 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     id: "budget",
     name: "Budget",
     category: "FinTech",
-    iconImage: "/images/apps/budget-icon.svg",
+    iconImage: "/images/apps/budget-icon.webp",
     gradient: "from-emerald-600 via-teal-600 to-green-400",
   },
   {
     id: "pcod",
     name: "PCOD ML",
     category: "Clinical",
-    iconImage: "/images/apps/pcod-icon.svg",
+    iconImage: "/images/apps/pcod-icon.webp",
     gradient: "from-rose-600 via-pink-500 to-rose-400",
     badge: "ML",
   },
@@ -94,7 +97,7 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     id: "cartoon",
     name: "Cartoon",
     category: "Vision",
-    iconImage: "/images/apps/cartoon-icon.svg",
+    iconImage: "/images/apps/cartoon-icon.webp",
     gradient: "from-fuchsia-600 via-pink-500 to-rose-400",
     badge: "AI",
   },
@@ -102,23 +105,15 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     id: "gistify",
     name: "Gistify",
     category: "Next.js",
-    iconImage: "/images/apps/gistify-icon.svg",
+    iconImage: "/images/apps/gistify-icon.webp",
     gradient: "from-blue-600 via-cyan-500 to-sky-400",
     badge: "LIVE",
-  },
-  {
-    id: "keycoders",
-    name: "KeyCoders",
-    category: "IDE",
-    iconImage: "/images/apps/keycoders-icon.svg",
-    gradient: "from-cyan-700 via-indigo-600 to-violet-700",
-    badge: "DEV",
   },
   {
     id: "gallery",
     name: "Photos",
     category: "Gallery",
-    iconImage: "/images/apps/gallery-icon.svg",
+    iconImage: "/images/apps/gallery-icon.webp",
     gradient: "from-amber-500 via-rose-500 to-purple-600",
     isAction: "gallery",
   },
@@ -137,6 +132,17 @@ const ALL_PROJECT_APPS: AppIconItem[] = [
     gradient: "from-zinc-800 to-black",
     isAction: "github",
   },
+  ...["Email", "LinkedIn", "Instagram"].map((label): AppIconItem => {
+    const link = socials.links.find((item) => item.label === label)!;
+    return {
+      id: label.toLowerCase(),
+      name: label === "Email" ? "Mail" : label,
+      category: "Social",
+      iconImage: `/icons/${label === "Email" ? "gmail" : label.toLowerCase()}.svg`,
+      gradient: label === "Instagram" ? "from-purple-500 via-pink-500 to-orange-400" : "from-sky-500 to-blue-600",
+      href: link.href,
+    };
+  }),
 ];
 
 interface PhoneHomeScreenProps {
@@ -162,121 +168,102 @@ export default function PhoneHomeScreen({
     }
   };
 
+  const [page, setPage] = useState(0);
+  const swipeStart = useRef<{ x: number; y: number; pointerId: number } | null>(null);
+  const suppressSwipeClick = useRef(false);
+  const apps = ALL_PROJECT_APPS.filter((app) => !["contact", "github", "gallery"].includes(app.id));
+  const pages = [apps.slice(0, 8), apps.slice(8)];
+  const dock = ALL_PROJECT_APPS.filter((app) => ["contact", "rewind", "gallery", "github"].includes(app.id));
+
+  const renderIcon = (app: AppIconItem, inDock = false) => {
+    const contents = <>
+      <span className={`ios-icon-art bg-gradient-to-tr ${app.gradient}`}>
+        <img src={app.iconImage} alt="" draggable={false} />
+      </span>
+      {!inDock && <span className="ios-icon-label">{app.name}</span>}
+    </>;
+    if (app.href) {
+      const isEmail = app.href.startsWith("mailto:");
+      let href = app.href;
+      if (isEmail) {
+        const email = new URL(app.href);
+        const compose = new URL("https://mail.google.com/mail/");
+        compose.search = new URLSearchParams({
+          view: "cm",
+          fs: "1",
+          to: decodeURIComponent(email.pathname),
+          su: email.searchParams.get("subject") ?? "",
+        }).toString();
+        href = compose.toString();
+      }
+      return <a key={app.id} href={href} target="_blank" rel="noopener noreferrer" onClick={() => playHapticClick()} className="ios-app-icon" aria-label={`Open ${app.name}`} title={isEmail ? "Compose email in Gmail" : undefined}>{contents}</a>;
+    }
+    return <button key={app.id} onClick={() => handleAppClick(app)} className="ios-app-icon" aria-label={`Open ${app.name}`}>{contents}</button>;
+  };
+
   return (
-    <div
-      className="absolute inset-0 z-20 flex flex-col justify-between pt-9 pb-2 px-3 select-none overflow-hidden bg-cover bg-top"
+    <div className="ios-home"
       style={{
-        backgroundImage: `linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0.1) 35%, rgba(0, 0, 0, 0.6) 100%), url('/images/phone-wallpaper.jpg')`,
+        touchAction: "pan-y",
+        userSelect: "none",
+        backgroundImage: "linear-gradient(180deg, #00000040, #00000018 45%, #00000066), url('/images/phone-wallpaper.webp')",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+      onPointerDown={(e) => {
+        if (!e.isPrimary || e.button !== 0) return;
+        suppressSwipeClick.current = false;
+        swipeStart.current = { x: e.clientX, y: e.clientY, pointerId: e.pointerId };
+      }}
+      onPointerMove={(e) => {
+        const start = swipeStart.current;
+        if (!start || start.pointerId !== e.pointerId) return;
+        const dx = e.clientX - start.x;
+        const dy = e.clientY - start.y;
+        if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+          suppressSwipeClick.current = true;
+          e.currentTarget.setPointerCapture(e.pointerId);
+        }
+      }}
+      onPointerUp={(e) => {
+        const start = swipeStart.current;
+        if (!start || start.pointerId !== e.pointerId) return;
+        const dx = e.clientX - start.x;
+        const dy = e.clientY - start.y;
+        if (Math.abs(dx) > 35 && Math.abs(dx) > Math.abs(dy) * 1.3) {
+          suppressSwipeClick.current = true;
+          setPage(dx < 0 ? 1 : 0);
+        }
+        swipeStart.current = null;
+      }}
+      onPointerCancel={() => { swipeStart.current = null; }}
+      onClickCapture={(e) => {
+        if (suppressSwipeClick.current) {
+          e.preventDefault();
+          e.stopPropagation();
+          suppressSwipeClick.current = false;
+        }
       }}
     >
-      {/* ================= APPLE iOS 18 HOME SCREEN ================= */}
-      {/* iOS 18 Glass Widget */}
-      <div className="p-2.5 rounded-[22px] bg-white/10 backdrop-blur-2xl border border-white/20 shadow-lg flex items-center justify-between shrink-0">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-[12px] bg-gradient-to-tr from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-xs shadow">
-            ☀️
-          </div>
-          <div>
-            <p className="text-[11px] font-semibold text-white flex items-center gap-1">
-              <span>Kochi, Kerala</span>
-              <span className="text-[9px] text-[#faecd2] font-mono">28°C</span>
-            </p>
-            <p className="text-[9px] text-white/70">Sangeeth Santhosh • 13 Projects</p>
-          </div>
+      <div className="ios-home-widget">
+        <div className="ios-widget-heading"><Layers size={15} /><span>PROJECT LIBRARY</span></div>
+        <p>Made to explore.</p>
+        <span>12 projects. A little of everything.</span>
+        <button onClick={onOpenCarousel}>View project photos <ChevronRight size={14} /></button>
+      </div>
+      <div className="ios-home-pages" key={page}>
+        <div className="ios-icon-grid">{pages[page].map((app) => renderIcon(app))}</div>
+      </div>
+      <div className="ios-page-controls">
+        <button onClick={() => setPage(0)} aria-label="Previous app page" disabled={page === 0}><ChevronLeft size={16} /></button>
+        <div className="ios-page-dots" aria-label={`App page ${page + 1} of 2`}>
+          {[0, 1].map((i) => <button key={i} aria-label={`Go to app page ${i + 1}`} aria-current={i === page ? "page" : undefined} onClick={() => setPage(i)}><span className={page === i ? "active" : ""} /></button>)}
         </div>
-
-        <button
-          onClick={() => {
-            playHapticClick();
-            onOpenCarousel();
-          }}
-          className="px-2 py-0.5 rounded-full bg-[#faecd2] text-[#225424] text-[9px] font-bold tracking-tight hover:scale-105 transition-transform cursor-pointer shadow-xs"
-          title="Switch to full project screenshot showcase"
-        >
-          📸 Gallery
-        </button>
+        <button onClick={() => setPage(1)} aria-label="Next app page" disabled={page === 1}><ChevronRight size={16} /></button>
       </div>
-
-      {/* iOS 18 4x4 App Grid with Apple Squircles & Authentic Icons */}
-      <div className="grid grid-cols-4 gap-y-2.5 gap-x-1.5 py-1.5 max-w-[290px] mx-auto w-full">
-        {ALL_PROJECT_APPS.map((app) => (
-          <div
-            key={app.id}
-            onClick={() => handleAppClick(app)}
-            className="flex flex-col items-center gap-1 group cursor-pointer"
-          >
-            <div className="relative">
-              {/* Apple Curvature Squircle */}
-              <div
-                className={`w-11 h-11 rounded-[15px] p-[1px] shadow-md flex items-center justify-center transition-all duration-200 group-hover:scale-110 group-active:scale-95 border border-white/25 overflow-hidden bg-gradient-to-tr ${app.gradient}`}
-              >
-                <img
-                  src={app.iconImage}
-                  alt={app.name}
-                  className="w-full h-full object-cover rounded-[14px] pointer-events-none select-none drop-shadow-sm"
-                  loading="eager"
-                />
-              </div>
-
-              {app.badge && (
-                <span className="absolute -top-1 -right-1 px-1 py-0.2 rounded-full bg-red-500 text-[7px] font-mono font-bold text-white border border-white/30 shadow-xs z-10">
-                  {app.badge}
-                </span>
-              )}
-            </div>
-
-            <span className="text-[9px] font-medium text-white/95 group-hover:text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.85)] truncate max-w-[58px] text-center">
-              {app.name}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* iOS Floating Frosted Glass Dock with Authentic Launcher Icons */}
-      <div className="p-1.5 rounded-[24px] bg-white/15 backdrop-blur-2xl border border-white/25 shadow-2xl flex items-center justify-around max-w-[270px] mx-auto w-full mb-3 shrink-0">
-        <button
-          onClick={() => {
-            playHapticClick();
-            onOpenApp("contact");
-          }}
-          className="w-10 h-10 rounded-[14px] overflow-hidden shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer border border-white/20 p-0.5 bg-black/20"
-          title="Phone / Contact Sangeeth"
-        >
-          <img src="/images/apps/phone-icon.svg" alt="Phone" className="w-full h-full object-cover rounded-[12px]" />
-        </button>
-
-        <button
-          onClick={() => {
-            playHapticClick();
-            onOpenApp("rewind");
-          }}
-          className="w-10 h-10 rounded-[14px] overflow-hidden shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer border border-white/20 p-0.5 bg-black/20"
-          title="Rewind Music"
-        >
-          <img src="/images/apps/rewind-icon.png" alt="Rewind" className="w-full h-full object-cover rounded-[12px]" />
-        </button>
-
-        <button
-          onClick={() => {
-            playHapticClick();
-            onOpenApp("aura");
-          }}
-          className="w-10 h-10 rounded-[14px] overflow-hidden shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer border border-white/20 p-0.5 bg-black/20"
-          title="AURA Voice AI"
-        >
-          <img src="/images/apps/aura-icon.png" alt="AURA AI" className="w-full h-full object-cover rounded-[12px]" />
-        </button>
-
-        <a
-          href="https://github.com/sangeethsanthosh-git"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-10 h-10 rounded-[14px] overflow-hidden shadow-md hover:scale-110 active:scale-95 transition-transform cursor-pointer border border-white/20 p-0.5 bg-black/20 block"
-          title="GitHub Repositories"
-        >
-          <img src="/images/apps/github-icon.svg" alt="GitHub" className="w-full h-full object-cover rounded-[12px]" />
-        </a>
-      </div>
+      <button className="ios-library-search" onClick={onOpenCarousel}><Search size={12} /> Explore projects</button>
+      <div className="ios-dock">{dock.map((app) => renderIcon(app, true))}</div>
     </div>
   );
 }
