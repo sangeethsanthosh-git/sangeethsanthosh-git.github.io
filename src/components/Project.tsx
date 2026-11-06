@@ -223,8 +223,11 @@ export default function Project(): React.ReactElement {
     return () => clearInterval(timer);
   }, []);
 
-  // 3D Scroll Rotation & Landing Animation
+  // 3D Scroll Rotation & Landing Animation (Throttled with requestAnimationFrame for 60/120Hz smooth scrolling)
   useEffect(() => {
+    let ticking = false;
+    let rafId: number;
+
     const handleScroll = () => {
       if (!phoneTargetRef.current || !sectionRef.current) return;
       const rect = sectionRef.current.getBoundingClientRect();
@@ -236,25 +239,39 @@ export default function Project(): React.ReactElement {
       let progress = (startPoint - rect.top) / (startPoint - endPoint);
       progress = Math.max(0, Math.min(1, progress));
 
-      const currentRotateY = (1 - progress) * -18;
-      const currentRotateX = (1 - progress) * 14;
-      const currentRotateZ = (1 - progress) * -4;
-      const currentY = (1 - progress) * 110;
-
       const width = typeof window !== "undefined" ? window.innerWidth : 1200;
+      const isMobile = width < 768;
+
+      // Subtle tilt on mobile to reduce GPU compositing overhead
+      const currentRotateY = isMobile ? (1 - progress) * -5 : (1 - progress) * -18;
+      const currentRotateX = isMobile ? (1 - progress) * 4 : (1 - progress) * 14;
+      const currentRotateZ = isMobile ? 0 : (1 - progress) * -4;
+      const currentY = (1 - progress) * 80;
+
       const responsiveScale = width < 340 ? 0.78 : width < 380 ? 0.86 : width < 420 ? 0.92 : 1;
       const currentScale = (0.94 + progress * 0.06) * responsiveScale;
 
       phoneTargetRef.current.style.transform = `translateY(${currentY}px) scale(${currentScale}) rotateY(${currentRotateY}deg) rotateX(${currentRotateX}deg) rotateZ(${currentRotateZ}deg)`;
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        rafId = requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+      }
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
     handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
+      cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
     };
   }, []);
 
@@ -340,8 +357,9 @@ export default function Project(): React.ReactElement {
     };
   }, [isDragging, dragOffset, currentSlide]);
 
-  // Subtle interactive ASCII Background Canvas
+  // Subtle interactive ASCII Background Canvas (Desktop only + IntersectionObserver to preserve phone battery & GPU)
   useEffect(() => {
+    if (typeof window === "undefined" || window.innerWidth < 768) return;
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
@@ -384,7 +402,20 @@ export default function Project(): React.ReactElement {
       section.addEventListener("mouseleave", onMouseLeave);
     }
 
+    let isVisible = true;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isVisible = entries[0]?.isIntersecting ?? false;
+      },
+      { threshold: 0.05 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+
     const renderAscii = () => {
+      if (!isVisible) {
+        animationId = requestAnimationFrame(renderAscii);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       ctx.font = `${fontSize}px "Space Mono", monospace`;
       time += 0.025;
@@ -420,6 +451,7 @@ export default function Project(): React.ReactElement {
 
     return () => {
       cancelAnimationFrame(animationId);
+      observer.disconnect();
       window.removeEventListener("resize", resize);
       if (section) {
         section.removeEventListener("mousemove", onMouseMove);

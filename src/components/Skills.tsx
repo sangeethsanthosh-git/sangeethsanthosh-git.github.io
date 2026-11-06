@@ -756,7 +756,7 @@ export default function Skills(): React.ReactElement {
                   >
                     {/* Floating idle breathing wrapper */}
                     <div
-                      className="relative group select-none"
+                      className="relative group select-none idle-floating-wrapper"
                       style={{
                         animation: `${slot.floatType} 4.5s ease-in-out infinite`,
                         animationDelay: slot.floatDelay,
@@ -1152,6 +1152,12 @@ export default function Skills(): React.ReactElement {
 
         .folder-haptic-pulse {
           animation: folderPulseAnim 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        @media (max-width: 768px), (hover: none) {
+          .idle-floating-wrapper {
+            animation: none !important;
+          }
         }
 
         /* Idle float physics */

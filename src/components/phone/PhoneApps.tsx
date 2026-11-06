@@ -1797,8 +1797,8 @@ const CARTOON_STYLES: CartoonStyleOption[] = [
 
 export function CartoonizerApp({ onClose }: { onClose: () => void }) {
   const [sliderPos, setSliderPos] = useState(50);
-  const [originalImageSrc, setOriginalImageSrc] = useState<string>("/images/wb-cartoon-input.png");
-  const [cartoonImageSrc, setCartoonImageSrc] = useState<string | null>("/images/wb-cartoon-output.png");
+  const [originalImageSrc, setOriginalImageSrc] = useState<string>("/images/wb-cartoon-input.webp");
+  const [cartoonImageSrc, setCartoonImageSrc] = useState<string | null>("/images/wb-cartoon-output.webp");
   const [currentStyle, setCurrentStyle] = useState<CartoonStyle>("whitebox");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -1812,8 +1812,8 @@ export function CartoonizerApp({ onClose }: { onClose: () => void }) {
   // High-Fidelity Canvas 2D White-Box Guided Filter Pipeline
   const processCartoonEffect = (imageSource: string, style: CartoonStyle) => {
     // If it's the repo reference and whitebox style, use the exact model output
-    if (imageSource === "/images/wb-cartoon-input.png" && style === "whitebox") {
-      setCartoonImageSrc("/images/wb-cartoon-output.png");
+    if (imageSource === "/images/wb-cartoon-input.webp" && style === "whitebox") {
+      setCartoonImageSrc("/images/wb-cartoon-output.webp");
       setProcessingTimeMs(12);
       return;
     }
@@ -2000,13 +2000,13 @@ export function CartoonizerApp({ onClose }: { onClose: () => void }) {
         setIsProcessing(false);
       } catch (err) {
         console.error("Cartoonizer error:", err);
-        setCartoonImageSrc("/images/wb-cartoon-output.png");
+        setCartoonImageSrc("/images/wb-cartoon-output.webp");
         setIsProcessing(false);
       }
     };
 
     img.onerror = () => {
-      setCartoonImageSrc("/images/wb-cartoon-output.png");
+      setCartoonImageSrc("/images/wb-cartoon-output.webp");
       setIsProcessing(false);
     };
 
@@ -2041,8 +2041,8 @@ export function CartoonizerApp({ onClose }: { onClose: () => void }) {
   const SAMPLES = [
     {
       name: "White-Box Model (Repo)",
-      input: "/images/wb-cartoon-input.png",
-      output: "/images/wb-cartoon-output.png",
+      input: "/images/wb-cartoon-input.webp",
+      output: "/images/wb-cartoon-output.webp",
     },
     {
       name: "Portrait Model",

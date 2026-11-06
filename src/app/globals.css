@@ -52,6 +52,22 @@ body {
   will-change: background;
 }
 
+@media (hover: none) or (pointer: coarse), (max-width: 768px) {
+  .pointer-spotlight {
+    display: none !important;
+  }
+}
+
+/* Off-screen performance containment for silky-smooth scrolling on phones */
+#skills,
+#project,
+#services,
+#work,
+#education {
+  content-visibility: auto;
+  contain-intrinsic-size: 1px 700px;
+}
+
 [id] {
   scroll-margin-top: 6rem;
 }
