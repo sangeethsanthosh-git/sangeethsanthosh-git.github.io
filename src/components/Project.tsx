@@ -183,7 +183,6 @@ const PROJECTS: ProjectData[] = [
 
 export default function Project(): React.ReactElement {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
-  const [phoneOS, setPhoneOS] = useState<"iphone" | "android">("iphone");
   const [isLiked, setIsLiked] = useState<boolean>(false);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
   const [activeModalIdx, setActiveModalIdx] = useState<number>(0);
@@ -644,17 +643,6 @@ export default function Project(): React.ReactElement {
           }
         }
 
-        /* Android Flagship Variant (Galaxy S24 Ultra Sharp Angular Bezel) */
-        .phone-realistic-chassis.is-android {
-          border-radius: 22px;
-          box-shadow:
-            0 0 0 1px rgba(255, 255, 255, 0.18),
-            0 0 0 2.5px #23252c,
-            0 0 0 4px #0d0f13,
-            -22px 35px 65px -10px rgba(0, 0, 0, 0.85),
-            -10px 15px 25px -5px rgba(0, 0, 0, 0.6);
-        }
-
         /* Antenna Band Lines */
         .antenna-band {
           position: absolute;
@@ -683,31 +671,16 @@ export default function Project(): React.ReactElement {
         .phone-btn-left-volup { top: 175px; width: 4.5px; height: 50px; }
         .phone-btn-left-voldown { top: 236px; width: 4.5px; height: 50px; }
 
-        .phone-realistic-chassis.is-android .phone-btn-left-action,
-        .phone-realistic-chassis.is-android .phone-btn-left-volup,
-        .phone-realistic-chassis.is-android .phone-btn-left-voldown {
-          opacity: 0;
-          pointer-events: none;
-        }
-
-        .phone-btn-right-power,
-        .phone-btn-right-androidvol {
+        .phone-btn-right-power {
           position: absolute;
           right: -8px;
           background: linear-gradient(180deg, #424754 0%, #20232a 100%);
           border-radius: 0 3px 3px 0;
           box-shadow: 2px 0 4px rgba(0, 0, 0, 0.6), inset 0 1px 1px rgba(255, 255, 255, 0.3);
           transition: opacity 0.3s;
-        }
-        .phone-btn-right-power { top: 180px; width: 4.5px; height: 68px; }
-        .phone-btn-right-androidvol { top: 260px; width: 4.5px; height: 75px; opacity: 0; }
-
-        .phone-realistic-chassis.is-android .phone-btn-right-power {
-          top: 190px;
-          height: 48px;
-        }
-        .phone-realistic-chassis.is-android .phone-btn-right-androidvol {
-          opacity: 1;
+          top: 180px;
+          width: 4.5px;
+          height: 68px;
         }
 
         /* Top Acoustic Speaker Grill */
@@ -780,20 +753,6 @@ export default function Project(): React.ReactElement {
           box-shadow: 0 0 6px #10b981;
         }
 
-        /* Android Centered Punch Hole */
-        .phone-realistic-chassis.is-android .phone-dynamic-island-shell {
-          width: 13px;
-          height: 13px;
-          border-radius: 50%;
-          top: 12px;
-          padding: 0;
-          justify-content: center;
-        }
-        .phone-realistic-chassis.is-android .phone-sensor-aperture,
-        .phone-realistic-chassis.is-android .phone-privacy-dot {
-          display: none;
-        }
-
         /* Ceramic Shield Glass Reflection */
         .phone-glass-specular-glare {
           position: absolute;
@@ -821,10 +780,6 @@ export default function Project(): React.ReactElement {
           background: #000;
           display: flex;
           flex-direction: column;
-        }
-
-        .phone-realistic-chassis.is-android .phone-screen-inner {
-          border-radius: 32px;
         }
 
         .phone-slides-track {
@@ -890,28 +845,6 @@ export default function Project(): React.ReactElement {
           100% { transform: translateY(-12px) scale(1.08); }
         }
 
-        .os-toggle-btn {
-          font-weight: 600;
-          font-size: 14px;
-          cursor: pointer;
-          position: relative;
-          padding-bottom: 4px;
-          transition: color 0.2s;
-        }
-        .os-toggle-btn.active {
-          color: #faecd2;
-        }
-        .os-toggle-btn.active::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 20px;
-          height: 2.5px;
-          background: #225424;
-          border-radius: 2px;
-        }
       `}</style>
 
       {/* =========================================================================
@@ -998,7 +931,7 @@ export default function Project(): React.ReactElement {
             >
               <div
                 id="phone-device"
-                className={`phone-realistic-chassis ${phoneOS === "android" ? "is-android" : ""}`}
+                className="phone-realistic-chassis"
               >
                 {/* Antenna Bands */}
                 <div className="antenna-band antenna-tl" />
@@ -1028,7 +961,7 @@ export default function Project(): React.ReactElement {
                   onClick={() => handleVolumeChange(-1)}
                 />
 
-                {/* Right Physical Buttons (Side Lock / Android Buttons) */}
+                {/* Right Physical Button (Side Lock / Power) */}
                 <div
                   className="phone-btn-right-power cursor-pointer"
                   title="Power: Lock/Wake Screen"
@@ -1036,11 +969,6 @@ export default function Project(): React.ReactElement {
                     playHapticClick();
                     setIsLocked((prev) => !prev);
                   }}
-                />
-                <div
-                  className="phone-btn-right-androidvol cursor-pointer"
-                  title="Volume Toggle"
-                  onClick={() => handleVolumeChange(1)}
                 />
 
                 {/* Top Acoustic Ear Speaker Grill */}
@@ -1078,48 +1006,25 @@ export default function Project(): React.ReactElement {
 
                 {/* INNER OLED SCREEN */}
                 <div className="phone-screen-inner relative">
-                  {/* Top Status Bar: Apple iOS 18 vs Samsung Galaxy One UI */}
-                  {phoneOS === "iphone" ? (
-                    <div className="absolute top-2 inset-x-6 flex justify-between items-center text-[12px] font-semibold text-white/95 z-40 pointer-events-none drop-shadow">
-                      <span id="phone-live-clock">{clockTime}</span>
-                      <div className="flex items-center gap-1.5">
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <rect x="2" y="16" width="3" height="6" rx="1" />
-                          <rect x="7" y="12" width="3" height="10" rx="1" />
-                          <rect x="12" y="8" width="3" height="14" rx="1" />
-                          <rect x="17" y="4" width="3" height="18" rx="1" />
-                        </svg>
-                        <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-                          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z" />
-                        </svg>
-                        <div className="w-5 h-2.5 border border-white/80 rounded-[3px] p-[1px] flex items-center relative">
-                          <div className="w-[85%] h-full bg-emerald-400 rounded-[1px]" />
-                          <div className="absolute -right-1 top-0.5 w-[2px] h-1.5 bg-white/80 rounded-r-[1px]" />
-                        </div>
+                  {/* Top Status Bar: Apple iOS 18 */}
+                  <div className="absolute top-2 inset-x-6 flex justify-between items-center text-[12px] font-semibold text-white/95 z-40 pointer-events-none drop-shadow">
+                    <span id="phone-live-clock">{clockTime}</span>
+                    <div className="flex items-center gap-1.5">
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <rect x="2" y="16" width="3" height="6" rx="1" />
+                        <rect x="7" y="12" width="3" height="10" rx="1" />
+                        <rect x="12" y="8" width="3" height="14" rx="1" />
+                        <rect x="17" y="4" width="3" height="18" rx="1" />
+                      </svg>
+                      <svg className="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                        <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z" />
+                      </svg>
+                      <div className="w-5 h-2.5 border border-white/80 rounded-[3px] p-[1px] flex items-center relative">
+                        <div className="w-[85%] h-full bg-emerald-400 rounded-[1px]" />
+                        <div className="absolute -right-1 top-0.5 w-[2px] h-1.5 bg-white/80 rounded-r-[1px]" />
                       </div>
                     </div>
-                  ) : (
-                    <div className="absolute top-2 inset-x-4 flex justify-between items-center text-[11px] font-sans text-white/95 z-40 pointer-events-none drop-shadow">
-                      <div className="flex items-center gap-1">
-                        <span className="font-semibold">{clockTime}</span>
-                        <span className="text-[9px] text-[#faecd2] font-mono">✦</span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="text-[9px] font-bold tracking-tight px-1 rounded bg-white/20">
-                          5G
-                        </span>
-                        <svg className="w-3 h-3 fill-current" viewBox="0 0 24 24">
-                          <path d="M12 4C7.31 4 3.07 5.9 0 8.98L12 21 24 8.98C20.93 5.9 16.69 4 12 4z" />
-                        </svg>
-                        <div className="flex items-center gap-1">
-                          <span className="text-[10px] font-bold">88%</span>
-                          <div className="w-4 h-2.5 border border-white/90 rounded-[2px] p-[1px] flex items-center">
-                            <div className="w-[88%] h-full bg-emerald-400 rounded-[1px]" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  </div>
 
                   {/* Volume HUD popup when volume buttons are clicked */}
                   {showVolumeHUD && (
@@ -1139,7 +1044,6 @@ export default function Project(): React.ReactElement {
                         playHapticClick();
                         setIsLocked(false);
                       }}
-                      phoneOS={phoneOS}
                     />
                   ) : phoneMode === "os" ? (
                     /* 2. INTERACTIVE FUNCTIONING PHONE OS */
@@ -1174,8 +1078,7 @@ export default function Project(): React.ReactElement {
                         <ContactApp onClose={() => setActiveApp(null)} />
                       ) : (
                         <PhoneHomeScreen
-                          phoneOS={phoneOS}
-                          onOpenApp={(appId) => setActiveApp(appId)}
+                              onOpenApp={(appId) => setActiveApp(appId)}
                           onOpenCarousel={() => setPhoneMode("carousel")}
                         />
                       )}
@@ -1481,101 +1384,25 @@ export default function Project(): React.ReactElement {
                     </>
                   )}
 
-                  {/* Bottom Navigation: Apple Home Gesture Bar vs Samsung 3-Button Nav */}
-                  {phoneOS === "iphone" ? (
-                    <button
-                      onClick={() => {
-                        playHapticClick();
-                        if (activeApp) {
-                          setActiveApp(null);
-                        } else if (phoneMode === "carousel") {
-                          setPhoneMode("os");
-                        }
-                      }}
-                      className="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-3.5 flex items-center justify-center z-50 cursor-pointer group"
-                      title="Home Bar: Tap to minimize app or go to Home Screen"
-                      aria-label="Home Bar"
-                    >
-                      <div className="w-28 h-1 bg-white/70 group-hover:bg-white rounded-full transition-colors shadow-sm" />
-                    </button>
-                  ) : (
-                    /* Samsung 3-Button Navigation Bar */
-                    <div className="absolute bottom-0 inset-x-0 h-8 bg-black/85 backdrop-blur-md border-t border-white/10 z-50 flex items-center justify-around px-8 text-white/70">
-                      <button
-                        onClick={() => {
-                          playHapticClick();
-                          setPhoneMode("carousel");
-                        }}
-                        className="p-1 hover:text-white transition-colors cursor-pointer"
-                        title="Recents: Open Gallery"
-                        aria-label="Recent Apps"
-                      >
-                        <div className="flex gap-1 items-center">
-                          <div className="w-[2px] h-3.5 bg-current rounded-full" />
-                          <div className="w-[2px] h-3.5 bg-current rounded-full" />
-                          <div className="w-[2px] h-3.5 bg-current rounded-full" />
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          playHapticClick();
-                          if (activeApp) setActiveApp(null);
-                          if (phoneMode === "carousel") setPhoneMode("os");
-                        }}
-                        className="p-1 hover:text-white transition-colors cursor-pointer"
-                        title="Home: Go to Home Screen"
-                        aria-label="Home"
-                      >
-                        <div className="w-3.5 h-3.5 border-2 border-current rounded-[3px]" />
-                      </button>
-
-                      <button
-                        onClick={() => {
-                          playHapticClick();
-                          if (activeApp) {
-                            setActiveApp(null);
-                          } else if (phoneMode === "carousel") {
-                            setPhoneMode("os");
-                          }
-                        }}
-                        className="p-1 hover:text-white transition-colors cursor-pointer text-base font-bold leading-none"
-                        title="Back"
-                        aria-label="Back"
-                      >
-                        ‹
-                      </button>
-                    </div>
-                  )}
+                  {/* Bottom Navigation: Apple Home Gesture Bar */}
+                  <button
+                    onClick={() => {
+                      playHapticClick();
+                      if (activeApp) {
+                        setActiveApp(null);
+                      } else if (phoneMode === "carousel") {
+                        setPhoneMode("os");
+                      }
+                    }}
+                    className="absolute bottom-1 left-1/2 -translate-x-1/2 w-32 h-3.5 flex items-center justify-center z-50 cursor-pointer group"
+                    title="Home Bar: Tap to minimize app or go to Home Screen"
+                    aria-label="Home Bar"
+                  >
+                    <div className="w-28 h-1 bg-white/70 group-hover:bg-white rounded-full transition-colors shadow-sm" />
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* iPhone / Android OS Switcher */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8 px-2 text-center">
-            <button
-              id="btn-os-iphone"
-              type="button"
-              className={`os-toggle-btn text-xs sm:text-sm ${phoneOS === "iphone" ? "active" : "text-white/40"}`}
-              onClick={() => {
-                playHapticClick();
-                setPhoneOS("iphone");
-              }}
-            >
-              iPhone 16 Pro (iOS 18)
-            </button>
-            <button
-              id="btn-os-android"
-              type="button"
-              className={`os-toggle-btn text-xs sm:text-sm ${phoneOS === "android" ? "active" : "text-white/40"}`}
-              onClick={() => {
-                playHapticClick();
-                setPhoneOS("android");
-              }}
-            >
-              Galaxy S24 Ultra (One UI)
-            </button>
           </div>
 
           {/* Swipe / Navigation Guidance & Interactive Controls */}
